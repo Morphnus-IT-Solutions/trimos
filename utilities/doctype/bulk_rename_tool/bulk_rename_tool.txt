@@ -1,0 +1,115 @@
+# DocType, Bulk Rename Tool
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 15:39:23',
+		'docstatus': 0,
+		'modified': '2011-12-03 22:01:15',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313694249',
+		'allow_attach': 1,
+		'autoname': 'field:rename_doctype',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Utilities',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 8
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Bulk Rename Tool',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Bulk Rename Tool',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Bulk Rename Tool
+	{
+		'doctype': 'DocType',
+		'name': 'Bulk Rename Tool'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rename_doctype',
+		'fieldtype': 'Data',
+		'label': 'Rename DocType',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'file_list',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'File List',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Rename',
+		'options': 'do_rename',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'System Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'System Manager'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator'
+	}
+]

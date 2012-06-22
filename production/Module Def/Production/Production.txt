@@ -1,0 +1,170 @@
+# Module Def, Production
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 15:24:38',
+		'docstatus': 0,
+		'modified': '2011-08-14 15:24:38',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Production',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def Item
+	{
+		'doctype': 'Module Def Item',
+		'name': '__common__',
+		'parent': 'Production',
+		'parentfield': 'items',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'No',
+		'doctype': u'Module Def',
+		'is_hidden': 'No',
+		'module_desc': 'Production Documents',
+		'module_label': 'Production',
+		'module_name': 'Production',
+		'module_seq': 9,
+		'name': '__common__'
+	},
+
+	# Module Def, Production
+	{
+		'doctype': u'Module Def',
+		'name': 'Production'
+	},
+
+	# Module Def Item
+	{
+		'description': 'Bill of material master containing raw materials, operation and costs',
+		'display_name': 'Bill Of Materials',
+		'doc_name': 'Bill Of Materials',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'id\nitem\ndescription\noperating_cost\nmaintained_by',
+		'idx': 1
+	},
+
+	# Module Def Item
+	{
+		'description': 'Machinery in warehouse where operations are performed on raw materials',
+		'display_name': 'Workstation',
+		'doc_name': 'Workstation',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'id\nworkstation_name\nwarehouse\ndescription',
+		'idx': 2
+	},
+
+	# Module Def Item
+	{
+		'description': 'Explode Bill of Materials in a tree and calculate the cost',
+		'display_name': 'Bill of Materials (Tree)',
+		'doc_name': 'Bill of Materials',
+		'doc_type': 'Pages',
+		'doctype': 'Module Def Item',
+		'idx': 3
+	},
+
+	# Module Def Item
+	{
+		'description': 'Update confirmed delivery dates in Sales Orders included in Production Plan',
+		'display_name': 'Update Delivery Dates',
+		'doc_name': 'Update Delivery Date',
+		'doc_type': 'Single DocType',
+		'doctype': 'Module Def Item',
+		'idx': 4
+	},
+
+	# Module Def Item
+	{
+		'description': 'Plan your production by including relevant Sales Orders in your plan',
+		'display_name': 'Production Planning Tool',
+		'doc_name': 'Production Planning Tool',
+		'doc_type': 'Single DocType',
+		'doctype': 'Module Def Item',
+		'idx': 5
+	},
+
+	# Module Def Item
+	{
+		'description': 'Change raw materials used in a Bill of Material through BOM replace utility',
+		'display_name': 'BOM Replace Utility',
+		'doc_name': 'BOM Replace Utility',
+		'doc_type': 'Single DocType',
+		'doctype': 'Module Def Item',
+		'idx': 6
+	},
+
+	# Module Def Item
+	{
+		'description': 'Raise your Production Orders Manually',
+		'display_name': 'Production Order',
+		'doc_name': 'Production Order',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'idx': 7
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Delivery Plan',
+		'doc_name': 'Sales Order Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 8
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Consumption Against Production',
+		'doc_name': 'Stock Entry Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 9
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Itemwise Production Report',
+		'doc_name': 'Stock Entry Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 10
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Production Orders In Process',
+		'doc_name': 'Production Order',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 11
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'idx': 1,
+		'role': 'Production User'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'idx': 2,
+		'role': 'Production Manager'
+	}
+]

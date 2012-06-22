@@ -1,0 +1,37 @@
+# Search Criteria, consumption_against_production
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:27',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:27',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_col': '`tabProduction Order`.consider_sa_items',
+		'add_cond': '`tabProduction Order`.name = `tabStock Entry`.production_order',
+		'add_tab': '`tabProduction Order`',
+		'columns': 'Stock Entry\x01ID,Stock Entry\x01Production Order,Stock Entry\x01Process,Stock Entry\x01Posting Date,Stock Entry\x01Company,Stock Entry Detail\x01Source Warehouse,Stock Entry Detail\x01Target Warehouse,Stock Entry Detail\x01FG Item,Stock Entry Detail\x01Item Code,Stock Entry Detail\x01Description,Stock Entry Detail\x01Reqd Qty,Stock Entry Detail\x01Transfer Quantity',
+		'criteria_name': 'Consumption Against Production',
+		'doc_type': 'Stock Entry Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Stock Entry\x01Submitted':1,'Stock Entry\x01Purpose':'Production Order','Stock Entry\x01Process':''}",
+		'module': 'Production',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Stock Entry',
+		'sort_by': '`tabStock Entry`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, consumption_against_production
+	{
+		'doctype': 'Search Criteria',
+		'name': 'consumption_against_production'
+	}
+]

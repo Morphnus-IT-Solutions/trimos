@@ -1,0 +1,276 @@
+# DocType, Visit Report Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-12 17:21:28',
+		'docstatus': 0,
+		'modified': '2012-06-05 18:01:30',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1338540190',
+		'autoname': 'VRD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'CRM',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'customer,visit_date, ',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 39
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Visit Report Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Visit Report Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Visit Report Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_visit_start_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Visit Date',
+		'oldfieldname': 'actual_visit_start_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'from_time',
+		'fieldtype': 'Time',
+		'label': 'From Time',
+		'oldfieldname': 'from_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'to_time',
+		'fieldtype': 'Time',
+		'label': 'To Time',
+		'oldfieldname': 'to_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0,
+		'trigger': 'Client',
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '125px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Link',
+		'options': 'Contact',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_name',
+		'fieldtype': 'Data',
+		'label': 'Contact Name',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose',
+		'fieldtype': 'Select',
+		'label': 'Purpose',
+		'oldfieldname': 'purpose',
+		'oldfieldtype': 'Select',
+		'options': '\nEnquiry generation\nDemo\nCommercial negotiation\nCourtesy visit\nDocument collection\nDocument submission\nFollow up on inquiry visit\nFollow up on quotation visit\nService under AMC\nService under Warranty\nOne Time Service\nCalibration under AMC\nCalibration under Calibration\nOne Time Calibration\nOne Time Service & Calibration\nTraining\nBreakdown\nComplaint\nOrder finalization\nTechnical discussion visit\nInstallation\nInstallation & training\nMaterial collection\nMaterial delivery\nTender submission\nTender opening\nTrial Software Installation\nExhibition\nGodown/Warehouse\nLocal purchase\nMeeting\nPick up\nIn Travelling',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'achievement',
+		'fieldtype': 'Small Text',
+		'label': 'Achievement',
+		'oldfieldname': 'achievement',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document',
+		'fieldtype': 'Select',
+		'label': 'Against Document',
+		'oldfieldname': 'against_document',
+		'oldfieldtype': 'Select',
+		'options': '\nLead\nService\nInstallation\nOthers',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document_no',
+		'fieldtype': 'Link',
+		'label': 'Against Document No',
+		'oldfieldname': 'against_document_no',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'search_index': 1,
+		'trigger': 'Client',
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'follow_up',
+		'fieldtype': 'Small Text',
+		'label': 'Follow Up / Action Plan',
+		'oldfieldname': 'follow_up',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_date',
+		'fieldtype': 'Date',
+		'label': 'Follow Up Date',
+		'oldfieldname': 'follow_up_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	}
+]

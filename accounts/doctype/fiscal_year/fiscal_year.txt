@@ -1,0 +1,180 @@
+# DocType, Fiscal Year
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:52:10',
+		'docstatus': 0,
+		'modified': '2011-11-20 11:57:31',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313786824',
+		'autoname': 'field:year',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 6
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Fiscal Year',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Fiscal Year',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'write': 1
+	},
+
+	# DocType, Fiscal Year
+	{
+		'doctype': 'DocType',
+		'name': 'Fiscal Year'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Year Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Resaon',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'year',
+		'fieldtype': 'Data',
+		'label': 'Year Name',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'abbreviation',
+		'fieldtype': 'Data',
+		'label': 'Abbreviation',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'year_start_date',
+		'fieldtype': 'Date',
+		'label': 'Year Start Date',
+		'oldfieldname': 'year_start_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_fiscal_year_closed',
+		'fieldtype': 'Select',
+		'label': 'Year Closed',
+		'options': '\nNo\nYes',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': "Click on the button below to reset balances from your previous year's closing and repost your balances. You can use this if your previous year balance sheet has been changed and you wish to update your current accounts.",
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Repost Accounts',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'past_year',
+		'fieldtype': 'Select',
+		'label': 'Past Year',
+		'no_column': 0,
+		'oldfieldname': 'past_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Company',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Repost Account Balances',
+		'options': 'repost',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Repost Voucher Outstanding',
+		'options': 'update_voucher_outstanding',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'doctype': 'DocPerm',
+		'role': 'CRM Manager',
+		'submit': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'Administrator'
+	}
+]

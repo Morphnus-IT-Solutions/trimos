@@ -1,0 +1,292 @@
+# Module Def, Support
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:59:32',
+		'docstatus': 0,
+		'modified': '2012-06-05 02:14:31',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Support',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def Item
+	{
+		'doctype': 'Module Def Item',
+		'name': '__common__',
+		'parent': 'Support',
+		'parentfield': 'items',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'No',
+		'doctype': u'Module Def',
+		'doctype_list': 'DocType Label, Ticket',
+		'is_hidden': 'No',
+		'module_desc': 'Manage service quotes, orders, schedule etc.',
+		'module_icon': 'Maintenance.gif',
+		'module_label': 'Service',
+		'module_name': 'Support',
+		'module_seq': 8,
+		'name': '__common__'
+	},
+
+	# Module Def, Support
+	{
+		'doctype': u'Module Def',
+		'name': 'Support'
+	},
+
+	# Module Def Item
+	{
+		'description': 'A unique number identifying each entity of an item',
+		'display_name': 'Serial No',
+		'doc_name': 'Serial No',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'item_code\nstatus\npr_no\ndelivery_note_no\ncustomer'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Installation Report',
+		'doc_name': 'Installation Report',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Service Quotation',
+		'doc_name': 'Service Quotation',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'transaction_date\nstatus\nquotation_type\nsub_category\ncustomer_name\nterritory\ngrand_total'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Service Order',
+		'doc_name': 'Service Order',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'transaction_date\nstatus\norder_type\nsub_category\ncustomer_name\nterritory\ndebit_note_no\ngrand_total'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Service Report',
+		'doc_name': 'Service Report',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\nreport_date\nengineer_name_1\ncustomer_name\nterritory\ntype_of_visit\npurpose\nserial_no\nbrand\nproduct_code'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Calibration Certificate',
+		'doc_name': 'Calibration Certificate',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\nterritory'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Complaint Note',
+		'doc_name': 'Complaint Note',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'customer_name\nterritory\ncall_type\ncomplaint_note\ncomplaint_status\nresolution_date\nresolved_by\nresolution_details'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Ticket (Internal Queries)',
+		'doc_name': 'Ticket',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'date\nsubject\nstatus\nbrand\nby_whom\nto_whom\nfor_whom'
+	},
+
+	# Module Def Item
+	{
+		'description': "Database of Support Ticket's raised by Customers",
+		'display_name': 'Support Ticket',
+		'doc_name': 'Support Ticket',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\nopening_date\ncustomer\nallocated_to'
+	},
+
+	# Module Def Item
+	{
+		'description': 'Create schedule based on maintenance order',
+		'display_name': 'Maintenance Schedule',
+		'doc_name': 'Maintenance Schedule',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\ntransaction_date\ncustomer\nsales_order_no'
+	},
+
+	# Module Def Item
+	{
+		'description': 'Database of issues raised your Customers',
+		'display_name': 'Customer Issue',
+		'doc_name': 'Customer Issue',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\ncomplaint_date\ncustomer\nallocated_to\nallocated_on'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Maintenance Visit',
+		'doc_name': 'Maintenance Visit',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'fields': 'status\nmntc_date\ncustomer\nmaintenance_type\ncompletion_status'
+	},
+
+	# Module Def Item
+	{
+		'description': 'List of all scheduled mainteance. You can filter by sales person, date, serial no etc. ',
+		'display_name': 'Maintenance Schedule Details',
+		'doc_name': 'Maintenance Schedule Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'hide': 1
+	},
+
+	# Module Def Item
+	{
+		'description': 'List of all issues raised by customer',
+		'display_name': 'Customer Issues',
+		'doc_name': 'Customer Issue',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'hide': 1
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Warranty/AMC Expiry Details',
+		'doc_name': 'Serial No',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'hide': 1
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Warranty/AMC Summary',
+		'doc_name': 'Serial No',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'hide': 1
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Maintenance Orderwise Pending Amount To Bill',
+		'doc_name': 'Sales Order Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'hide': 1
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Administrator'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Maintenance User'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Maintenance Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM User'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Service Team'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM User - Regional'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM User - HO'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Sales Team'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM - Back Office'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Schedule Approver'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Viewer'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Accounts Team'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Customer'
+	}
+]

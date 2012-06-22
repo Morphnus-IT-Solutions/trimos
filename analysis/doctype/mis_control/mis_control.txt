@@ -1,0 +1,31 @@
+# DocType, MIS Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:09:10',
+		'docstatus': 0,
+		'modified': '2011-01-03 17:32:31',
+		'modified_by': 'umair@iwebnotes.com',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Analysis',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 120
+	},
+
+	# DocType, MIS Control
+	{
+		'doctype': 'DocType',
+		'name': 'MIS Control'
+	}
+]

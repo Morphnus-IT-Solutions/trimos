@@ -1,0 +1,63 @@
+# DocType, Project Activity Update
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:44',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:44',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Projects',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Project Activity Update',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Project Activity Update
+	{
+		'doctype': 'DocType',
+		'name': 'Project Activity Update'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'update',
+		'fieldtype': 'Text',
+		'idx': 1,
+		'label': 'Update',
+		'oldfieldname': 'update',
+		'oldfieldtype': 'Text'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'e.g. 0.5, 2.5 etc',
+		'doctype': 'DocField',
+		'fieldname': 'hours',
+		'fieldtype': 'Float',
+		'idx': 2,
+		'label': 'Hours',
+		'oldfieldname': 'hours',
+		'oldfieldtype': 'Float'
+	}
+]

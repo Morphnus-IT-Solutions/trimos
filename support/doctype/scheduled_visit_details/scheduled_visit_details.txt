@@ -1,0 +1,277 @@
+# DocType, Scheduled Visit Details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-10 11:58:24',
+		'docstatus': 0,
+		'modified': '2012-04-04 16:35:30',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1317665444',
+		'autoname': 'SVD/.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 12
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Scheduled Visit Details',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Scheduled Visit Details
+	{
+		'doctype': 'DocType',
+		'name': 'Scheduled Visit Details'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_type',
+		'fieldtype': 'Select',
+		'hidden': 0,
+		'label': 'Visit Type',
+		'oldfieldname': 'visit_type',
+		'oldfieldtype': 'Select',
+		'options': '\nLocal\nOutstation',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose',
+		'fieldtype': 'Select',
+		'hidden': 0,
+		'label': 'Purpose',
+		'oldfieldname': 'purpose',
+		'oldfieldtype': 'Select',
+		'options': '\nEnquiry generation\nDemo\nCommercial negotiation\nCourtesy visit\nDocument collection\nDocument submission\nFollow up on inquiry from office\nFollow up on inquiry visit\nFollow up on quotation from office\nFollow up on quotation visit\nService under AMC\nOne Time Service\nCalibration under AMC\nOne Time Calibration\nOne Time Service & calibration\nTraining\nBreakdown\nComplaint\nOrder finalization\nTechnical discussion from office\nTechnical discussion visit\nInstallation\nInstallation & training\nMaterial collection\nMaterial delivery\nTender submission\nTender opening\nTrial Software Installation\nExhibition\nGodown/Warehouse\nLocal purchase\nMeeting\nPick up',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Against Document',
+		'oldfieldname': 'against_document',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document_no',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Against Document No',
+		'oldfieldname': 'against_document_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 1,
+		'search_index': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'in_filter': 0,
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'search_index': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'time_required',
+		'fieldtype': 'Data',
+		'label': 'Time Required',
+		'oldfieldname': 'time_required',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'rescheduled_date',
+		'fieldtype': 'Date',
+		'label': 'Rescheduled Date',
+		'oldfieldname': 'rescheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'label': 'Actual Date',
+		'oldfieldname': 'actual_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Approval Status',
+		'oldfieldname': 'approval_status',
+		'oldfieldtype': 'Select',
+		'options': '\nPending\nApproved \nRejected',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_remarks',
+		'fieldtype': 'Text',
+		'label': 'Approval Remarks',
+		'oldfieldname': 'approval_remarks',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_remarks',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'Visit Report Remarks',
+		'oldfieldname': 'visit_report_remarks',
+		'oldfieldtype': 'Text',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'select',
+		'fieldtype': 'Check',
+		'label': 'Make Visit Report',
+		'oldfieldname': 'select',
+		'oldfieldtype': 'Check',
+		'permlevel': 0
+	}
+]

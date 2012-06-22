@@ -1,0 +1,222 @@
+# DocType, Bin
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:52:41',
+		'docstatus': 0,
+		'modified': '2011-11-21 22:36:17',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'BIN/.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'hide_toolbar': 1,
+		'in_create': 1,
+		'module': 'Stock',
+		'name': '__common__',
+		'print_outline': 'No',
+		'read_only': 0,
+		'search_fields': 'item_code,warehouse',
+		'section_style': 'Simple',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Bin',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 1
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Bin',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Bin
+	{
+		'doctype': 'DocType',
+		'name': 'Bin'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warehouse',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Warehouse',
+		'oldfieldname': 'warehouse',
+		'oldfieldtype': 'Link',
+		'options': 'Warehouse',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warehouse_type',
+		'fieldtype': 'Data',
+		'label': 'Warehouse Type'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'default': '0.00',
+		'doctype': 'DocField',
+		'fieldname': 'reserved_qty',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Reserved Quantity',
+		'oldfieldname': 'reserved_qty',
+		'oldfieldtype': 'Currency',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'default': '0.00',
+		'doctype': 'DocField',
+		'fieldname': 'actual_qty',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Actual Quantity',
+		'oldfieldname': 'actual_qty',
+		'oldfieldtype': 'Currency',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'default': '0.00',
+		'doctype': 'DocField',
+		'fieldname': 'ordered_qty',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Ordered Quantity',
+		'oldfieldname': 'ordered_qty',
+		'oldfieldtype': 'Currency',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'default': '0.00',
+		'doctype': 'DocField',
+		'fieldname': 'indented_qty',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Indented Quantity',
+		'oldfieldname': 'indented_qty',
+		'oldfieldtype': 'Currency',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'projected_qty',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Projected Quantity',
+		'oldfieldname': 'available_qty',
+		'oldfieldtype': 'Currency',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'ma_rate',
+		'fieldtype': 'Currency',
+		'in_filter': 0,
+		'label': 'Moving Average Rate',
+		'oldfieldname': 'ma_rate',
+		'oldfieldtype': 'Currency',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fcfs_rate',
+		'fieldtype': 'Currency',
+		'label': 'FCFS Rate',
+		'oldfieldname': 'fcfs_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_uom',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'UOM',
+		'oldfieldname': 'stock_uom',
+		'oldfieldtype': 'Data',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'valuation_rate',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Valuation Rate',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_value',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'Stock Value',
+		'search_index': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Store Keeper'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Material Manager'
+	}
+]

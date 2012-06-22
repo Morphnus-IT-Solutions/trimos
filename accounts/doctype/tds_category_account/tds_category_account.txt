@@ -1,0 +1,106 @@
+# DocType, TDS Category Account
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 13:55:45',
+		'docstatus': 0,
+		'modified': '2011-08-14 13:55:45',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'TDS Category Account',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, TDS Category Account
+	{
+		'doctype': 'DocType',
+		'name': 'TDS Category Account'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'account_type',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'Account Type',
+		'oldfieldname': 'account_type',
+		'oldfieldtype': 'Select',
+		'options': 'Main\nSurcharge\nEdu Cess\nSH Edu Cess'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'link:Company',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'Company',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'account_head',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'Account Head',
+		'oldfieldname': 'account_head',
+		'oldfieldtype': 'Link',
+		'options': 'Account'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'account_head',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'Account Head',
+		'oldfieldname': 'account_head',
+		'oldfieldtype': 'Link',
+		'options': 'Account',
+		'reqd': 1
+	}
+]

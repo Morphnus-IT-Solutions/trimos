@@ -1,0 +1,49 @@
+# Page, MIS
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-12-28 10:23:51',
+		'docstatus': 0,
+		'modified': '2011-11-24 21:16:47',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Page
+	{
+		'doctype': 'Page',
+		'module': 'Analysis',
+		'name': '__common__',
+		'page_name': 'MIS',
+		'show_in_menu': 0,
+		'standard': 'No'
+	},
+
+	# These values are common for all Page Role
+	{
+		'doctype': 'Page Role',
+		'name': '__common__',
+		'parent': 'MIS',
+		'parentfield': 'roles',
+		'parenttype': 'Page'
+	},
+
+	# Page, MIS
+	{
+		'doctype': 'Page',
+		'name': 'MIS'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Administrator'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'CRM Manager'
+	}
+]

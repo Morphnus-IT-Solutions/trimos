@@ -1,0 +1,72 @@
+# DocType Mapper, KRA Template-Appraisal
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:59:57',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:59:57',
+		'modified_by': 'Administrator',
+		'owner': 'ashwini@webnotestech.com'
+	},
+
+	# These values are common for all Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'kra_sheet',
+		'from_table': 'KRA Sheet',
+		'match_id': 0,
+		'name': '__common__',
+		'parent': 'KRA Template-Appraisal',
+		'parentfield': 'table_mapper_details',
+		'parenttype': 'DocType Mapper',
+		'to_field': 'appraisal_details',
+		'to_table': 'Appraisal Detail',
+		'validation_logic': 'name is not Null'
+	},
+
+	# These values are common for all Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'map': 'Yes',
+		'match_id': 0,
+		'name': '__common__',
+		'parent': 'KRA Template-Appraisal',
+		'parentfield': 'field_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all DocType Mapper
+	{
+		'doctype': 'DocType Mapper',
+		'from_doctype': 'KRA Template',
+		'module': 'HR',
+		'name': '__common__',
+		'to_doctype': 'Appraisal'
+	},
+
+	# DocType Mapper, KRA Template-Appraisal
+	{
+		'doctype': 'DocType Mapper',
+		'name': 'KRA Template-Appraisal'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'kra',
+		'to_field': 'kra'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'per_weightage',
+		'to_field': 'per_weightage'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail'
+	}
+]

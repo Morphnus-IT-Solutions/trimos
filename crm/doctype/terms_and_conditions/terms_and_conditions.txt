@@ -1,0 +1,175 @@
+# DocType, Terms And Conditions
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:10',
+		'docstatus': 0,
+		'modified': '2012-01-01 22:40:04',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'allow_trash': 1,
+		'autoname': 'field:title',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'module': 'CRM',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Terms And Conditions',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Terms And Conditions',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Terms And Conditions
+	{
+		'doctype': 'DocType',
+		'name': 'Terms And Conditions'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'title',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Title',
+		'oldfieldname': 'title',
+		'oldfieldtype': 'Data',
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tc_details',
+		'fieldtype': 'Table',
+		'label': 'Default TC Details',
+		'oldfieldname': 'tc_details',
+		'oldfieldtype': 'Table',
+		'options': 'TC Detail'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM - Back Office'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'write': 0
+	}
+]

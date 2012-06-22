@@ -1,0 +1,34 @@
+# Search Criteria, itemwise_production_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:44',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:44',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Stock Entry\x01ID,Stock Entry\x01Posting Date,Stock Entry\x01Production Order,Stock Entry\x01Process,Stock Entry\x01Company,Stock Entry Detail\x01Target Warehouse,Stock Entry Detail\x01Item Code,Stock Entry Detail\x01Description,Stock Entry Detail\x01Stock UOM,Stock Entry Detail\x01Transfer Quantity',
+		'criteria_name': 'Itemwise Production Report',
+		'doc_type': 'Stock Entry Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Stock Entry\x01Saved':1,'Stock Entry\x01Submitted':1,'Stock Entry\x01Purpose':'Production Order','Stock Entry\x01Process':'Backflush','Stock Entry Detail\x01FG Item':1}",
+		'module': 'Production',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Stock Entry',
+		'sort_by': '`tabStock Entry`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, itemwise_production_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'itemwise_production_report'
+	}
+]

@@ -1,0 +1,892 @@
+# DocType Mapper, Service Quotation-Service Order
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-14 13:31:25',
+		'docstatus': 0,
+		'modified': '2011-11-19 18:00:18',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'name': '__common__',
+		'parent': 'Service Quotation-Service Order',
+		'parentfield': 'table_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'name': '__common__',
+		'parent': 'Service Quotation-Service Order',
+		'parentfield': 'field_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all DocType Mapper
+	{
+		'doctype': 'DocType Mapper',
+		'from_doctype': 'Service Quotation',
+		'module': 'Support',
+		'name': '__common__',
+		'ref_doc_submitted': 1,
+		'to_doctype': 'Service Order'
+	},
+
+	# DocType Mapper, Service Quotation-Service Order
+	{
+		'doctype': 'DocType Mapper',
+		'name': 'Service Quotation-Service Order'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'service_quotation_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'checking_operator': '>=',
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'transaction_date',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'service_quotation_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'inquiry_no',
+		'match_id': 0,
+		'to_field': 'inquiry_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'lead',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'lead'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'inquiry_date',
+		'match_id': 0,
+		'to_field': 'inquiry_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'lead_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'lead_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'lead_date',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'lead_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'others_detail',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'others_detail'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sub_category',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'sub_category'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_ref',
+		'match_id': 0,
+		'to_field': 'customer_ref'
+	},
+
+	# Field Mapper Detail
+	{
+		'checking_operator': '=',
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_address',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_address'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_person',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'designation',
+		'match_id': 0,
+		'to_field': 'designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'department',
+		'match_id': 0,
+		'to_field': 'department'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'address_display',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'address_display'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_no',
+		'match_id': 0,
+		'to_field': 'contact_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_display',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_display'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_mobile',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_mobile'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_department',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_department'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_designation',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'territory',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'territory'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'payment_terms',
+		'match_id': 0,
+		'to_field': 'payment_terms'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'zone',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'zone'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_group',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_group'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'quotation_type',
+		'match_id': 0,
+		'to_field': 'order_type'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'currency',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'currency'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'factor_figure',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'factor_figure'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'conversion_rate',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'conversion_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'charge',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'charge'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'net_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'net_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'other_charges_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'other_charges_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'grand_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'grand_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rounded_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'rounded_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'in_words',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'in_words'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'grand_total_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'grand_total_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rounded_total_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'rounded_total_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'in_words_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'in_words_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'internal_note',
+		'match_id': 0,
+		'to_field': 'internal_note'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'tc_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'tc_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'concluding_note',
+		'match_id': 0,
+		'to_field': 'concluding_note'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'terms',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'terms'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'fiscal_year',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'fiscal_year'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'intro_note',
+		'match_id': 0,
+		'to_field': 'note'
+	},
+
+	# Field Mapper Detail
+	{
+		'checking_operator': '=',
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'company',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'company'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'parent',
+		'match_id': 1,
+		'to_field': 'prevdoc_docname'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'serial_no',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'serial_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_code',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'brand',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'brand'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_type',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_type'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'product_code',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'product_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'make',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'make'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'label',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'label'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'amc_start_date',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'start_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'amc_end_date',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'end_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'no_of_visit',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'no_of_visit'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'qty',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'qty'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'basic_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'basic_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'amount',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'export_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'export_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_tax_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_tax_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'export_amount',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'export_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'charge_type',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'charge_type'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'row_id',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'row_id'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_wise_tax_detail',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'item_wise_tax_detail'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rate',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'tax_amount',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'tax_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'idx',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'idx'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'terms',
+		'match_id': 3,
+		'to_field': 'terms'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_person',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'sales_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'match_id': 3,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_designation',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'sales_designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_person',
+		'match_id': 4,
+		'to_field': 'sales_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_no',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'contact_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_designation',
+		'match_id': 4,
+		'to_field': 'sales_designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'parenttype',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'parenttype'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_no',
+		'match_id': 4,
+		'to_field': 'contact_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_percentage',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'allocated_percentage'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'parenttype',
+		'match_id': 4,
+		'to_field': 'parenttype'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_amount',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'allocated_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_percentage',
+		'match_id': 4,
+		'to_field': 'allocated_percentage'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'incentive_percent',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'incentive_percent'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_amount',
+		'match_id': 4,
+		'to_field': 'allocated_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'incentive_amount',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'incentive_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'incentive_percent',
+		'match_id': 4,
+		'to_field': 'incentive_percent'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'incentive_amount',
+		'match_id': 4,
+		'to_field': 'incentive_amount'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_table': 'Service Quotation',
+		'match_id': 0,
+		'to_table': 'Service Order',
+		'validation_logic': 'docstatus=1'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'sales_team',
+		'from_table': 'Sales Team',
+		'match_id': 4,
+		'to_field': 'sales_team',
+		'to_table': 'Sales Team',
+		'validation_logic': 'name is not null'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'service_quotation_details',
+		'from_table': 'Service Quotation Detail',
+		'match_id': 1,
+		'to_field': 'service_order_details',
+		'to_table': 'Service Order Detail',
+		'validation_logic': 'name is not null'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'tc_details',
+		'from_table': 'TC Detail',
+		'match_id': 3,
+		'to_field': 'tc_details',
+		'to_table': 'TC Detail',
+		'validation_logic': 'name is not null'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'other_charges',
+		'from_table': 'RV Tax Detail',
+		'match_id': 2,
+		'to_field': 'other_charges',
+		'to_table': 'RV Tax Detail',
+		'validation_logic': 'name is not null'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'sales_team',
+		'from_table': 'Sales Team',
+		'match_id': 3,
+		'to_field': 'sales_team',
+		'to_table': 'Sales Team',
+		'validation_logic': 'name is not null'
+	}
+]

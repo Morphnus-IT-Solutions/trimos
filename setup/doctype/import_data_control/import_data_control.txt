@@ -1,0 +1,31 @@
+# DocType, Import Data Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 16:35:37',
+		'docstatus': 0,
+		'modified': '2012-05-16 15:25:38',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 14
+	},
+
+	# DocType, Import Data Control
+	{
+		'doctype': 'DocType',
+		'name': 'Import Data Control'
+	}
+]

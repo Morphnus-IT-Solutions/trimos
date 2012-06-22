@@ -1,0 +1,292 @@
+# DocType, Unscheduled Visit Details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-10 11:59:03',
+		'docstatus': 0,
+		'modified': '2011-10-03 23:19:35',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'UVD/.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Support',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 14
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Unscheduled Visit Details',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Unscheduled Visit Details
+	{
+		'doctype': 'DocType',
+		'name': 'Unscheduled Visit Details'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_type',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'Visit Type',
+		'oldfieldname': 'visit_type',
+		'oldfieldtype': 'Select',
+		'options': '\nLocal\nOutstation',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Purpose',
+		'oldfieldname': 'purpose',
+		'oldfieldtype': 'Select',
+		'options': '\t\nEnquiry generation\nDemo\nCommercial negotiation\nCourtesy visit\nDocument collection\nDocument submission\nFollow up on inquiry\nFollow up on quotation\nService\nCalibration\nServicing & calibration\nTraining\nBreakdown\nComplaint\nOrder finalization\nTechnical discussion\nInstallation\nInstallation & training\nMaterial collection\nMaterial delivery\nTender submission\nTender opening\nOthers\nTrail Software Installation',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document',
+		'fieldtype': 'Select',
+		'idx': 3,
+		'label': 'Against Document',
+		'oldfieldname': 'against_document',
+		'oldfieldtype': 'Select',
+		'options': '\nLead\nSerial No',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document_no',
+		'fieldtype': 'Link',
+		'idx': 4,
+		'label': 'Against Document No *',
+		'oldfieldname': 'against_document_no',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Data',
+		'idx': 6,
+		'label': 'Customer Name',
+		'oldfieldname': 'customer_name',
+		'oldfieldtype': 'Link',
+		'permlevel': 1,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 8,
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'idx': 9,
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'idx': 10,
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'time_required',
+		'fieldtype': 'Data',
+		'idx': 11,
+		'label': 'Time Required',
+		'oldfieldname': 'time_required',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'idx': 12,
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 13,
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_date',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 14,
+		'label': 'Actual Date',
+		'oldfieldname': 'actual_date',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'idx': 15,
+		'label': 'Approval Status',
+		'oldfieldname': 'approval_status',
+		'oldfieldtype': 'Select',
+		'options': '\nPending\nApproved\nRejected',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_remarks',
+		'fieldtype': 'Text',
+		'idx': 16,
+		'label': 'Approval Remarks',
+		'oldfieldname': 'approval_remarks',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_remarks',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 17,
+		'label': 'Visit Report Remarks',
+		'oldfieldname': 'visit_report_remarks',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'default': '1',
+		'doctype': 'DocField',
+		'fieldname': 'select',
+		'fieldtype': 'Check',
+		'idx': 18,
+		'label': 'Make Report',
+		'oldfieldname': 'select',
+		'oldfieldtype': 'Check',
+		'permlevel': 0
+	}
+]

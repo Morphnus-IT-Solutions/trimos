@@ -1,0 +1,484 @@
+# DocType, Manage Account
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-07-20 12:04:01',
+		'docstatus': 0,
+		'modified': '2011-11-20 11:34:14',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313694249',
+		'allow_copy': 1,
+		'allow_email': 1,
+		'allow_print': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'hide_toolbar': 0,
+		'in_create': 1,
+		'issingle': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Tabbed',
+		'server_code_error': ' ',
+		'show_in_menu': 1,
+		'version': 517
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Manage Account',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Manage Account',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Manage Account
+	{
+		'doctype': 'DocType',
+		'name': 'Manage Account'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Company'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_company',
+		'fieldtype': 'Link',
+		'label': 'Default Company',
+		'options': 'Company'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'current_fiscal_year',
+		'fieldtype': 'Link',
+		'label': 'Current Fiscal Year',
+		'options': 'Fiscal Year'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_format',
+		'fieldtype': 'Select',
+		'label': 'Date Format',
+		'options': 'yyyy-mm-dd\ndd-mm-yyyy\ndd/mm/yyyy\nmm/dd/yyyy\nmm-dd-yyyy'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'default': 'INR',
+		'doctype': 'DocField',
+		'fieldname': 'default_currency',
+		'fieldtype': 'Select',
+		'label': 'Default Currency',
+		'options': 'link:Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_currency_format',
+		'fieldtype': 'Select',
+		'label': 'Default Currency Format',
+		'options': 'Lacs\nMillions'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_currency_fraction',
+		'fieldtype': 'Data',
+		'label': 'Default Currency Fraction'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sms_sender_name',
+		'fieldtype': 'Data',
+		'label': 'SMS Sender Name'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Stock'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_item_group',
+		'fieldtype': 'Link',
+		'label': 'Default Item Group',
+		'options': 'Item Group'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'IGHelp',
+		'options': '<a href="javascript:cur_frm.cscript.TreePage(\'Item Group\');">To manage Item Groups, click here</a>'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_stock_uom',
+		'fieldtype': 'Link',
+		'label': 'Default Stock UOM',
+		'options': 'UOM'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_valuation_method',
+		'fieldtype': 'Select',
+		'label': 'Default Valuation Method',
+		'options': 'FIFO\nMoving Average'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_warehouse_type',
+		'fieldtype': 'Link',
+		'label': 'Default Warehouse Type',
+		'options': 'Warehouse Type'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Percentage you are allowed to receive or deliver more against the quantity ordered. <p>For example: If you have ordered 100 units. and your Allowance is 10% then you are allowed to receive 110 units</p>',
+		'doctype': 'DocField',
+		'fieldname': 'tolerance',
+		'fieldtype': 'Currency',
+		'label': 'Allowance Percent'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Stock level frozen up to this date, nobody can do / modify entry except authorized person',
+		'doctype': 'DocField',
+		'fieldname': 'stock_frozen_upto',
+		'fieldtype': 'Date',
+		'label': 'Stock Frozen Upto'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Users with this role are allowed to do / modify stock entry before frozen date',
+		'doctype': 'DocField',
+		'fieldname': 'stock_auth_role',
+		'fieldtype': 'Link',
+		'label': 'Authorized Role (Frozen Entry)',
+		'options': 'Role'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Accounts'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Accounting entry frozen up to this date, nobody can do / modify entry except authorized person',
+		'doctype': 'DocField',
+		'fieldname': 'acc_frozen_upto',
+		'fieldtype': 'Date',
+		'label': 'Accounts Frozen Upto'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Users with this role are allowed to do / modify accounting entry before frozen date',
+		'doctype': 'DocField',
+		'fieldname': 'bde_auth_role',
+		'fieldtype': 'Link',
+		'label': 'Authourized Role (Frozen Entry)',
+		'options': 'Role'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'credit_controller',
+		'fieldtype': 'Link',
+		'label': 'Credit Controller',
+		'options': 'Role'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Selling'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'Customer Name',
+		'doctype': 'DocField',
+		'fieldname': 'cust_master_name',
+		'fieldtype': 'Select',
+		'label': 'Customer Master created by ',
+		'options': 'Customer Name\nNaming Series'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_customer_group',
+		'fieldtype': 'Link',
+		'label': 'Default Customer Group',
+		'options': 'Customer Group'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'CGHelp',
+		'options': '<a href="javascript:cur_frm.cscript.TreePage(\'Customer Group\');">To manage Customer Groups, click here</a>'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_territory',
+		'fieldtype': 'Link',
+		'label': 'Default Territory',
+		'options': 'Territory'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'TerritoryHelp',
+		'options': '<a href="javascript:cur_frm.cscript.TreePage(\'Territory\');">To manage Territory, click here</a>'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_price_list',
+		'fieldtype': 'Link',
+		'label': 'Default Price List',
+		'options': 'Price List'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'No',
+		'doctype': 'DocField',
+		'fieldname': 'so_required',
+		'fieldtype': 'Select',
+		'label': 'Sales Order Required',
+		'options': 'No\nYes'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'No',
+		'doctype': 'DocField',
+		'fieldname': 'dn_required',
+		'fieldtype': 'Select',
+		'label': 'Delivery Note Required',
+		'options': 'No\nYes'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Buying'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'default_supplier_type',
+		'fieldtype': 'Link',
+		'label': 'Default Supplier Type',
+		'options': 'Supplier Type'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'Supplier Name',
+		'doctype': 'DocField',
+		'fieldname': 'supp_master_name',
+		'fieldtype': 'Select',
+		'label': 'Supplier Master created by ',
+		'options': 'Supplier Name\nNaming Series'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'No',
+		'doctype': 'DocField',
+		'fieldname': 'po_required',
+		'fieldtype': 'Select',
+		'label': 'Purchase Order Required',
+		'options': 'No\nYes'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'No',
+		'doctype': 'DocField',
+		'fieldname': 'pr_required',
+		'fieldtype': 'Select',
+		'label': 'Purchase Receipt Required',
+		'options': 'No\nYes'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'HR',
+		'options': '<div style="padding-top: 8px;" class="columnHeading">HR</div>'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Employee record is created using selected field. ',
+		'doctype': 'DocField',
+		'fieldname': 'emp_created_by',
+		'fieldtype': 'Select',
+		'label': 'Employee Records to be created by ',
+		'options': '\nNaming Series\nEmployee Number'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'System Manager',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'All'
+	}
+]

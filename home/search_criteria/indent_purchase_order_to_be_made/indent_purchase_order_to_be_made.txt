@@ -1,0 +1,34 @@
+# Search Criteria, indent-purchase_order_to_be_made
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:41',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:41',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_cond': "`tabIndent`.status='Submitted'\nifnull(`tabIndent`.per_ordered,0)<100",
+		'columns': 'Indent\x01ID,Indent\x01Indent Date,Indent\x01Requested By,Indent\x01Owner,Indent\x01% Ordered',
+		'criteria_name': 'Indent-Purchase Order to be made',
+		'doc_type': 'Indent',
+		'doctype': 'Search Criteria',
+		'filters': "{'Indent\x01Submitted':1,'Indent\x01Status':'Submitted','Indent\x01Fiscal Year':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabIndent`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, indent-purchase_order_to_be_made
+	{
+		'doctype': 'Search Criteria',
+		'name': 'indent-purchase_order_to_be_made'
+	}
+]

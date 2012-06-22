@@ -1,0 +1,151 @@
+# DocType, Slip Gauge
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-10 17:18:02',
+		'docstatus': 0,
+		'modified': '2011-11-30 23:40:20',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1318149124',
+		'autoname': 'field:slip_id',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'make,type',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 6
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Data',
+		'name': '__common__',
+		'parent': 'Slip Gauge',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Slip Gauge',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Slip Gauge
+	{
+		'doctype': 'DocType',
+		'name': 'Slip Gauge'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'slip_id',
+		'label': 'Slip Id',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'make',
+		'label': 'Make',
+		'oldfieldname': 'make',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'type',
+		'label': 'Type',
+		'oldfieldname': 'type',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'slip_size',
+		'label': 'Slip Size'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'self_error',
+		'label': 'Self Error'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'read': 1,
+		'role': 'Administrator',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'CRM Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'read': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - HO'
+	}
+]

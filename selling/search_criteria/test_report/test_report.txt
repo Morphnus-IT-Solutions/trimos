@@ -1,0 +1,34 @@
+# Search Criteria, test_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:32',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:32',
+		'modified_by': 'Administrator',
+		'owner': 'saumil@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Sales Order\x01ID,Sales Order\x01Owner,Sales Order\x01Status,Sales Order\x01Project Name,Sales Order\x01Customer,Sales Order\x01Customer Name,Sales Order\x01Territory,Sales Order\x01Sales Order Date,Sales Order\x01Expected Delivery Date,Sales Order\x01%  Delivered,Sales Order\x01% Billed,Sales Order\x01Quotation No,Sales Order\x01Company,Sales Order\x01Fiscal Year,Sales Order\x01Sales Partner,Sales Order Detail\x01Item Code,Sales Order Detail\x01Description,Sales Order Detail\x01Brand Name,Sales Order Detail\x01Item Group,Sales Order Detail\x01Quotation No.',
+		'criteria_name': 'test report',
+		'doc_type': 'Sales Order Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Sales Order\x01Saved':1,'Sales Order\x01Submitted':1,'Sales Order\x01Status':'','Sales Order\x01Fiscal Year':''}",
+		'module': 'Selling',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Sales Order',
+		'sort_by': '`tabSales Order`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, test_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'test_report'
+	}
+]

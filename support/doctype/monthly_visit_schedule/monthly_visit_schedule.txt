@@ -1,0 +1,437 @@
+# DocType, Monthly Visit Schedule
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-10 11:31:40',
+		'docstatus': 0,
+		'modified': '2012-05-08 16:41:53',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Monthly Visit Schedule',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1333540168',
+		'client_script': 'cur_frm.cscript.refresh = function(doc, cdt, cdn) {\n  if(doc.docstatus == 1 && doc.status != \'Closed\')  unhide_field([[\'Create Service Report\'],[\'Create Visit Report\']]);\n  else hide_field([[\'Create Service Report\'],[\'Create Visit Report\']]);\n    \n  if(!doc.__islocal) unhide_field(\'Send for Approval\');\n  else hide_field(\'Send for Approval\');\n  \n  if(inList(user_roles, \'CRM Manager\') && !doc.__islocal) unhide_field(\'Send Feedback\');\n  else hide_field(\'Send Feedback\');\n  \n}\n\ncur_frm.cscript.prepared_by = function(doc, cdt, cdn) {\n  get_server_fields(\'get_person_territory\',\'\',\'\',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.customer_name = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  get_server_fields(\'get_customer_details\',d.customer_name,\'unscheduled_visit_details\',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.item_code = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  get_server_fields(\'get_item_details\',d.item_code,\'unscheduled_visit_details\',doc, cdt, cdn, 1);\n}\n\ncur_frm.fields_dict[\'unscheduled_visit_details\'].grid.get_field("item_code").get_query = function(doc, cdt, cdn){\n return \'SELECT `tabItem`.name,`tabItem`.description FROM `tabItem` WHERE `tabItem`.is_active = "Yes" AND `tabItem`.name LIKE "%s" ORDER BY `tabItem`.name ASC LIMIT 50\';\n}\n\ncur_frm.fields_dict[\'unscheduled_visit_details\'].grid.get_field("customer_name").get_query = function(doc, cdt, cdn){\n return \'SELECT `tabCustomer`.name,`tabCustomer`.territory FROM `tabCustomer` WHERE `tabCustomer`.is_active = "Yes" AND `tabCustomer`.name LIKE "%s" ORDER BY `tabCustomer`.name ASC LIMIT 50\';\n}\n\ncur_frm.fields_dict[\'unscheduled_visit_details\'].grid.get_field("against_document_no").get_query = function(doc, cdt, cdn){\n var d = locals[this.doctype][this.docname];\n return \'SELECT `tab\'+d.against_document+\'`.`name` FROM `tab\'+d.against_document+\'` WHERE `tab\'+d.against_document+\'`.`name` LIKE "%s" ORDER BY `tab\'+d.against_document+\'`.`name` DESC LIMIT 50\'\n}\n\ncur_frm.cscript[\'Create Visit Report\'] = function(doc, cdt, cdn){\n  var flag = cur_frm.cscript.check_no_of_visits(doc, cdt, cdn, 1);  // to check the no of visits selected to create report\n  if (doc.docstatus == 1) { \n  n = createLocal("Visit Report");\n  $c(\'dt_map\', args={\n\t  \'docs\':compress_doclist([locals["Visit Report"][n]]),\n\t  \'from_doctype\':\'Monthly Visit Schedule\',\n\t  \'to_doctype\':\'Visit Report\',\n\t  \'from_docname\':doc.name,\n    \'from_to_list\':"[[\'Scheduled Visit Details\', \'Visit Report Detail\'], [\'Unscheduled Visit Details\', \'Visit Report Detail\']]"\n  }\n  , function(r,rt) {\n    loaddoc("Visit Report", n);\n    }\n    );\n  }\n}\n\ncur_frm.cscript[\'Create Service Report\'] = function(doc, cdt, cdn){\n  var flag = cur_frm.cscript.check_no_of_visits(doc, cdt, cdn, 2);  // to check the no of visits selected to create report\n  var sv = getchildren(\'Scheduled Visit Details\', doc.name, \'scheduled_visit_details\');\n  for(var i = 0;i<sv.length;i++){\n    if(sv[i].select == 1 && flag == 1 && sv[i].against_document == \'Serial No\')\n      cur_frm.cscript.create_service_report(doc, cdt, cdn, sv[i]);\n  }\n  var uv = getchildren(\'Unscheduled Visit Details\', doc.name, \'unscheduled_visit_details\');\n  for(var i = 0;i<uv.length;i++){\n    if(uv[i].select == 1 && flag == 1 && uv[i].against_document == \'Serial No\')\n      cur_frm.cscript.create_service_report(doc, cdt, cdn, uv[i]);\n  }\n}\n\ncur_frm.cscript.check_no_of_visits = function(doc, cdt, cdn, val){\n  var flag = 0;\n  var schedule = getchildren(\'Scheduled Visit Details\', doc.name, \'scheduled_visit_details\');\n  for(var i = 0; i < schedule.length; i++){\n    if(flag == 0 && schedule[i].select == 1 && schedule[i].visit_report_id)\n      flag = 3;    \n    else if(flag == 0 && schedule[i].select == 1)\n      flag = 1;\n    else if(flag == 1 && schedule[i].select == 1 && val == 2)\n      flag = 2;\n  }\n  var unschedule = getchildren(\'Unscheduled Visit Details\', doc.name, \'unscheduled_visit_details\');\n  for(var i = 0; i < unschedule.length; i++){\n    if(flag == 0 && unschedule[i].select == 1 && unschedule[i].visit_report_id)\n      flag = 3;\n    else if(flag == 0  && unschedule[i].select == 1)\n      flag = 1;\n    else if(flag == 1 && unschedule[i].select == 1 && val == 2)\n      flag = 2;\n  }\n  \n  if(flag == 0){\n    alert("Please select atleast one visit for which you want to create report");\n  }\n  else if(flag == 2){\n    alert("You can create service report for only one schedule at a time. Please select only one scheduled visit");\n  }\n  else if(flag == 3){\n    alert("You have already created report.");\n  }\n  return flag;\n}\n\ncur_frm.cscript.create_service_report = function(doc, cdt, cdn, det){\n  var callback = function(){\n    doc = locals[cdt][cdn];\n    var sr = LocalDB.create(\'Service Report\');\n    sr = locals[\'Service Report\'][sr];\n    sr.scheduled_date = det.scheduled_date;\n    sr.customer_name = det.customer_name;\n    sr.address = doc.customer_address;\n    sr.purpose = det.purpose;\n    sr.amc_visit_no = doc.amc_visit_no;\n    sr.serial_no = det.against_document_no;\n    sr.brand = doc.brand;\n    sr.product_code = det.product_code;\n    sr.version = doc.version;\n    loaddoc("Service Report",sr.name);\n  }\n  args = "{\'customer_name\':\'" + det.customer_name + "\',\'serial_no\':\'" + det.against_document_no + "\',\'purpose\':\'" + det.purpose + "\'}";\n  get_server_fields(\'get_other_details\',args,\'\',doc, cdt, cdn, 1, callback);\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'status,month,prepared_by,territory,fiscal_year',
+		'section_style': 'Simple',
+		'server_code': 'class DocType:\n  def __init__(self,d,dl):\n    self.doc, self.doclist = d, dl\n    self.log = []\n    \n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.prepared_by + \'/\' + self.doc.naming_series + \'/.##\')\n    \n  def get_customer_details(self,name):\n    det = sql("select territory from tabCustomer where name = %s",(name))[0][0]\n    ret = {\n      \'territory\'  :  det and det or \'\'\n    }\n    return str(ret)\n    \n  def get_person_territory(self):\n    det = sql("select territory from `tabSales Person` where name = %s",(self.doc.prepared_by))[0][0]\n    ret = {\n      \'territory\'  :  det and det or \'\'\n    }\n    return str(ret)\n\n  def get_item_details(self,item):\n    det = sql("select brand,product_code from tabItem where name = %s",item,as_dict = 1)\n    ret = {\n      \'brand\'        :  det and det[0][\'brand\'] or \'\',\n      \'product_code\' : det and det[0][\'product_code\'] or \'\'\n    }\n    return str(ret)\n    \n  def get_schedule(self):\n    if not self.doc.month:\n      msgprint("There is no month selected")\n      raise Exception\n    elif not self.doc.prepared_by:\n      msgprint("Please select the name of the person whose schedule is to be set in Prepared By")\n      raise Exception\n    elif not self.doc.territory:\n      msgprint("Please select the territory to get schedule")\n      raise Exception\n    else:\n      self.doc.clear_table(self.doclist,\'scheduled_visit_details\')\n      month_dic = {\'January\':1,\'February\':2,\'March\':3,\'April\':4,\'May\':5,\'June\':6,\'July\':7,\'August\':8,\'September\':9,\'October\':10,\'November\':11,\'December\':12}\n      month = month_dic[self.doc.month]\n      idx = 0\n      \n      # Serial No Detail\n      serial_details = sql("select t1.name,t2.customer_name,t2.territory,t1.item_code,t1.brand,t1.product_code,t2.schedule_date,t2.service_type,t2.visit_report_id from `tabSerial No` t1,`tabService Schedule` t2 where MONTH(t2.schedule_date) = %s and t2.parent = t1.name and t2.territory = %s ORDER BY t2.schedule_date" ,(month,self.doc.territory), as_dict = 1)\n      for s in serial_details:\n        sd = addchild(self.doc, \'scheduled_visit_details\', \'Scheduled Visit Details\', 1, self.doclist)\n        sd.customer_name = s[\'customer_name\']\n        sd.item_code = s[\'item_code\']\n        sd.brand = s[\'brand\']\n        sd.product_code = s[\'product_code\']\n        sd.territory = s[\'territory\']\n        sd.against_document = \'Serial No\'\n        sd.against_document_no = s[\'name\']\n        sd.purpose = s[\'service_type\']\n        sd.scheduled_date = s[\'schedule_date\'].strftime(\'%Y-%m-%d\')\n        sd.visit_report_id = s[\'visit_report_id\']\n        sd.select = 1\n        sd.idx = idx\n        idx += 1\n        \n      # Lead Details\n      lead_details = sql("select t1.name,t1.customer_name,t1.territory,t2.item_code,t2.brand,t2.product_code,t3.follow_up_schedule_date,t3.follow_up_status,t3.visit_report_id from `tabLead` t1,`tabLead Item Detail` t2,`tabFollow up`  t3 where MONTH(t3.follow_up_schedule_date) = %s and t2.parent = t1.name and t3.parent = t1.name and t1.territory = %s and t1.docstatus = 1 ORDER BY t3.follow_up_schedule_date" ,(month,self.doc.territory), as_dict = 1)\n      for l in lead_details:\n        ld = addchild(self.doc, \'scheduled_visit_details\', \'Scheduled Visit Details\', 1, self.doclist)\n        ld.customer_name = l[\'customer_name\']\n        ld.item_code = l[\'item_code\']\n        ld.brand = l[\'brand\']\n        ld.product_code = l[\'product_code\']\n        ld.territory = l[\'territory\']\n        ld.against_document = \'Lead\'\n        ld.against_document_no = l[\'name\']\n        ld.purpose = l[\'follow_up_status\'] or \'\'\n        ld.scheduled_date = l[\'follow_up_schedule_date\'] and l[\'follow_up_schedule_date\'].strftime(\'%Y-%m-%d\') or \'\'\n        ld.visit_report_id = l[\'visit_report_id\']\n        ld.select = 1\n        ld.idx = idx\n        idx += 1\n        \n  def get_other_details(self,args):\n    args = eval(args)\n    ret = {}\n    \n    # customer address\n    customer_address = sql("select address from `tabCustomer` where name = \'%s\'" % args[\'customer_name\'])\n    ret[\'customer_address\'] = customer_address and customer_address[0][0] or \'\'\n    \n    # serial no details\n    serial_details = sql("select brand,software_version,product_code from `tabSerial No` where name = %s" , args[\'serial_no\'],as_dict = 1)\n    ret[\'brand\'] = serial_details and serial_details[0][\'brand\'] or \'\'\n    ret[\'version\'] = serial_details and serial_details[0][\'software_version\'] or \'\'\n    ret[\'product_code\'] = serial_details and serial_details[0][\'product_code\'] or \'\'\n    \n    # get no. of amc visits done earlier\n    if args[\'purpose\'] == \'AMC\':\n      no_of_visits = sql("select count(*) from `tabService Schedule` t2 where t2.service_type = \'AMC\' and t2.visit_report_id is not null and t2.parent = %s",(args[\'serial_no\']))[0][0]\n      ret[\'amc_visit_no\'] = cint(no_of_visits) + 1\n      \n    return cstr(ret)\n\n  \n  # Validates whether item is_active or not\n  # =====================================\n  def check_active_item(self):\n    # Check for active items in Scheduled Visit Detail Table\n    self.check_is_active(\'scheduled_visit_details\')\n\n    # Check for active items in Unscheduled Visit Detail Table\n    self.check_is_active(\'unscheduled_visit_details\')\n   \n    \n  def check_is_active(self,dn):\n    for d in getlist(self.doclist,dn):\n      if d.item_code:\n        active = sql("select is_active from tabItem where name = %s",d.item_code)\n        active = active and active[0][0] or \'\'\n        if active != \'Yes\':\n          msgprint("Catalogue Code \'%s\' is inactive." %(d.item_code))\n          raise Exception\n\n  def validate(self):\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Open\',self.doc.doctype,self.doc.name)\n    self.check_active_item()\n\n  def on_submit(self):\n    #check whether user has permission to submit the document\n    approved_by = cstr(get_obj(\'Manage Account\',with_children = 1).get_permissions(self.doc.doctype,flt(0.00),session[\'user\']))\n    set(self.doc,\'approved_by\',approved_by)\n    self.add_to_calendar()\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Submitted\',self.doc.doctype,self.doc.name)\n\n  def on_cancel(self):\n    sql("update tabEvent set event_type = \'Cancel\' where ref_type = \'Monthly Visit Schedule\' and ref_name = %s",self.doc.name)\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Cancelled\',self.doc.doctype,self.doc.name)\n    \n  def send_for_approval(self):\n    send_to = []\n    send = sql("select DISTINCT t1.email from `tabProfile` t1,`tabUserRole` t2 where t2.role = \'Schedule Approver\' and t2.parent = t1.name and ifnull(t1.enabled, 0) = 1")\n    territory_manager = sql("select email_id from tabTerritory where name = %s",self.doc.territory)\n    send_to.append(territory_manager[0][0])\n    for d in send:\n      send_to.append(d[0])\n    msg = \'\'\'\nApprove Monthly Visit Schedule : %s\nPrepared By: %s for the month of %s\n\n\'\'\' % (self.doc.name,self.doc.prepared_by, self.doc.month)\n    sendmail(send_to, sender=\'automail@webnotestech.com\', subject=\'Approval of Monthly Visit Schedule\', parts=[[\'text/plain\', msg]])\n    \n    get_obj(\'Sales Common\').add_to_calendar(send,msg,nowdate(),self.doc.doctype,self.doc.name)\n    msgprint("Monthly Visit Schedule has been sent for approval")\n    \n  def send_feedback(self):\n    self.doc.save()\n    send_to = []\n    send = sql("select t1.email from `tabProfile` t1 where t1.name = %s and ifnull(t1.enabled, 0) = 1",self.doc.owner) \n    for d in send:\n      send_to.append(d[0])\n    msg = \'\'\'\nMonthly Visit Schedule of\nMonth : %s\nhas been %S\nby %s\n\n\'\'\' % (self.doc.month, self.doc.status, self.doc.approved_by)\n\n    sendmail(send_to, sender=\'automail@webnotestech.com\', subject=\'Monthly Visit Schedule Status\', parts=[[\'text/plain\', msg]])\n    msgprint("Feedback has been sent to %s"%(self.doc.owner))\n\n\n  def add_to_calendar(self):\n    sales_com_obj = get_obj(\'Sales Common\')\n    send = sql(\'select email_id from `tabSales Person` where name = %s\',self.doc.prepared_by)\n    for d in getlist(self.doclist,\'scheduled_visit_details\'):\n      message = \'\'\'Purpose : %s for Customer : %s\'\'\'%(d.purpose,d.customer_name)\n      sales_com_obj.add_to_calendar(send,message,d.scheduled_date,self.doc.doctype,self.doc.name)\n\n    for d in getlist(self.doclist,\'unscheduled_visit_details\'):\n      message = \'\'\'Purpose : %s for Customer : %s\'\'\'%(d.purpose,d.customer_name)\n      sales_com_obj.add_to_calendar(send,message,d.scheduled_date,self.doc.doctype,self.doc.name)',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 88
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Monthly Visit Schedule',
+		'name': '__common__',
+		'parent': 'Monthly Visit Schedule',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Monthly Visit Schedule',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Monthly Visit Schedule
+	{
+		'doctype': 'DocType',
+		'name': 'Monthly Visit Schedule'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Basic Info',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'default': 'MVS/12/APR',
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Naming Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\nMVS/12/MAY\nMVS/12/JUN\nMVS/12/JUL\nMVS/12/AUG\nMVS/12/SEP\nMVS/12/APR',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'default': 'Open',
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nClosed\nSubmitted\nCancelled\nAmended',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'month',
+		'fieldtype': 'Select',
+		'label': 'Month',
+		'oldfieldname': 'month',
+		'oldfieldtype': 'Select',
+		'options': '\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'prepared_by',
+		'fieldtype': 'Link',
+		'label': 'Prepared By',
+		'oldfieldname': 'prepared_by',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'label': 'Amended From',
+		'no_copy': 1,
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'label': 'Amendment Date',
+		'no_copy': 1,
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'hidden': 0,
+		'label': 'Get Schedule',
+		'oldfieldtype': 'Button',
+		'options': 'get_schedule',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Scheduled Visit Details',
+		'oldfieldtype': 'Section Break',
+		'options': 'Scheduled Visit Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_visit_details',
+		'fieldtype': 'Table',
+		'label': 'Scheduled Visit Details',
+		'oldfieldname': 'scheduled_visit_details',
+		'oldfieldtype': 'Table',
+		'options': 'Scheduled Visit Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Unscheduled Visit Details',
+		'oldfieldtype': 'Section Break',
+		'options': 'Unscheduled Visit Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'unscheduled_visit_details',
+		'fieldtype': 'Table',
+		'label': 'Unscheduled Visit Details',
+		'oldfieldname': 'unscheduled_visit_details',
+		'oldfieldtype': 'Table',
+		'options': 'Unscheduled Visit Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Note',
+		'oldfieldtype': 'HTML',
+		'options': '<font color = "red"> * Please enter initials and then select value from the list you get.</font>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Approval Status',
+		'oldfieldname': 'approval_status',
+		'oldfieldtype': 'Select',
+		'options': 'Pending\nApproved\nRejected',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approved_by',
+		'fieldtype': 'Data',
+		'label': 'Approved By',
+		'no_copy': 1,
+		'oldfieldname': 'approved_by',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Send for Approval',
+		'oldfieldtype': 'Button',
+		'options': 'send_for_approval',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Send Feedback',
+		'oldfieldtype': 'Button',
+		'options': 'send_feedback',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 1,
+		'role': 'Sales Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Sales Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Schedule Approver',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'Schedule Approver',
+		'submit': 0,
+		'write': 0
+	}
+]

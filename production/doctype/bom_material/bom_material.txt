@@ -1,0 +1,339 @@
+# DocType, BOM Material
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:32:24',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:32:25',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 22
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'BOM Material',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'BOM Material',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1,
+		'role': 'System Manager'
+	},
+
+	# DocType, BOM Material
+	{
+		'doctype': 'DocType',
+		'name': 'BOM Material'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'operation_no',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Operation No',
+		'oldfieldname': 'operation_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'Item Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'bom_no',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'in_filter': 1,
+		'label': 'BOM No',
+		'oldfieldname': 'bom_no',
+		'oldfieldtype': 'Link',
+		'options': 'Bill Of Materials',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 1,
+		'trigger': 'Client',
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 4,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scrap',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Scrap %',
+		'oldfieldname': 'scrap',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'dir_mat_as_per_mar',
+		'fieldtype': 'Currency',
+		'idx': 8,
+		'label': 'Direct Material As Per Valuation Rate',
+		'oldfieldname': 'dir_mat_as_per_mar',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty',
+		'fieldtype': 'Currency',
+		'idx': 9,
+		'label': 'Qty',
+		'oldfieldname': 'qty',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'dir_mat_as_per_lpr',
+		'fieldtype': 'Currency',
+		'idx': 9,
+		'label': 'Direct Material As Per LPR',
+		'oldfieldname': 'dir_mat_as_per_lpr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'dir_mat_as_per_sr',
+		'fieldtype': 'Currency',
+		'idx': 10,
+		'label': 'Direct Material As Per SR',
+		'oldfieldname': 'dir_mat_as_per_sr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'operating_cost',
+		'fieldtype': 'Currency',
+		'idx': 11,
+		'label': 'Operating Cost',
+		'oldfieldname': 'operating_cost',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_uom',
+		'fieldtype': 'Data',
+		'idx': 12,
+		'label': 'Stock UOM',
+		'oldfieldname': 'stock_uom',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'value_as_per_mar',
+		'fieldtype': 'Currency',
+		'idx': 12,
+		'label': 'Value As Per Valuation Rate',
+		'oldfieldname': 'value_as_per_mar',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'value_as_per_lpr',
+		'fieldtype': 'Currency',
+		'idx': 13,
+		'label': 'Value As Per LPR',
+		'oldfieldname': 'value_as_per_lpr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'value_as_per_sr',
+		'fieldtype': 'Currency',
+		'idx': 14,
+		'label': 'Value As Per SR',
+		'oldfieldname': 'value_as_per_sr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'moving_avg_rate',
+		'fieldtype': 'Currency',
+		'idx': 15,
+		'label': 'Valuation Rate',
+		'oldfieldname': 'moving_avg_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_mar',
+		'fieldtype': 'Currency',
+		'idx': 16,
+		'label': 'Amount As Per Valuation Rate',
+		'oldfieldname': 'amount_as_per_mar',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'last_purchase_rate',
+		'fieldtype': 'Currency',
+		'idx': 17,
+		'label': 'Last Purchase Rate',
+		'oldfieldname': 'last_purchase_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_lpr',
+		'fieldtype': 'Currency',
+		'idx': 18,
+		'label': 'Amount As Per LPR',
+		'oldfieldname': 'amount_as_per_lpr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'standard_rate',
+		'fieldtype': 'Currency',
+		'idx': 19,
+		'label': 'Standard Rate',
+		'oldfieldname': 'standard_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_sr',
+		'fieldtype': 'Currency',
+		'idx': 20,
+		'label': 'Amount As Per SR',
+		'oldfieldname': 'amount_as_per_sr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty_consumed_per_unit',
+		'fieldtype': 'Currency',
+		'idx': 21,
+		'label': 'Qty Consumed Per Unit',
+		'oldfieldname': 'qty_consumed_per_unit',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	}
+]

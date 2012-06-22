@@ -1,0 +1,822 @@
+# DocType, Service Report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-22 12:58:01',
+		'docstatus': 0,
+		'modified': '2011-10-09 00:57:02',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Service Report',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'client_script': 'cur_frm.fields_dict[\'contact_person\'].get_query = function(doc, cdt, cdn) {\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.contact_name ASC LIMIT 50\';\n}\n\ncur_frm.fields_dict[\'customer_name\'].get_query = function(doc, cdt, cdn) {\n return \'SELECT `tabCustomer`.name,`tabCustomer`.territory FROM `tabCustomer` WHERE `tabCustomer`.is_active = "Yes" AND `tabCustomer`.name LIKE "%s" ORDER BY `tabCustomer`.name ASC LIMIT 50\';\n}\n\ncur_frm.cscript.service_order_no = function(doc, cdt, cdn) {\n  get_server_fields(\'get_service_order_details\',\'\',\'\',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.customer_name = function(doc, cdt, cdn) {\n  get_server_fields(\'get_customer_details\',\'\',\'\',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.serial_no = function(doc, cdt, cdn) {\n  get_server_fields(\'get_brand_orc\',\'\',\'\',doc, cdt, cdn, 1);\n}\ncur_frm.cscript.contact_person = function(doc, cdt, cdn) {\n  get_server_fields(\'get_contact_details\',\'\',\'\', doc, cdt, cdn, 1);\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'search_fields': 'status,report_date,engineer_name_1,customer_name,territory,type_of_visit,purpose,serial_no,brand,product_code',
+		'section_style': 'Tray',
+		'server_code': 'class DocType:\n  def __init__(self, doc, doclist=[]):\n    self.doc = doc\n    self.doclist = doclist\n\n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.serial_no+\'/\'+self.doc.purpose+\'/\'+self.doc.naming_series+\'/.##\')\n\n  def get_brand_orc(self):\n    bo = sql("select brand, product_code,warranty_amc_status,software_version from `tabSerial No` where name = \'%s\'" %(self.doc.serial_no)) \n    brand = bo and bo[0][0] or \'\'\n    orc = bo and bo[0][1] or \'\'\n    wa = bo and bo[0][2] or \'\'\n    sv = bo and bo[0][3] or \'\'\n    ret = {\n      \'brand\' : brand,\n      \'product_code\' : orc,\n      \'warranty_amc_status\':wa,\n      \'software_version\':sv\n      }\n    return cstr(ret)\n    \n  def get_service_order_details(self):\n    det = sql("select customer_po_no, customer_po_date, debit_note_no, debit_note_date from `tabService Order` where name = %s",self.doc.service_order_no,as_dict = 1)\n    ret = {\n      \'customer_po_no\'         :  det and det[0][\'customer_po_no\'] or \'\',\n      \'customer_po_date\'       :  det and det[0][\'customer_po_date\'].strftime(\'%Y-%m-%d\') or \'\',\n      \'debit_note_no\'          :  det and det[0][\'debit_note_no\'] or \'\',\n      \'debit_note_date\'        :  det and det[0][\'debit_note_date\'].strftime(\'%Y-%m-%d\') or \'\'\n    }\n    return str(ret)\n    \n  def get_customer_details(self):\n    det = sql("select address,territory from tabCustomer where name = %s",self.doc.customer_name,as_dict=1)\n    ret = {\n      \'address\'  :  det and det[0][\'address\'] or \'\',\n      \'territory\':  det and det[0][\'territory\'] or \'\'\n    }\n    return str(ret)\n\n  def get_contact_details(self):\n    return cstr(get_obj(\'Sales Common\').get_contact_details(self))\n    \n  def update_monthly_visit_schedule(self,visit_id,actual_date,remarks):\n    sql("update `tabScheduled Visit Details` set visit_report_id = %s, actual_date = %s, visit_report_remarks = %s where purpose = %s and against_document_no = %s and scheduled_date = %s",(visit_id,actual_date,remarks,self.doc.purpose,self.doc.serial_no,getdate(self.doc.scheduled_date)))\n    sql("update `tabUnscheduled Visit Details` set visit_report_id = %s, actual_date = %s, visit_report_remarks = %s where purpose = %s and against_document_no = %s and scheduled_date = %s",(visit_id,actual_date,remarks,self.doc.purpose,self.doc.serial_no,getdate(self.doc.scheduled_date)))\n    \n  def update_against_document_details(self,visit_id,actual_date,remarks):\n    sql("update `tabService Schedule` set visit_report_id = %s, actual_date = %s, remarks = %s where service_type = %s and schedule_date = %s and parent = %s",(visit_id,actual_date,remarks,self.doc.purpose,getdate(self.doc.scheduled_date),self.doc.serial_no))\n\n  def on_submit(self):\n    if self.doc.scheduled_date:\n      self.update_monthly_visit_schedule(self.doc.name,getdate(self.doc.report_date),self.doc.remark_by_engineer)\n      self.update_against_document_details(self.doc.name,getdate(self.doc.report_date),self.doc.remarks_by_engineer)\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Submitted\',self.doc.doctype,self.doc.name)\n    self.add_calendar_event(self.doc.further_action_to_be_taken_by,self.doc.action_plan,self.doc.target_date_of_completion)\n    \n  def on_cancel(self):\n    self.update_monthly_visit_schedule(\'\',\'\',\'\')\n    self.update_against_document_details(\'\',\'\',\'\')\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Cancelled\',self.doc.doctype,self.doc.name)\n    \n  def add_calendar_event(self,further_action,action,date):\n    ev = Document(\'Event\')\n    ev.description = \'Further Action To Be Taken : \' + cstr(further_action) + \' by \' + cstr(action)\n    ev.event_date = date\n    ev.event_hour = \'10:00\'\n    ev.event_type = \'Public\'\n    ev.ref_type = \'Service Report\'\n    ev.ref_name = self.doc.name\n    ev.save(1)\n      \n    user_list=[\'CRM Manager\', \'Service Team\']\n    for d in user_list:\n      ch = addchild(ev, \'event_roles\', \'Event Role\', 0)\n      ch.role = d\n      ch.save()\n      \n    msgprint("Schedule added to Calendar")\n      \n  def remove_calendar_event(self):\n    sql("update tabEvent set event_type = \'Cancel\' where ref_type = \'Service Report\' and ref_name = \'%s\'" % self.doc.name)\n    msgprint("Schedule Cancelled from Calendar")\n\n  def validate(self):\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Open\',self.doc.doctype,self.doc.name)\n    get_obj("Sales Common").check_active_customer(self.doc.customer_name)\n    get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.contact_person)',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 53
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Service Report Format',
+		'idx': 1,
+		'name': '__common__',
+		'parent': 'Service Report',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Service Report',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Service Report
+	{
+		'doctype': 'DocType',
+		'name': 'Service Report'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 1,
+		'label': 'Service Report',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 2,
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'idx': 3,
+		'label': 'Naming Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': 'SRT/11/JUN\nSRT/11/JUL',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'idx': 4,
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nConverted\nClosed\nCancelled\nAmended',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'report_date',
+		'fieldtype': 'Date',
+		'idx': 5,
+		'label': 'Report Date',
+		'oldfieldname': 'report_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'report_time',
+		'fieldtype': 'Time',
+		'idx': 6,
+		'label': 'Report Time',
+		'oldfieldname': 'report_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'idx': 7,
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'idx': 8,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'engineer_name_1',
+		'fieldtype': 'Link',
+		'idx': 9,
+		'label': "Eng'r. Name (1)",
+		'oldfieldname': 'engineer_name_1',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'engineer_name_2',
+		'fieldtype': 'Link',
+		'idx': 10,
+		'label': "Eng'r. Name (2)",
+		'oldfieldname': 'engineer_name_2',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'engineer_name_3',
+		'fieldtype': 'Link',
+		'idx': 11,
+		'label': "Eng'r. Name (3)",
+		'oldfieldname': 'engineer_name_3',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Link',
+		'idx': 12,
+		'label': 'Customer Name',
+		'oldfieldname': 'customer_name',
+		'oldfieldtype': 'Link',
+		'options': 'Customer',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address',
+		'fieldtype': 'Small Text',
+		'idx': 13,
+		'label': 'Address',
+		'oldfieldname': 'address',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'idx': 14,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'idx': 15,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Read Only',
+		'idx': 16,
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Read Only',
+		'idx': 17,
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 18,
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_report_no',
+		'fieldtype': 'Data',
+		'idx': 19,
+		'label': 'Service Report No.',
+		'oldfieldname': 'service_report_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_book_no',
+		'fieldtype': 'Data',
+		'idx': 20,
+		'label': 'Service Book no.',
+		'oldfieldname': 'service_book_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_order_no',
+		'fieldtype': 'Link',
+		'idx': 21,
+		'label': 'Service Order No.',
+		'oldfieldname': 'service_order_no',
+		'oldfieldtype': 'Link',
+		'options': 'Service Order',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_po_no',
+		'fieldtype': 'Data',
+		'idx': 22,
+		'label': 'Customer PO No.',
+		'oldfieldname': 'customer_po_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_po_date',
+		'fieldtype': 'Date',
+		'idx': 23,
+		'label': 'Customer PO Date',
+		'oldfieldname': 'customer_po_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'debit_note_no',
+		'fieldtype': 'Data',
+		'idx': 24,
+		'label': 'Debit Note No.',
+		'oldfieldname': 'debit_note_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'debit_note_date',
+		'fieldtype': 'Date',
+		'idx': 25,
+		'label': 'Debit Note Date',
+		'oldfieldname': 'debit_note_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'type_of_visit',
+		'fieldtype': 'Select',
+		'idx': 26,
+		'label': 'Type of Visit',
+		'oldfieldname': 'type_of_visit',
+		'oldfieldtype': 'Select',
+		'options': '\nService\nInstallation\nCalibration\nBreakdown\nInstallation & Service\nCalibration & Service',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose',
+		'fieldtype': 'Select',
+		'idx': 27,
+		'label': 'Purpose',
+		'oldfieldname': 'purpose',
+		'oldfieldtype': 'Select',
+		'options': '\nOTS\nOTC\nOTSC\nAMC\nTraining\nSoftware upgradation\nInspection services\nOthers',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amc_visit_no',
+		'fieldtype': 'Int',
+		'idx': 28,
+		'label': 'AMC Visit No.',
+		'oldfieldname': 'amc_visit_no',
+		'oldfieldtype': 'Int',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'serial_no',
+		'fieldtype': 'Link',
+		'idx': 29,
+		'label': 'Serial No',
+		'oldfieldname': 'serial_no',
+		'oldfieldtype': 'Link',
+		'options': 'Serial No',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'idx': 30,
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'idx': 31,
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'warranty_amc_status',
+		'fieldtype': 'Read Only',
+		'idx': 32,
+		'label': 'Warranty / AMC Status',
+		'oldfieldname': 'warranty_amc_status',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warranty_expiry_date',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 33,
+		'label': 'Warranty Expiry Date',
+		'no_copy': 1,
+		'oldfieldname': 'warranty_expiry_date',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'version',
+		'fieldtype': 'Data',
+		'idx': 34,
+		'label': 'S/W Version',
+		'oldfieldname': 'version',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'idx': 35,
+		'label': 'Amended From',
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'idx': 36,
+		'label': 'Amendment Date',
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'idx': 37,
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 38,
+		'label': 'Feedback',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'complaint',
+		'fieldtype': 'Small Text',
+		'idx': 39,
+		'label': 'Complaint',
+		'oldfieldname': 'complaint',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'nature_of_work_done',
+		'fieldtype': 'Text',
+		'idx': 40,
+		'label': 'Nature of Work Done',
+		'oldfieldname': 'nature_of_work_done',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remark_by_engineer',
+		'fieldtype': 'Small Text',
+		'idx': 41,
+		'label': 'Remark by Engineer',
+		'oldfieldname': 'remark_by_engineer',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remark_by_customer',
+		'fieldtype': 'Small Text',
+		'idx': 42,
+		'label': 'Remark by Customer',
+		'oldfieldname': 'remark_by_customer',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'further_action_to_be_taken_by',
+		'fieldtype': 'Link',
+		'idx': 43,
+		'label': 'Further Action to be taken by',
+		'oldfieldname': 'further_action_to_be_taken_by',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'action_plan',
+		'fieldtype': 'Small Text',
+		'idx': 44,
+		'label': 'Action Plan',
+		'oldfieldname': 'action_plan',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'target_date_of_completion',
+		'fieldtype': 'Date',
+		'idx': 45,
+		'label': 'Target Date of Completion',
+		'oldfieldname': 'target_date_of_completion',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 1,
+		'role': 'CRM User'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 0,
+		'role': 'CRM User',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 5,
+		'permlevel': 0,
+		'role': 'System Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 6,
+		'permlevel': 1,
+		'role': 'System Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 7,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 8,
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 9,
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 10,
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 11,
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'idx': 12,
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 13,
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 14,
+		'permlevel': 1,
+		'role': 'Administrator'
+	}
+]

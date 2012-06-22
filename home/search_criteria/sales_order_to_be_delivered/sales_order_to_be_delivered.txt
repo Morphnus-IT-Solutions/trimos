@@ -1,0 +1,34 @@
+# Search Criteria, sales_order-to_be_delivered
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:58',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:58',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_cond': "ifnull(`tabSales Order`.per_delivered,0)<100\n`tabSales Order`.status = 'Submitted'\n`tabSales Order`. delivery_date > now()",
+		'columns': 'Sales Order\x01ID,Sales Order\x01Owner,Sales Order\x01Status,Sales Order\x01Customer,Sales Order\x01Sales Order Date,Sales Order\x01Expected Delivery Date,Sales Order\x01Quotation No',
+		'criteria_name': 'Sales Order-To be delivered',
+		'doc_type': 'Sales Order',
+		'doctype': 'Search Criteria',
+		'filters': "{'Sales Order\x01Saved':1,'Sales Order\x01Submitted':1,'Sales Order\x01Fiscal Year':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 100,
+		'sort_by': '`tabSales Order`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, sales_order-to_be_delivered
+	{
+		'doctype': 'Search Criteria',
+		'name': 'sales_order-to_be_delivered'
+	}
+]

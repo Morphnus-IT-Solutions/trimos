@@ -1,0 +1,28 @@
+# Page, WIP Monitor
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 02:08:01',
+		'docstatus': 0,
+		'modified': '2011-07-17 02:08:01',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Page
+	{
+		'doctype': 'Page',
+		'module': 'Utilities',
+		'name': '__common__',
+		'page_name': 'WIP Monitor',
+		'show_in_menu': 0,
+		'standard': 'Yes'
+	},
+
+	# Page, WIP Monitor
+	{
+		'doctype': 'Page',
+		'name': 'WIP Monitor'
+	}
+]

@@ -1,0 +1,207 @@
+# DocType, Account Balance
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:08:51',
+		'docstatus': 0,
+		'modified': '2011-03-24 14:43:15',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1305714002',
+		'autoname': '_ACB.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 0,
+		'module': 'Accounts',
+		'name': '__common__',
+		'search_fields': 'account, period, fiscal_year, balance',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 28
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Account Balance',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Account Balance',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocType, Account Balance
+	{
+		'doctype': 'DocType',
+		'name': 'Account Balance'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'Accounts User'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'Accounts Manager'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'account',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'in_filter': 1,
+		'label': 'Account',
+		'options': 'Account',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'period',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'Period',
+		'oldfieldname': 'period',
+		'oldfieldtype': 'Link',
+		'options': 'Period',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'opening',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'label': 'Opening',
+		'oldfieldname': 'opening',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'debit',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Debit',
+		'oldfieldname': 'debit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'debit',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Debit',
+		'oldfieldname': 'debit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'credit',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Credit',
+		'oldfieldname': 'credit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'credit',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Credit',
+		'oldfieldname': 'credit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'balance',
+		'fieldtype': 'Currency',
+		'idx': 8,
+		'label': 'Balance',
+		'oldfieldname': 'balance',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'idx': 9,
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Link',
+		'options': 'Fiscal Year',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'start_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'idx': 10,
+		'in_filter': 1,
+		'label': 'Start Date',
+		'oldfieldname': 'start_date',
+		'oldfieldtype': 'Date',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'end_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'idx': 11,
+		'in_filter': 1,
+		'label': 'End Date',
+		'oldfieldname': 'end_date',
+		'oldfieldtype': 'Date',
+		'search_index': 1
+	}
+]

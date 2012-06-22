@@ -1,0 +1,493 @@
+# DocType, Contact
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-08-05 10:53:52',
+		'docstatus': 0,
+		'modified': '2012-06-01 17:44:08',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1337854448',
+		'allow_trash': 1,
+		'client_script': "cur_frm.cscript.custom_refresh = function(doc, cdt, cdn){\n  set_field_permlevel('email_id',1);\n}",
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_create': 0,
+		'in_dialog': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'first_name,customer, territory, email_id',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'subject': '%(first_name)s %(last_name)s - Email: %(email_id)s | Contact: %(phone)s | Mobile: %(mobile_no)s',
+		'version': 259
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Contact',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Contact',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Contact
+	{
+		'doctype': 'DocType',
+		'name': 'Contact'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Contact Details',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'default': 'Today',
+		'description': 'The date at which current data is made in system.',
+		'doctype': 'DocField',
+		'fieldname': 'create_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Create Date',
+		'no_copy': 1,
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'first_name',
+		'fieldtype': 'Data',
+		'label': 'First Name',
+		'oldfieldname': 'first_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'last_name',
+		'fieldtype': 'Data',
+		'label': 'Last Name',
+		'oldfieldname': 'last_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_owner',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Contact Owner',
+		'oldfieldname': 'contact_owner',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.supplier && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'label': 'Customer',
+		'oldfieldname': 'customer',
+		'oldfieldtype': 'Link',
+		'options': 'Customer',
+		'permlevel': 0,
+		'print_hide': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.supplier && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Data',
+		'label': 'Customer Name',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'supplier',
+		'fieldtype': 'Link',
+		'label': 'Supplier',
+		'options': 'Supplier',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'supplier_name',
+		'fieldtype': 'Data',
+		'label': 'Supplier Name',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.supplier',
+		'doctype': 'DocField',
+		'fieldname': 'sales_partner',
+		'fieldtype': 'Link',
+		'label': 'Sales Partner',
+		'options': 'Sales Partner',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '0',
+		'doctype': 'DocField',
+		'fieldname': 'is_primary_contact',
+		'fieldtype': 'Check',
+		'label': 'Is Primary Contact',
+		'oldfieldname': 'is_primary_contact',
+		'oldfieldtype': 'Select',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Email Id',
+		'oldfieldname': 'email_id',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'phone',
+		'fieldtype': 'Data',
+		'label': 'Phone',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mobile_no',
+		'fieldtype': 'Data',
+		'label': 'Mobile No',
+		'oldfieldname': 'mobile_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Enter department to which this Contact belongs',
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Enter designation of this Contact',
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'plant',
+		'fieldtype': 'Data',
+		'label': 'Plant / Location / Division',
+		'oldfieldname': 'plant',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'oldfieldname': 'trash_reason',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company_name',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'in_filter': 0,
+		'label': 'Company Name',
+		'oldfieldname': 'company_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company_address',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'Company Address',
+		'oldfieldname': 'company_address',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fax',
+		'fieldtype': 'Data',
+		'label': 'Fax',
+		'oldfieldname': 'fax',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM - Back Office',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM - Back Office'
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM User'
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'Administrator',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM User - Regional',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM User - HO'
+	}
+]

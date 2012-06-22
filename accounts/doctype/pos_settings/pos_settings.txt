@@ -1,0 +1,277 @@
+# DocType, POS Settings
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:33',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:34',
+		'modified_by': 'Administrator',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'POS/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 42
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'POS Settings',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'POS Settings',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1
+	},
+
+	# DocType, POS Settings
+	{
+		'doctype': 'DocType',
+		'name': 'POS Settings'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 1,
+		'label': 'Default POS Settings',
+		'oldfieldtype': 'Section Break'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'series',
+		'fieldtype': 'Select',
+		'idx': 3,
+		'label': 'Default Series',
+		'oldfieldname': 'series',
+		'oldfieldtype': 'Select',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'currency',
+		'fieldtype': 'Link',
+		'idx': 4,
+		'label': 'Currency',
+		'oldfieldname': 'currency',
+		'oldfieldtype': 'Link',
+		'options': 'Currency',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'conversion_rate',
+		'fieldtype': 'Currency',
+		'idx': 5,
+		'label': 'Conversion Rate',
+		'oldfieldname': 'conversion_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'price_list',
+		'fieldtype': 'Select',
+		'idx': 6,
+		'label': 'Price List',
+		'oldfieldname': 'price_list',
+		'oldfieldtype': 'Select',
+		'options': 'link:Price List',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warehouse',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Warehouse',
+		'oldfieldname': 'warehouse',
+		'oldfieldtype': 'Link',
+		'options': 'Warehouse',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cost_center',
+		'fieldtype': 'Link',
+		'idx': 8,
+		'label': 'Cost Center',
+		'oldfieldname': 'cost_center',
+		'oldfieldtype': 'Link',
+		'options': 'Cost Center',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 9,
+		'oldfieldtype': 'Column Break'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cash_bank_account',
+		'fieldtype': 'Link',
+		'idx': 10,
+		'label': 'Cash/Bank Account',
+		'oldfieldname': 'cash_bank_account',
+		'oldfieldtype': 'Link',
+		'options': 'Account',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'income_account',
+		'fieldtype': 'Link',
+		'idx': 11,
+		'label': 'Income Account',
+		'oldfieldname': 'income_account',
+		'oldfieldtype': 'Link',
+		'options': 'Account',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Link',
+		'idx': 12,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'Company',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'charges',
+		'fieldtype': 'Link',
+		'idx': 13,
+		'label': 'Charges',
+		'oldfieldname': 'charges',
+		'oldfieldtype': 'Link',
+		'options': 'Other Charges'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'letter_head',
+		'fieldtype': 'Link',
+		'idx': 14,
+		'label': 'Letter Head',
+		'oldfieldname': 'letter_head',
+		'oldfieldtype': 'Link',
+		'options': 'Letter Head',
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'terms',
+		'fieldtype': 'Link',
+		'idx': 15,
+		'label': 'Terms',
+		'oldfieldname': 'terms',
+		'oldfieldtype': 'Link',
+		'options': 'Term'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'print_heading',
+		'fieldtype': 'Link',
+		'idx': 16,
+		'label': 'Print Heading',
+		'oldfieldname': 'print_heading',
+		'oldfieldtype': 'Link'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'role': 'Accounts User'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'role': 'Accounts Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'role': 'System Manager',
+		'write': 1
+	}
+]

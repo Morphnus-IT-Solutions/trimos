@@ -1,0 +1,33 @@
+# Search Criteria, employees_birthday
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:33',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:33',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Employee\x01ID,Employee\x01Employee Name,Employee\x01Department,Employee\x01Gender,Employee\x01Date of Birth,Employee\x01Month of Birth',
+		'criteria_name': "Employee's Birthday",
+		'doc_type': 'Employee',
+		'doctype': 'Search Criteria',
+		'filters': "{'Employee\x01Saved':1,'Employee\x01Gender':'','Employee\x01Month of Birth':'May','Employee\x01Status':''}",
+		'module': 'HR',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabEmployee`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, employees_birthday
+	{
+		'doctype': 'Search Criteria',
+		'name': 'employees_birthday'
+	}
+]

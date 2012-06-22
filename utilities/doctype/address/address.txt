@@ -1,0 +1,284 @@
+# DocType, Address
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 15:39:08',
+		'docstatus': 0,
+		'modified': '2011-11-21 14:47:29',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313694249',
+		'allow_trash': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_dialog': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 42
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Address',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Address',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocType, Address
+	{
+		'doctype': 'DocType',
+		'name': 'Address'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Address Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': '<em>e.g. Office, Billing, Shipping</em>',
+		'doctype': 'DocField',
+		'fieldname': 'address_type',
+		'fieldtype': 'Data',
+		'label': 'Address Type',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'address_line1',
+		'fieldtype': 'Data',
+		'label': 'Address Line1',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_line2',
+		'fieldtype': 'Data',
+		'label': 'Address Line2',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'city',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'City/Town',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'pincode',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Pincode',
+		'permlevel': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'country',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Country',
+		'options': 'link:Country',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'state',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'State',
+		'options': 'link:State',
+		'permlevel': 0,
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'print_hide': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'phone',
+		'fieldtype': 'Data',
+		'label': 'Phone',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Data',
+		'label': 'Email Id',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fax',
+		'fieldtype': 'Data',
+		'label': 'Fax',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.supplier && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.supplier && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Data',
+		'label': 'Customer Name',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'supplier',
+		'fieldtype': 'Link',
+		'label': 'Supplier',
+		'options': 'Supplier',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.sales_partner',
+		'doctype': 'DocField',
+		'fieldname': 'supplier_name',
+		'fieldtype': 'Data',
+		'label': 'Supplier Name',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.customer && !doc.supplier',
+		'doctype': 'DocField',
+		'fieldname': 'sales_partner',
+		'fieldtype': 'Link',
+		'label': 'Sales Partner',
+		'options': 'Sales Partner',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '0',
+		'description': 'Check to make primary address',
+		'doctype': 'DocField',
+		'fieldname': 'is_primary_address',
+		'fieldtype': 'Check',
+		'label': 'Is Primary Address',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '0',
+		'description': 'Check to make Shipping Address',
+		'doctype': 'DocField',
+		'fieldname': 'is_shipping_address',
+		'fieldtype': 'Check',
+		'label': 'Is Shipping Address',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	}
+]

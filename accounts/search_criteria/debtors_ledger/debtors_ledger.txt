@@ -1,0 +1,31 @@
+# Search Criteria, debtors_ledger
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:31',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:31',
+		'modified_by': 'Administrator',
+		'owner': 'nabin@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': "Debtor's Ledger",
+		'doc_type': 'GL Entry',
+		'doctype': 'Search Criteria',
+		'filters': "{'GL Entry\x01Voucher Type':'','GL Entry\x01Is Cancelled':'No','GL Entry\x01Is Opening':'','GL Entry\x01Fiscal Year':''}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, debtors_ledger
+	{
+		'doctype': 'Search Criteria',
+		'name': 'debtors_ledger'
+	}
+]

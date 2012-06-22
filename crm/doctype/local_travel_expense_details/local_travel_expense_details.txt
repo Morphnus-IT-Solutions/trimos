@@ -1,0 +1,284 @@
+# DocType, Local Travel Expense Details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-01 10:48:06',
+		'docstatus': 0,
+		'modified': '2011-12-26 15:46:47',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'LTE/.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'CRM',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 11
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Local Travel Expense Details',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Local Travel Expense Details
+	{
+		'doctype': 'DocType',
+		'name': 'Local Travel Expense Details'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Date',
+		'oldfieldname': 'date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'departure_place',
+		'fieldtype': 'Data',
+		'label': 'Departure Place',
+		'oldfieldname': 'departure_place',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'departure_time',
+		'fieldtype': 'Time',
+		'label': 'Departure Time',
+		'oldfieldname': 'departure_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'arrival_place',
+		'fieldtype': 'Data',
+		'label': 'Arrival Place',
+		'oldfieldname': 'arrival_place',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'arrival_time',
+		'fieldtype': 'Time',
+		'label': 'Arrival Time',
+		'oldfieldname': 'arrival_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mode_of_travel',
+		'fieldtype': 'Data',
+		'label': 'Mode of Travel',
+		'oldfieldname': 'mode_of_travel',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'km_travelled',
+		'fieldtype': 'Currency',
+		'label': 'Km. Travelled',
+		'oldfieldname': 'km_travelled',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'expense_type',
+		'fieldtype': 'Select',
+		'label': 'Expense Type',
+		'oldfieldname': 'expense_type',
+		'oldfieldtype': 'Select',
+		'options': '\nStaff Welfare\nConveyance\nPetrol / Maintenance\nMiscellaneous',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'nature_of_expenses',
+		'fieldtype': 'Data',
+		'label': 'Nature of Expenses',
+		'oldfieldname': 'nature_of_expenses',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'expense',
+		'fieldtype': 'Currency',
+		'label': 'Expense (Rs.)',
+		'oldfieldname': 'expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supporting',
+		'fieldtype': 'Select',
+		'label': 'Supporting',
+		'oldfieldname': 'supporting',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'expense_limit',
+		'fieldtype': 'Link',
+		'label': 'Expense Limit',
+		'oldfieldname': 'expense_limit',
+		'oldfieldtype': 'Link',
+		'options': 'Expense Limit',
+		'permlevel': 2,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'limit_amount',
+		'fieldtype': 'Currency',
+		'label': 'Limit Amount',
+		'oldfieldname': 'limit_amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'allowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Allowed Expense',
+		'oldfieldname': 'allowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'disallowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Disallowed Expense',
+		'oldfieldname': 'disallowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Link',
+		'options': 'Visit Report',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'width': '200px'
+	}
+]

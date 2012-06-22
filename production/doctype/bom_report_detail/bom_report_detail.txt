@@ -1,0 +1,161 @@
+# DocType, BOM Report Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:32:28',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:32:28',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 8
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'BOM Report Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'BOM Report Detail',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1,
+		'role': 'System Manager'
+	},
+
+	# DocType, BOM Report Detail
+	{
+		'doctype': 'DocType',
+		'name': 'BOM Report Detail'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'in_filter': 1,
+		'label': 'Item Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 2,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'moving_avg_rate',
+		'fieldtype': 'Currency',
+		'idx': 5,
+		'label': 'Moving Avg Rate',
+		'oldfieldname': 'moving_avg_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Amount',
+		'oldfieldname': 'amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'last_purchase_rate',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Last Purchase Rate',
+		'oldfieldname': 'last_purchase_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'label': 'Qty',
+		'oldfieldname': 'qty',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_uom',
+		'fieldtype': 'Data',
+		'idx': 12,
+		'label': 'Stock UOM',
+		'oldfieldname': 'stock_uom',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 0
+	}
+]

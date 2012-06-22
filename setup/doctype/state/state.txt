@@ -1,0 +1,105 @@
+# DocType, State
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:09:25',
+		'docstatus': 0,
+		'modified': '2010-09-20 14:06:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'field:state_name',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_create': 0,
+		'module': 'Setup',
+		'name': '__common__',
+		'read_only': 0,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 14
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'State',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'State',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'write': 1
+	},
+
+	# DocType, State
+	{
+		'doctype': 'DocType',
+		'name': 'State'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'role': 'System Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'role': 'Sales Master Manager',
+		'submit': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'role': 'Purchase Master Manager'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'state_name',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'State Name',
+		'oldfieldname': 'state_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'country',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Country',
+		'oldfieldname': 'country',
+		'oldfieldtype': 'Select',
+		'options': 'link:Country'
+	}
+]

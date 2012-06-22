@@ -1,0 +1,31 @@
+# DocType, Workflow Engine
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:56:58',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:56:58',
+		'modified_by': 'Administrator',
+		'owner': 'swarnalata@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 4
+	},
+
+	# DocType, Workflow Engine
+	{
+		'doctype': 'DocType',
+		'name': 'Workflow Engine'
+	}
+]

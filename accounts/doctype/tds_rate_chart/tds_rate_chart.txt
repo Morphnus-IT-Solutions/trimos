@@ -1,0 +1,127 @@
+# DocType, TDS Rate Chart
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:09:27',
+		'docstatus': 0,
+		'modified': '2010-09-20 14:06:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'Prompt',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'module': 'Accounts',
+		'name': '__common__',
+		'read_only': 0,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 11
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'TDS Rate Chart',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'TDS Rate Chart',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1
+	},
+
+	# DocType, TDS Rate Chart
+	{
+		'doctype': 'DocType',
+		'name': 'TDS Rate Chart'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'role': 'Accounts User',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'role': 'Accounts Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocField
+	{
+		'default': 'Accounts',
+		'doctype': 'DocField',
+		'fieldname': 'module',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'idx': 1,
+		'label': 'Module',
+		'oldfieldname': 'module',
+		'oldfieldtype': 'Link',
+		'options': 'Module Def',
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'applicable_from',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Applicable From',
+		'oldfieldname': 'applicable_from',
+		'oldfieldtype': 'Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rate_chart_detail',
+		'fieldtype': 'Table',
+		'idx': 3,
+		'label': 'Rate Chart Detail',
+		'oldfieldname': 'rate_chart_detail',
+		'oldfieldtype': 'Table',
+		'options': 'TDS Rate Detail'
+	}
+]

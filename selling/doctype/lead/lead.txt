@@ -1,0 +1,1373 @@
+# DocType, Lead
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-31 19:22:38',
+		'docstatus': 0,
+		'modified': '2012-06-05 14:36:54',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1338878893',
+		'allow_trash': 1,
+		'client_script': '\ncur_frm.cscript.custom_refresh = function(doc, cdt, cdn) {\n  if(!doc.status)\n    doc.status = \'Open\';\n  if(doc.docstatus == 1 && doc.status == \'Open\' && doc.lead_type == "Sales")\n    unhide_field([\'Create Quotation\']);\n  else\n    hide_field([\'Create Quotation\']);\n\n  if(doc.docstatus == 1 && doc.status == \'Open\' && doc.lead_type == "Service")\n    unhide_field([\'Create Service Quotation\']);\n  else\n    hide_field([\'Create Service Quotation\']);\n\n  if (doc.status == \'Order Lost\'){\n    unhide_field(\'order_lost_details\');\n  }\n  else{\n    hide_field(\'order_lost_details\');\n  }\n}\n\ncur_frm.fields_dict[\'lead_item_details\'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {\n  return \'SELECT tabItem.name FROM tabItem WHERE tabItem.is_active = "Yes" AND tabItem.%(key)s LIKE "%s" LIMIT 50\'\n}\n\ncur_frm.cscript.item_code = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  if(d.item_code){\n    get_server_fields(\'get_item_details\', d.item_code, \'lead_item_details\', doc, cdt, cdn, 1);\n  }\n}\n\ncur_frm.fields_dict[\'customer_name\'].get_query = function(doc, cdt, cdn){\n return \'SELECT `tabCustomer`.name,`tabCustomer`.territory,`tabCustomer`.customer_group FROM `tabCustomer` WHERE `tabCustomer`.is_active = "Yes" AND `tabCustomer`.%(key)s LIKE "%s" LIMIT 50\'\n}\n\ncur_frm.cscript.customer_name = function(doc, cdt, cdn) {\n  get_server_fields(\'get_customer_details\',doc.customer_name,\'\',doc, cdt, cdn, 1);\n}\n\ncur_frm.fields_dict[\'lead_name\'].get_query = function(doc, cdt, cdn) {\n  if(!doc.customer_name){\n    alert("Please Enter Customer Name");\n    validated = false;\n  }\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.contact_name ASC LIMIT 50\';\n}\n\ncur_frm.fields_dict[\'qa_manager\'].get_query = function(doc, cdt, cdn) {\n  if(!doc.customer_name){\n    alert("Please Enter Customer Name");\n    validated = false;\n  }\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.contact_name ASC LIMIT 50\';\n}\n\ncur_frm.fields_dict[\'purchase_manager\'].get_query = function(doc, cdt, cdn) {\n  if(!doc.customer_name){\n    alert("Please Enter Customer Name");\n    validated = false;\n  }\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.contact_name ASC LIMIT 50\';\n}\n\ncur_frm.cscript.lead_name = function(doc, cdt, cdn){\n  get_server_fields(\'get_contact_details\', \'\', \'\',doc, cdt, cdn, 1);\n}\n\n\ncur_frm.fields_dict[\'follow_up\'].grid.get_field("contact_person").get_query = function(doc, cdt, cdn) {\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.contact_name ASC LIMIT 50\';\n}\n\ncur_frm.cscript.contact_person = function(doc, cdt, cdn){\n  var d = locals[cdt][cdn];\n  var callback = function(){refresh_field(\'contact_details\');}\n  get_server_fields(\'get_contact_person_details\',d.contact_person, \'follow_up\', doc, cdt, cdn, 1, callback);\n}\n\ncur_frm.cscript.order_lost = function(doc, cdt, cdn){\n  if(doc.order_lost == "Yes")\n    unhide_field([\'reason_for_lost_order\']);\n  else\n    hide_field([\'reason_for_lost_order\']);\n}\n\ncur_frm.cscript[\'Create Quotation\'] = function(doc,dt,dn) {\n  n = createLocal(\'Quotation\');\n  $c(\'dt_map\', args={\n    \'docs\':compress_doclist([locals[\'Quotation\'][n]]),\n    \'from_doctype\':doc.doctype,\n    \'to_doctype\':\'Quotation\',\n    \'from_docname\':doc.name,\n    \'from_to_list\':"[[\'Lead\',\'Quotation\'],[\'Lead Item Detail\',\'Quotation Detail\']]"\n    }, function(r,rt) {\n       loaddoc(\'Quotation\', n);\n    }\n  );\n}\n\ncur_frm.cscript[\'Create Service Quotation\'] = function(doc,dt,dn) {\n  n = createLocal(\'Service Quotation\');\n  $c(\'dt_map\', args={\n    \'docs\':compress_doclist([locals[\'Service Quotation\'][n]]),\n    \'from_doctype\':doc.doctype,\n    \'to_doctype\':\'Service Quotation\',\n    \'from_docname\':doc.name,\n    \'from_to_list\':"[[\'Lead\',\'Service Quotation\'],[\'Service Item Detail\',\'Service Quotation Detail\']]"\n    }, function(r,rt) {\n       loaddoc(\'Service Quotation\', n);\n    }\n  );\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Transaction',
+		'module': 'Selling',
+		'name': '__common__',
+		'search_fields': 'lead_owner, customer, territory, inquiry_type, expected_month, status, transaction_date',
+		'section_style': 'Tabbed',
+		'server_code': '  \n  def autoname(self):\n    if self.doc.lead_type == \'Sales\':\n      self.doc.name = make_autoname(\'SA/\'+self.doc.naming_series+\'/.####\')\n    elif self.doc.lead_type == \'Service\':\n      self.doc.name = make_autoname(\'SR/\'+self.doc.naming_series+\'/.####\')\n\n  def get_item_details(self,item_code):\n    item = sql("select description, item_name, item_group, stock_uom, brand, product_code, item_type from `tabItem` where name = \'%s\'" %(item_code), as_dict=1)\n    ret = {\n      \'description\'        : item and item[0][\'description\'] or \'\',\n      \'uom\'                : item and item[0][\'stock_uom\'] or \'\',\n      \'item_name\'          : item and item[0][\'item_name\'] or \'\',\n      \'brand\'              : item and item[0][\'brand\'] or \'\',\n      \'product_code\'       : item and item[0][\'product_code\'] or \'\',\n      \'item_group\'         : item and item[0][\'item_group\'] or \'\',\n      \'item_type\'          : item and item[0][\'item_type\'] or \'\'\n    }\n    return str(ret)\n\n  def get_customer_details(self, customer):\n    details = sql("select address_line1, address_line2,city, state, country, zone, territory, pincode, customer_group, address from tabCustomer where name = \'%s\'" %(customer), as_dict = 1)\n    ret = {\n      \'address_line1\'       :  details and details[0][\'address_line1\'] or \'\',\n      \'address_line2\'       :  details and details[0][\'address_line2\'] or \'\',\n      \'city\'                :  details and details[0][\'city\'] or \'\',\n      \'state\'               :  details and details[0][\'state\'] or \'\',\n      \'country\'             :  details and details[0][\'country\'] or \'\',\n      \'zone\'                :  details and details[0][\'zone\'] or \'\',\n      \'territory\'           :  details and details[0][\'territory\'] or \'\',\n      \'pincode\'             :  details and details[0][\'pincode\'] or \'\',\n      \'customer_group\'      :  details and details[0][\'customer_group\'] or \'\',\n      \'customer_address\'    :  details and details[0][\'address\'] or \'\'\n    }\n    return str(ret)\n\n  def get_contact_details(self):\n    det = sql("select `tabContact`.contact_no, `tabContact`.email_id, `tabContact`.designation, `tabContact`.department, `tabContact`.plant, `tabContact`.territory, `tabContact`.contact_owner from `tabContact` where `tabContact`.contact_name = \'%s\' and `tabContact`.customer_name = \'%s\'"%(self.doc.lead_name, self.doc.customer_name), as_dict = 1)\n    ret = {\n      \'contact_no\'     :   det and det[0][\'contact_no\'] or \'\',\n      \'email_id\'       :   det and det[0][\'email_id\'] or \'\',\n      \'designation\'    :   det and det[0][\'designation\'] or \'\',\n      \'department\'     :   det and det[0][\'department\'] or \'\',\n      \'plant\'          :   det and det[0][\'plant\'] or \'\',\n      \'contact_territory\'     :   det and det[0][\'territory\'] or \'\',\n      \'contact_owner\'     :   det and det[0][\'contact_owner\'] or \'\',\n    }\n    return str(ret)\n\n  def get_contact_person_details(self, contact_person):\n    person_details = sql("select `tabContact`.designation, `tabContact`.department from `tabContact` where `tabContact`.contact_name = \'%s\' and `tabContact`.customer_name = \'%s\'"%(contact_person, self.doc.customer_name), as_dict = 1)\n    ret = {\n      \'designation\'        :   person_details and person_details[0][\'designation\'] or \'\',\n      \'department\'         :   person_details and person_details[0][\'department\'] or \'\'\n    }\n    return str(ret)\n\n  # Validates whether item is_active or not\n  # =====================================\n  def check_active_item(self):\n    for d in getlist(self.doclist,\'lead_item_details\'):\n      active = sql("select is_active from tabItem where name = %s",d.item_code)\n      if active[0][0] == \'No\':\n        msgprint("Catalogue Code \'%s\' is inactive." %(d.item_code))\n        raise Exception\n\n  def custom_validate(self):\n    get_obj("Sales Common").check_active_customer(self.doc.customer_name)\n    if self.doc.lead_name:\n      get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.lead_name)\n    if self.doc.qa_manager:\n      get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.qa_manager)\n    if self.doc.purchase_manager:\n      get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.purchase_manager)\n    if self.doc.order_lost == "Yes" and not self.doc.reason_for_lost_order:\n      msgprint("Please enter the reason for lost order")\n      raise Exception\n    self.check_active_item()\n    \n  def update_info(self):\n    for d in getlist(self.doclist,\'follow_up\'):\n      d.save()\n      if d.event_created != \'Yes\':             # this is to verify that if already an event is created then do not make an entry in calendar.\n        self.add_calendar_event(d.follow_up_status,d.by_whom,d.follow_up_schedule_date)\n        d.event_created = \'Yes\'\n    msgprint("Follow Up details is updated in calendar")\n    self.doc.save()\n\n  def custom_on_submit(self):\n    if self.doc.lead_type == \'Sales\':\n      if len(getlist(self.doclist,\'lead_item_details\')) == 0:\n        msgprint("Please Enter atleast one item in Sales Item Details for which Inquiry is generated")\n        raise Exception\n    elif self.doc.lead_type == \'Service\':\n      if len(getlist(self.doclist,\'service_item_details\')) == 0:\n        msgprint("Please Enter atleast one item in Service Item Details for which Inquiry is generated")\n        raise Exception\n\n    for d in getlist(self.doclist,\'follow_up\'):\n      if d.event_created != \'Yes\':             # this is to verify that if already an event is created then do not make an entry in calendar.\n        self.add_calendar_event(d.follow_up_status,d.by_whom,d.follow_up_schedule_date)\n        d.event_created = \'Yes\'\n    msgprint("Follow Up details is added to calendar")\n    \n  def on_cancel(self):\n    # remove from calendar\n    sql("update tabEvent set event_type = \'Cancel\' where ref_type = \'Lead\' and ref_name = \'%s\'" % self.doc.name)\n    for d in getlist(self.doclist,\'follow_up\'):\n      d.event_created = \'No\'\n      d.save()\n    msgprint("Follow up details is cancelled from calendar")\n      \n  def add_calendar_event(self,status,by_whom,date):\n    ev = Document(\'Event\')\n    \n    ev.description = cstr(status) + \' to \' + cstr(self.doc.customer_name) + \' by \'+cstr(by_whom) \n    ev.event_date = date\n    ev.event_hour = \'10:00\'\n    ev.event_type = \'Private\'\n    ev.ref_type = \'Lead\'\n    ev.ref_name = self.doc.name\n    ev.save(1)\n     \n    ch = addchild(ev, \'event_individuals\', \'Event User\', 0)\n    ch.person = by_whom\n    ch.save()',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 514
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Lead',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Lead',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Lead
+	{
+		'doctype': 'DocType',
+		'name': 'Lead'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Basic Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'source',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Inquiry Source',
+		'no_copy': 1,
+		'oldfieldname': 'source',
+		'oldfieldtype': 'Select',
+		'options': "\nExisting Customer\nReference\nAdvertisement\nCold Calling\nExhibition\nSupplier Reference\nMass Mailing\nCustomer's Vendor",
+		'permlevel': 0,
+		'print_hide': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'From Customer',
+		'oldfieldname': 'customer',
+		'oldfieldtype': 'Link',
+		'options': 'Customer',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Name of organization from where lead has come',
+		'doctype': 'DocField',
+		'fieldname': 'company_name',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Company Name',
+		'oldfieldname': 'company_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'lead_name',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Contact Name',
+		'oldfieldname': 'lead_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': "eval:doc.source == 'Campaign'",
+		'description': 'Enter campaign name if the source of lead is campaign.',
+		'doctype': 'DocField',
+		'fieldname': 'campaign_name',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'Campaign Name',
+		'oldfieldname': 'campaign_name',
+		'oldfieldtype': 'Link',
+		'options': 'Campaign',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'To manage multiple series please go to Setup > Manage Series',
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\n12/JUN\n12/JUL\n12/AUG\n12/SEP\n12/OCT\n12/NOV\n12/DEC\n12/JAN\n12/FEB\n12/MAR\n12/APR\n12/MAY',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'default': 'Today',
+		'description': 'The date at which current entry is made in system.',
+		'doctype': 'DocField',
+		'fieldname': 'transaction_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Lead Date',
+		'no_copy': 1,
+		'oldfieldname': 'transaction_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'default': 'Open',
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Lead Status',
+		'no_copy': 1,
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nAttempted to Contact\nContact in Future\nContacted\nInterested\nNot interested\nConverted\nQuotation Given\nOrder Confirmed\nLead Lost',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'default': '__user',
+		'doctype': 'DocField',
+		'fieldname': 'lead_owner',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'in_filter': 1,
+		'label': 'Lead Owner',
+		'oldfieldname': 'lead_owner',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'permlevel': 0,
+		'print_hide': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'lead_type',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Lead Type',
+		'oldfieldname': 'lead_type',
+		'oldfieldtype': 'Select',
+		'options': '\nInstrument\nSoftware\nAccessories\nSpares\nAMC\nOne Time Service\nOne Time Calibration\nOne Time Service & Calibration\nTraining\nInstallation\nInstallation & Training\nInspection Services\nSoftware Upgradation\nAssessment\nRepairing\nReconditioning\nJob Work\nSpares Replacement',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_address',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Address',
+		'oldfieldname': 'customer_address',
+		'oldfieldtype': 'Read Only',
+		'options': 'Address',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'inquiry_type',
+		'fieldtype': 'Select',
+		'in_filter': 0,
+		'label': 'Quotation Currency',
+		'oldfieldname': 'inquiry_type',
+		'oldfieldtype': 'Select',
+		'options': '\nINR\nDI\nEither DI or INR',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'request_type',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Request Type',
+		'oldfieldname': 'request_type',
+		'oldfieldtype': 'Select',
+		'options': '\nProduct Enquiry\nRequest for Information\nSuggestions\nOther',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Probability of lead converting to customer',
+		'doctype': 'DocField',
+		'fieldname': 'rating',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Rating',
+		'oldfieldname': 'rating',
+		'oldfieldtype': 'Select',
+		'options': '\nHot\nWarm\nCold',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'remark',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Remark',
+		'oldfieldname': 'remark',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'depends_on': "eval:doc.status == 'Lead Lost'",
+		'doctype': 'DocField',
+		'fieldname': 'order_lost_reason',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'Lost Reason',
+		'oldfieldname': 'order_lost_reason',
+		'oldfieldtype': 'Link',
+		'options': 'Order Lost Reason',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'depends_on': "eval:doc.status == 'Lead Lost'",
+		'doctype': 'DocField',
+		'fieldname': 'order_lost_details',
+		'fieldtype': 'Text',
+		'label': 'Order Lost Details',
+		'oldfieldname': 'order_lost_details',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'no_copy': 1,
+		'oldfieldname': 'trash_reason',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Contact Info',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'phone',
+		'fieldtype': 'Data',
+		'label': 'Phone',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mobile_no',
+		'fieldtype': 'Data',
+		'label': 'Mobile No.',
+		'oldfieldname': 'mobile_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Data',
+		'label': 'Email Id',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fax',
+		'fieldtype': 'Data',
+		'label': 'Fax',
+		'oldfieldname': 'fax',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'website',
+		'fieldtype': 'Data',
+		'label': 'Website',
+		'oldfieldname': 'website',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'zone',
+		'fieldtype': 'Link',
+		'label': 'Zone',
+		'oldfieldname': 'zone',
+		'oldfieldtype': 'Read Only',
+		'options': 'Zone',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': '<a href="javascript:cur_frm.cscript.TerritoryHelp();">To manage Territory, click here</a>',
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_group',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'in_filter': 0,
+		'label': 'Customer Group',
+		'options': 'Customer Group',
+		'permlevel': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_line1',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Address Line 1',
+		'oldfieldname': 'address_line1',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_line2',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Address Line 2',
+		'oldfieldname': 'address_line2',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'city',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'City',
+		'oldfieldname': 'city',
+		'oldfieldtype': 'Select',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'country',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'Country',
+		'oldfieldname': 'country',
+		'oldfieldtype': 'Select',
+		'options': 'Country',
+		'permlevel': 0,
+		'print_hide': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'state',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'State',
+		'oldfieldname': 'state',
+		'oldfieldtype': 'Select',
+		'options': 'State',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'pincode',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Pin Code',
+		'oldfieldname': 'pincode',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_display',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Address Display',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'end_user',
+		'fieldtype': 'Link',
+		'label': 'End User',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qa_manager',
+		'fieldtype': 'Link',
+		'label': 'Q & A Manager',
+		'no_copy': 0,
+		'oldfieldname': 'qa_manager',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purchase_manager',
+		'fieldtype': 'Link',
+		'label': 'Purchase manager',
+		'no_copy': 0,
+		'oldfieldname': 'purchase_manager',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'More Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'market_segment',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 0,
+		'label': 'Market Segment',
+		'oldfieldname': 'market_segment',
+		'oldfieldtype': 'Select',
+		'options': '\nLower Income\nMiddle Income\nUpper Income',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'industry',
+		'fieldtype': 'Link',
+		'label': 'Industry',
+		'oldfieldname': 'industry',
+		'oldfieldtype': 'Link',
+		'options': '\nAutomation\nAerospace\nDefense\nWindmill\nEngineering\nNuclear\nEducational',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'sector',
+		'fieldtype': 'Select',
+		'label': 'Sector',
+		'options': '\nPublic\nPrivate',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Your products or facilities in which the lead is interested',
+		'doctype': 'DocField',
+		'fieldname': 'interested_in',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Interested In',
+		'oldfieldname': 'interested_in',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'doctype': 'DocField',
+		'fieldname': 'to_discuss',
+		'fieldtype': 'Small Text',
+		'label': 'Additional Requirement',
+		'no_copy': 1,
+		'oldfieldname': 'to_discuss',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'plant',
+		'fieldtype': 'Data',
+		'label': 'Plant / Location / Division',
+		'no_copy': 0,
+		'oldfieldname': 'plant',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_territory',
+		'fieldtype': 'Data',
+		'label': 'Contact Territory',
+		'no_copy': 0,
+		'oldfieldname': 'contact_territory',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_owner',
+		'fieldtype': 'Data',
+		'label': 'Contact Owner',
+		'no_copy': 0,
+		'oldfieldname': 'contact_owner',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_department',
+		'fieldtype': 'Data',
+		'label': 'Contact Department',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_designation',
+		'fieldtype': 'Data',
+		'label': 'Contact Designation',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Contact No',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_email',
+		'fieldtype': 'Data',
+		'label': 'Contact Email',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Amendment From',
+		'no_copy': 1,
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'hidden': 0,
+		'label': 'Amendment Date',
+		'no_copy': 1,
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'print_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'lead',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Lead_Type',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sales_budget',
+		'fieldtype': 'Select',
+		'label': 'Sales Budget',
+		'oldfieldname': 'budget',
+		'oldfieldtype': 'Data',
+		'options': '\n15 - 25\n25 - 50\n50 - 1\n1 & above\nNot applicable',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'place',
+		'fieldtype': 'Data',
+		'label': 'Place',
+		'oldfieldname': 'place',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_application',
+		'fieldtype': 'Small Text',
+		'label': 'Customer Application',
+		'no_copy': 1,
+		'oldfieldname': 'requirement',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'description': 'Month in which Lead is expected to be converted',
+		'doctype': 'DocField',
+		'fieldname': 'forecast_month',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Forecast Month',
+		'oldfieldname': 'expected_month',
+		'oldfieldtype': 'Select',
+		'options': '\nJAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'description': 'Month in which Lead is expected to be converted',
+		'doctype': 'DocField',
+		'fieldname': 'expected_month',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Expected Month',
+		'oldfieldname': 'expected_month',
+		'oldfieldtype': 'Select',
+		'options': '\nJAN\nFEB\nMAR\nAPR\nMAY\nJUN\nJUL\nAUG\nSEP\nOCT\nNOV\nDEC',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'conversion_probability',
+		'fieldtype': 'Select',
+		'label': 'Conversion Probability',
+		'oldfieldname': 'conversion_probability',
+		'oldfieldtype': 'Select',
+		'options': '\n0-25%\n25-50%\n50-75%\n75-100%',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'source_of_information',
+		'fieldtype': 'Data',
+		'label': 'Source of information',
+		'oldfieldname': 'source_of_information',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Sales Item Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'price_list',
+		'fieldtype': 'Select',
+		'label': 'Price List',
+		'options': 'link:Price List',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'currency',
+		'fieldtype': 'Select',
+		'label': 'Currency',
+		'options': 'link:Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'factor_figure',
+		'fieldtype': 'Link',
+		'label': 'Factor Figure',
+		'options': 'Factor Figure',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '1.00',
+		'doctype': 'DocField',
+		'fieldname': 'factor_figure_rate',
+		'fieldtype': 'Data',
+		'label': 'Factor Figure Rate',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'lead_item_details',
+		'fieldtype': 'Table',
+		'label': 'Lead Item Detail',
+		'oldfieldname': 'lead_item_details',
+		'oldfieldtype': 'Table',
+		'options': 'Lead Item Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Service Item Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_item_details',
+		'fieldtype': 'Table',
+		'label': 'Service Item Details',
+		'oldfieldname': 'service_item_details',
+		'oldfieldtype': 'Table',
+		'options': 'Service Item Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Competitor Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'competitor_details',
+		'fieldtype': 'Table',
+		'label': 'Competitor Detail',
+		'oldfieldname': 'competitor_details',
+		'oldfieldtype': 'Table',
+		'options': 'Competitor Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Keep a track of communication with this lead which will help for future reference.',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Communication History',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'follow_up',
+		'fieldtype': 'Table',
+		'label': 'Follow up',
+		'oldfieldname': 'follow_up',
+		'oldfieldtype': 'Table',
+		'options': 'Follow up',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'budget',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Budget',
+		'oldfieldname': 'budget',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'requirement',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Requirement',
+		'no_copy': 1,
+		'oldfieldname': 'requirement',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'label': 'Contact Date',
+		'oldfieldname': 'contact_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'last_contact_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'label': 'Last Contact Date',
+		'no_copy': 1,
+		'oldfieldname': 'last_contact_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'Service Team',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Sales Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Accounts Team'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Accounts Team'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Viewer',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Viewer'
+	}
+]

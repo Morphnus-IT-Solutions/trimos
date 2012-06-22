@@ -1,0 +1,49 @@
+# Page, Permission Engine
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:44',
+		'docstatus': 0,
+		'modified': '2011-12-10 14:28:35',
+		'modified_by': 'Administrator',
+		'owner': 'saumil@webnotestech.com'
+	},
+
+	# These values are common for all Page
+	{
+		'doctype': 'Page',
+		'module': 'Setup',
+		'name': '__common__',
+		'page_name': 'Permission Engine',
+		'show_in_menu': 0,
+		'standard': 'Yes'
+	},
+
+	# These values are common for all Page Role
+	{
+		'doctype': 'Page Role',
+		'name': '__common__',
+		'parent': 'Permission Engine',
+		'parentfield': 'roles',
+		'parenttype': 'Page'
+	},
+
+	# Page, Permission Engine
+	{
+		'doctype': 'Page',
+		'name': 'Permission Engine'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'System Manager'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Administrator'
+	}
+]

@@ -1,0 +1,243 @@
+# DocType Mapper, Lead-Service Quotation
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-13 12:44:04',
+		'docstatus': 0,
+		'modified': '2011-12-03 23:46:24',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'name': '__common__',
+		'parent': 'Lead-Service Quotation',
+		'parentfield': 'table_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'map': 'Yes',
+		'name': '__common__',
+		'parent': 'Lead-Service Quotation',
+		'parentfield': 'field_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all DocType Mapper
+	{
+		'doctype': u'DocType Mapper',
+		'from_doctype': 'Lead',
+		'module': 'CRM',
+		'name': '__common__',
+		'ref_doc_submitted': 1,
+		'to_doctype': 'Service Quotation'
+	},
+
+	# DocType Mapper, Lead-Service Quotation
+	{
+		'doctype': u'DocType Mapper',
+		'name': 'Lead-Service Quotation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'company_name',
+		'match_id': 0,
+		'to_field': 'customer_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_address',
+		'match_id': 0,
+		'to_field': 'customer_address'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_group',
+		'match_id': 0,
+		'to_field': 'customer_group'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'territory',
+		'match_id': 0,
+		'to_field': 'territory'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'zone',
+		'match_id': 0,
+		'to_field': 'zone'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'lead_name',
+		'match_id': 0,
+		'to_field': 'contact_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'email_id',
+		'match_id': 0,
+		'to_field': 'contact_email'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_designation',
+		'match_id': 0,
+		'to_field': 'contact_designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_department',
+		'match_id': 0,
+		'to_field': 'contact_department'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'transaction_date',
+		'match_id': 0,
+		'to_field': 'lead_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'name',
+		'match_id': 0,
+		'to_field': 'lead'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'fiscal_year',
+		'match_id': 0,
+		'to_field': 'fiscal_year'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'lead_type',
+		'match_id': 0,
+		'to_field': 'quotation_type'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'inquiry_type',
+		'match_id': 0,
+		'to_field': 'sub_category'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'serial_no',
+		'match_id': 1,
+		'to_field': 'serial_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_code',
+		'match_id': 1,
+		'to_field': 'item_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'brand',
+		'match_id': 1,
+		'to_field': 'brand'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'product_code',
+		'match_id': 1,
+		'to_field': 'product_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'match_id': 1,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'no_of_visit',
+		'match_id': 1,
+		'to_field': 'no_of_visit'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'basic_rate',
+		'match_id': 1,
+		'to_field': 'basic_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'eval:flt(1.00)',
+		'match_id': 1,
+		'to_field': 'qty'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_table': 'Lead',
+		'match_id': 0,
+		'to_table': 'Service Quotation',
+		'validation_logic': 'docstatus = 1 and order_lost = "No"'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'service_item_details',
+		'from_table': 'Service Item Detail',
+		'match_id': 1,
+		'to_field': 'service_quotation_details',
+		'to_table': 'Service Quotation Detail',
+		'validation_logic': 'name is not null'
+	}
+]

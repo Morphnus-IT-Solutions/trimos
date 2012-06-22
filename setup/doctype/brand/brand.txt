@@ -1,0 +1,128 @@
+# DocType, Brand
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-23 19:11:28',
+		'docstatus': 0,
+		'modified': '2012-06-06 11:11:23',
+		'modified_by': 'manisha_s@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1338961024',
+		'allow_trash': 1,
+		'autoname': 'field:brand',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'module': 'Setup',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 13
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Brand',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Brand',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'write': 1
+	},
+
+	# DocType, Brand
+	{
+		'doctype': 'DocType',
+		'name': 'Brand'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'oldfieldname': 'trash_reason',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Data',
+		'label': 'Brand Name',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sales_person',
+		'fieldtype': 'Link',
+		'label': 'Product Manager1',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sales_person2',
+		'fieldtype': 'Link',
+		'label': 'Product Manager2',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'doctype': 'DocPerm',
+		'role': 'CRM - Back Office',
+		'submit': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'CRM Manager'
+	}
+]

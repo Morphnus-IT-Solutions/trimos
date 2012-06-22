@@ -1,0 +1,30 @@
+# DocType, File Browser Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:36:54',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:36:54',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 81
+	},
+
+	# DocType, File Browser Control
+	{
+		'doctype': 'DocType',
+		'name': 'File Browser Control'
+	}
+]

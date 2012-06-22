@@ -1,0 +1,129 @@
+# DocType, Service Item Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-11-17 10:58:33',
+		'docstatus': 0,
+		'modified': '2011-11-17 17:28:46',
+		'modified_by': 'Administrator',
+		'owner': 'wasim@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 5
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Service Item Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Service Item Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Service Item Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'serial_no',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Instrument Serial No',
+		'oldfieldname': 'serial_no',
+		'oldfieldtype': 'Link',
+		'options': 'Serial No',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Small Text',
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'no_of_visit',
+		'fieldtype': 'Int',
+		'in_filter': 1,
+		'label': 'No of Visit',
+		'oldfieldname': 'no_of_visit',
+		'oldfieldtype': 'Int',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'basic_rate',
+		'fieldtype': 'Currency',
+		'label': 'Amount',
+		'oldfieldname': 'basic_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	}
+]

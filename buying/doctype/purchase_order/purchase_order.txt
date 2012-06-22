@@ -1,0 +1,980 @@
+# DocType, Purchase Order
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:40',
+		'docstatus': 0,
+		'modified': '2011-11-20 11:23:55',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Purchase Order',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Transaction',
+		'is_transaction_doc': 1,
+		'module': 'Buying',
+		'name': '__common__',
+		'read_only_onload': 1,
+		'search_fields': 'status, transaction_date, supplier,grand_total',
+		'section_style': 'Tabbed',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'subject': 'To %(supplier_name)s on %(transaction_date)s | %(per_received)s% delivered',
+		'version': 496
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'name': '__common__',
+		'parent': 'Purchase Order',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Purchase Order',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1,
+		'role': 'SRM User'
+	},
+
+	# DocType, Purchase Order
+	{
+		'doctype': 'DocType',
+		'name': 'Purchase Order'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Purchase Order Format'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Enter rates and quantity of items you want to purchase and send the purchase order to your supplier.',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Basic Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'To manage multiple series please go to Setup > Manage Series',
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': 'PO',
+		'permlevel': 0,
+		'print_hide': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Supplier (vendor) name as entered in supplier master',
+		'doctype': 'DocField',
+		'fieldname': 'supplier',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Supplier',
+		'oldfieldname': 'supplier',
+		'oldfieldtype': 'Link',
+		'options': 'Supplier',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supplier_address',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Supplier Address',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Contact Person',
+		'options': 'Contact',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supplier_name',
+		'fieldtype': 'Data',
+		'label': 'Name',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_display',
+		'fieldtype': 'Small Text',
+		'label': 'Address',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_display',
+		'fieldtype': 'Small Text',
+		'label': 'Contact',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_mobile',
+		'fieldtype': 'Text',
+		'label': 'Mobile No',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_email',
+		'fieldtype': 'Text',
+		'label': 'Contact Email',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'print_hide': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'The date at which current entry is made in system.',
+		'doctype': 'DocField',
+		'fieldname': 'transaction_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Purchase Order Date',
+		'oldfieldname': 'transaction_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Status',
+		'no_copy': 1,
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nPartially Completed\nClosed\nCancelled\nAmended',
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Track this Purchase Order against any Project',
+		'doctype': 'DocField',
+		'fieldname': 'project_name',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Project Name',
+		'oldfieldname': 'project_name',
+		'oldfieldtype': 'Link',
+		'options': 'Project',
+		'permlevel': 0,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'description': '% of materials received against this Purchase Order',
+		'doctype': 'DocField',
+		'fieldname': 'per_received',
+		'fieldtype': 'Currency',
+		'label': '% Received',
+		'no_copy': 1,
+		'oldfieldname': 'per_received',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'description': '% of materials billed against this Purchase Order.',
+		'doctype': 'DocField',
+		'fieldname': 'per_billed',
+		'fieldtype': 'Currency',
+		'label': '% Billed',
+		'no_copy': 1,
+		'oldfieldname': 'per_billed',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Items',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'You can make a purchase order from multiple indents. Select indents one by one and click on the button below.',
+		'doctype': 'DocField',
+		'fieldname': 'indent_no',
+		'fieldtype': 'Link',
+		'label': 'Select Indent',
+		'no_copy': 1,
+		'oldfieldname': 'indent_no',
+		'oldfieldtype': 'Link',
+		'options': 'Indent',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Items',
+		'oldfieldtype': 'Button',
+		'options': 'get_indent_details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_subcontracted',
+		'fieldtype': 'Select',
+		'label': 'Is Subcontracted',
+		'options': '\nYes\nNo',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': "Supplier's currency",
+		'doctype': 'DocField',
+		'fieldname': 'currency',
+		'fieldtype': 'Select',
+		'label': 'Currency',
+		'no_copy': 0,
+		'oldfieldname': 'currency',
+		'oldfieldtype': 'Select',
+		'options': 'link:Currency',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '1',
+		'description': "Rate at which supplier's currency is converted to your currency",
+		'doctype': 'DocField',
+		'fieldname': 'conversion_rate',
+		'fieldtype': 'Currency',
+		'label': 'Conversion Rate',
+		'no_copy': 1,
+		'oldfieldname': 'conversion_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'po_details',
+		'fieldtype': 'Table',
+		'label': 'PO Details',
+		'no_copy': 0,
+		'oldfieldname': 'po_details',
+		'oldfieldtype': 'Table',
+		'options': 'PO Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Last Purchase Rate',
+		'oldfieldtype': 'Button',
+		'options': 'get_last_purchase_rate',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'net_total',
+		'fieldtype': 'Currency',
+		'label': 'Net Total*',
+		'no_copy': 1,
+		'oldfieldname': 'net_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Re-Calculate Values',
+		'oldfieldtype': 'Button',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Note HTML',
+		'options': '<div style="margin-top:16px"><b>Note :</b> * In Base Currency\n</div>',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Taxes',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'If you have created a standard template in Other Charges master, select one and click on the button below.',
+		'doctype': 'DocField',
+		'fieldname': 'purchase_other_charges',
+		'fieldtype': 'Link',
+		'label': 'Purchase Other Charges',
+		'no_copy': 1,
+		'oldfieldname': 'purchase_other_charges',
+		'oldfieldtype': 'Link',
+		'options': 'Purchase Other Charges',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Tax Detail',
+		'oldfieldtype': 'Button',
+		'options': 'get_purchase_tax_details',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purchase_tax_details',
+		'fieldtype': 'Table',
+		'label': 'Purchase Tax Details',
+		'no_copy': 0,
+		'oldfieldname': 'purchase_tax_details',
+		'oldfieldtype': 'Table',
+		'options': 'Purchase Tax Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Calculate Tax',
+		'oldfieldtype': 'Button',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Tax Calculation',
+		'no_copy': 1,
+		'oldfieldtype': 'HTML',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'total_tax',
+		'fieldtype': 'Currency',
+		'label': 'Total Tax*',
+		'no_copy': 1,
+		'oldfieldname': 'total_tax',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Note HTML',
+		'options': '<div style="margin-top:16px"><b>Note :</b> * In Base Currency\n</div>',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Totals',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'grand_total',
+		'fieldtype': 'Currency',
+		'label': 'Grand Total',
+		'no_copy': 1,
+		'oldfieldname': 'grand_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rounded_total',
+		'fieldtype': 'Currency',
+		'label': 'Rounded Total',
+		'oldfieldname': 'rounded_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'In Words will be visible once you save the Purchase Order.',
+		'doctype': 'DocField',
+		'fieldname': 'in_words',
+		'fieldtype': 'Data',
+		'label': 'In Words',
+		'oldfieldname': 'in_words',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges_added',
+		'fieldtype': 'Currency',
+		'label': 'Other Charges Added',
+		'no_copy': 0,
+		'oldfieldname': 'other_charges_added',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges_deducted',
+		'fieldtype': 'Currency',
+		'label': 'Other Charges Deducted',
+		'no_copy': 0,
+		'oldfieldname': 'other_charges_deducted',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'net_total_import',
+		'fieldtype': 'Currency',
+		'label': 'Net Total (Import)',
+		'no_copy': 0,
+		'oldfieldname': 'net_total_import',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'grand_total_import',
+		'fieldtype': 'Currency',
+		'label': 'Grand Total (Import)',
+		'no_copy': 0,
+		'oldfieldname': 'grand_total_import',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'In Words(Import) will be visible once you save the Purchase Order.',
+		'doctype': 'DocField',
+		'fieldname': 'in_words_import',
+		'fieldtype': 'Data',
+		'label': 'In Words(Import)',
+		'oldfieldname': 'in_words_import',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges_added_import',
+		'fieldtype': 'Currency',
+		'label': 'Other Charges Added (Import)',
+		'no_copy': 0,
+		'oldfieldname': 'other_charges_added_import',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges_deducted_import',
+		'fieldtype': 'Currency',
+		'label': 'Other Charges Deducted (Import)',
+		'no_copy': 0,
+		'oldfieldname': 'other_charges_deducted_import',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Terms',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'letter_head',
+		'fieldtype': 'Select',
+		'label': 'Letter Head',
+		'oldfieldname': 'letter_head',
+		'oldfieldtype': 'Select',
+		'options': 'link:Letter Head',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tc_name',
+		'fieldtype': 'Link',
+		'label': 'Select Terms',
+		'oldfieldname': 'tc_name',
+		'oldfieldtype': 'Link',
+		'options': 'Term',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Terms',
+		'oldfieldtype': 'Button',
+		'options': 'get_tc_details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Terms HTML',
+		'oldfieldtype': 'HTML',
+		'options': 'You can add Terms and Notes that will be printed in the Transaction',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'terms',
+		'fieldtype': 'Text Editor',
+		'label': 'Terms1',
+		'oldfieldname': 'terms',
+		'oldfieldtype': 'Text Editor',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'More Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'ref_sq',
+		'fieldtype': 'Data',
+		'label': 'Ref SQ',
+		'no_copy': 1,
+		'oldfieldname': 'ref_sq',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Amended From',
+		'no_copy': 1,
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'report_hide': 0
+	},
+
+	# DocField
+	{
+		'description': 'The date at which current entry is corrected in the system.',
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'hidden': 0,
+		'label': 'Amendment Date',
+		'no_copy': 1,
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the relevant company name if you have multiple companies',
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Company',
+		'no_copy': 0,
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'no_copy': 0,
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'select_print_heading',
+		'fieldtype': 'Link',
+		'label': 'Select Print Heading',
+		'no_copy': 1,
+		'oldfieldname': 'select_print_heading',
+		'oldfieldtype': 'Link',
+		'options': 'Print Heading',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'instructions',
+		'fieldtype': 'Text',
+		'label': 'Instructions',
+		'oldfieldname': 'instructions',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'payment_terms',
+		'fieldtype': 'Text',
+		'label': 'Payment Terms',
+		'no_copy': 1,
+		'oldfieldname': 'payment_terms',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Text',
+		'label': 'Remarks',
+		'no_copy': 1,
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Required raw materials issued to the supplier for producing a sub - contracted item.',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Raw Material Details',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'po_raw_material_details',
+		'fieldtype': 'Table',
+		'label': 'PO Raw Material Details',
+		'no_copy': 0,
+		'oldfieldname': 'po_raw_material_details',
+		'oldfieldtype': 'Table',
+		'options': 'PO Raw Material Detail',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Repair Purchase Order',
+		'oldfieldtype': 'Button',
+		'options': 'repair_purchase_order',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1
+	}
+]

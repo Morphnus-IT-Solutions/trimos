@@ -1,0 +1,33 @@
+# Search Criteria, purchase_order-to_be_submitted
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:57',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Purchase Order\x01ID,Purchase Order\x01Supplier,Purchase Order\x01PO Date,Purchase Order\x01Company,Purchase Order\x01Grand Total',
+		'criteria_name': 'Purchase Order-To be submitted',
+		'doc_type': 'Purchase Order',
+		'doctype': 'Search Criteria',
+		'filters': "{'Purchase Order\x01Saved':1,'Purchase Order\x01Submitted':0,'Purchase Order\x01Status':'Draft','Purchase Order\x01Fiscal Year':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabPurchase Order`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, purchase_order-to_be_submitted
+	{
+		'doctype': 'Search Criteria',
+		'name': 'purchase_order-to_be_submitted'
+	}
+]

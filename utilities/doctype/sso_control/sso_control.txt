@@ -1,0 +1,30 @@
+# DocType, SSO Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:56:39',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:56:39',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 1
+	},
+
+	# DocType, SSO Control
+	{
+		'doctype': 'DocType',
+		'name': 'SSO Control'
+	}
+]

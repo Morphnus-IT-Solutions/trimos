@@ -1,0 +1,31 @@
+# Search Criteria, projectwise_purchase_details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:56',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:56',
+		'modified_by': 'Administrator',
+		'owner': 'ashwini@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'Projectwise Purchase Details',
+		'doc_type': 'Purchase Order',
+		'doctype': 'Search Criteria',
+		'filters': "{'Purchase Order\x01Status':'','Purchase Order\x01Fiscal Year':''}",
+		'module': 'Projects',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, projectwise_purchase_details
+	{
+		'doctype': 'Search Criteria',
+		'name': 'projectwise_purchase_details'
+	}
+]

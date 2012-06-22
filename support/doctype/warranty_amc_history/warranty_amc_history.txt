@@ -1,0 +1,106 @@
+# DocType, Warranty AMC History
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-02-12 12:14:44',
+		'docstatus': 0,
+		'modified': '2011-09-26 16:08:54',
+		'modified_by': 'Administrator',
+		'owner': 'zoheb@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Support',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 6
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Warranty AMC History',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Warranty AMC History
+	{
+		'doctype': 'DocType',
+		'name': 'Warranty AMC History'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'from_date',
+		'fieldtype': 'Date',
+		'idx': 1,
+		'in_filter': 1,
+		'label': 'From Date',
+		'oldfieldname': 'from_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'to_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'To Date',
+		'oldfieldname': 'to_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'idx': 3,
+		'in_filter': 1,
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nUnder Warranty\nOut of Warranty\nUnder AMC\nOut of AMC\nOTS (One Time Service)',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_doctype',
+		'fieldtype': 'Select',
+		'idx': 4,
+		'label': 'Against DocType',
+		'options': 'DocType',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_docname',
+		'fieldtype': 'Data',
+		'idx': 5,
+		'label': 'Against Docname',
+		'permlevel': 1
+	}
+]

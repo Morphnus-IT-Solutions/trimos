@@ -1,0 +1,34 @@
+# Search Criteria, timesheet_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:33',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:33',
+		'modified_by': 'Administrator',
+		'owner': 'ashwini@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Timesheet\x01ID,Timesheet\x01Timesheet Date,Timesheet\x01Timesheet by,Timesheet Detail\x01Project Name,Timesheet Detail\x01Task Id,Timesheet Detail\x01Task Name,Timesheet Detail\x01Actual Start Time,Timesheet Detail\x01Actual End Time,Timesheet Detail\x01Total Hours (Actual)',
+		'criteria_name': 'Timesheet Report',
+		'doc_type': 'Timesheet Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Timesheet\x01Saved':1,'Timesheet\x01Submitted':1}",
+		'module': 'Projects',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Timesheet',
+		'sort_by': '`tabTimesheet`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, timesheet_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'timesheet_report'
+	}
+]

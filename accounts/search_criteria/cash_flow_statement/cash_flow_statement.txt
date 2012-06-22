@@ -1,0 +1,33 @@
+# Search Criteria, cash_flow_statement
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:25',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:25',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Account\x01ID',
+		'criteria_name': 'Cash Flow Statement',
+		'dis_filters': 'fiscal_year\ntransaction_date',
+		'doc_type': 'Account',
+		'doctype': 'Search Criteria',
+		'filters': "{'Account\x01Group or Ledger':'Ledger','Account\x01Is PL Account':'','Account\x01Is Active':'','Account\x01Account Type':'','Account\x01Company':'','Account\x01Fiscal Year':'','Account\x01Show Group Balance':'','Account\x01Level':'2'}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'sort_by': '`tabAccount`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, cash_flow_statement
+	{
+		'doctype': 'Search Criteria',
+		'name': 'cash_flow_statement'
+	}
+]

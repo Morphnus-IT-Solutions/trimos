@@ -1,0 +1,213 @@
+# DocType, Complaint Note Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-15 14:12:07',
+		'docstatus': 0,
+		'modified': '2011-10-09 12:59:29',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'CND/.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Support',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': '<pre style="text-align: left;">Traceback (innermost last):\n  File "/home/www/cl-t103-191cl.privatedns.com/v160/cgi-bin/server.py", line 873, in check_syntax\n    codeobj = compile(c',
+		'show_in_menu': 0,
+		'version': 12
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Complaint Note Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Complaint Note Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Complaint Note Detail'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'product',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 1,
+		'label': 'Product',
+		'no_copy': 1,
+		'oldfieldname': 'product',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'serial_no',
+		'fieldtype': 'Link',
+		'idx': 2,
+		'label': 'Serial No',
+		'oldfieldname': 'serial_no',
+		'oldfieldtype': 'Link',
+		'options': 'Serial No',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'order_reference_code',
+		'fieldtype': 'Read Only',
+		'idx': 4,
+		'label': 'Order Reference Code',
+		'oldfieldname': 'order_reference_code',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'chargeable',
+		'fieldtype': 'Select',
+		'idx': 5,
+		'label': 'Chargeable',
+		'oldfieldname': 'chargeable',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'nature_of_complaint',
+		'fieldtype': 'Small Text',
+		'idx': 6,
+		'label': 'Nature Of Complaint',
+		'oldfieldname': 'nature_of_complaint',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'call_attnd_date',
+		'fieldtype': 'Date',
+		'idx': 7,
+		'label': 'Call Attnd Date',
+		'oldfieldname': 'call_attnd_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'call_complete_date',
+		'fieldtype': 'Date',
+		'idx': 8,
+		'label': 'Call Complete Date',
+		'oldfieldname': 'call_complete_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'technician',
+		'fieldtype': 'Select',
+		'idx': 9,
+		'label': 'Engineer Name',
+		'oldfieldname': 'technician',
+		'oldfieldtype': 'Select',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'technician_2',
+		'fieldtype': 'Data',
+		'idx': 10,
+		'label': 'Engineer Name 2',
+		'oldfieldname': 'technician_2',
+		'oldfieldtype': 'Data',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'no_of_visit',
+		'fieldtype': 'Int',
+		'idx': 11,
+		'label': 'No of Visit',
+		'oldfieldname': 'no_of_visit',
+		'oldfieldtype': 'Int',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'technician_available',
+		'fieldtype': 'Int',
+		'hidden': 1,
+		'idx': 12,
+		'label': 'Technician Available',
+		'no_copy': 1,
+		'oldfieldname': 'technician_available',
+		'oldfieldtype': 'Int',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remark',
+		'fieldtype': 'Small Text',
+		'idx': 13,
+		'label': 'Remark',
+		'oldfieldname': 'remark',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	}
+]

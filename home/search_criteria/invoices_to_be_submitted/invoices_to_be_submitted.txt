@@ -1,0 +1,33 @@
+# Search Criteria, invoices-to_be_submitted
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:42',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:42',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Receivable Voucher\x01ID,Receivable Voucher\x01Debit To,Receivable Voucher\x01Voucher Date,Receivable Voucher\x01Due Date',
+		'criteria_name': 'Invoices-To be submitted',
+		'doc_type': 'Receivable Voucher',
+		'doctype': 'Search Criteria',
+		'filters': "{'Receivable Voucher\x01Saved':1,'Receivable Voucher\x01Is Opening':'','Receivable Voucher\x01Fiscal Year':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabReceivable Voucher`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, invoices-to_be_submitted
+	{
+		'doctype': 'Search Criteria',
+		'name': 'invoices-to_be_submitted'
+	}
+]

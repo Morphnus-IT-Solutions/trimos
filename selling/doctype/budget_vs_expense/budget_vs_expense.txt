@@ -1,0 +1,278 @@
+# DocType, Budget vs Expense
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-15 02:00:39',
+		'docstatus': 0,
+		'modified': '2011-08-15 02:00:39',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Budget vs Expense',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Budget vs Expense',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Budget vs Expense
+	{
+		'doctype': 'DocType',
+		'name': 'Budget vs Expense'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'budget_type',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'Budget Type',
+		'options': '\nSalary (CTC)\nMobile\nLocal Travel\nOutstation Travel\nForeign Travel',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'budget_type',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'Budget Type',
+		'oldfieldname': 'budget_type',
+		'oldfieldtype': 'Select',
+		'options': '\nSalary (CTC)\nMobile\nLocal Travel\nOutstation Travel\nForeign Travel',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Fiscal Year',
+		'options': 'Link:Fiscal Year',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'budget_total',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Budget Total'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'budget_total',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Budget Total',
+		'oldfieldname': 'budget_total',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'expense',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'label': 'Expense'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'expense',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'label': 'Expense',
+		'oldfieldname': 'expense',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'balance',
+		'fieldtype': 'Currency',
+		'idx': 5,
+		'label': 'Balance'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'balance',
+		'fieldtype': 'Currency',
+		'idx': 5,
+		'label': 'Balance',
+		'oldfieldname': 'balance',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'balance_percent',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Balance (%)'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'balance_percent',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Balance (%)',
+		'oldfieldname': 'balance_percent',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'role': 'CRM User',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1,
+		'role': 'CRM User',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'permlevel': 1,
+		'role': 'CRM - Back Office',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 5,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 6,
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 7,
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 8,
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 9,
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 10,
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'write': 0
+	}
+]

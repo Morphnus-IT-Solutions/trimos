@@ -1,0 +1,75 @@
+# Module Def, Setup
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:59:21',
+		'docstatus': 0,
+		'modified': '2012-01-21 15:37:42',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Setup',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'No',
+		'doctype': u'Module Def',
+		'is_hidden': 'No',
+		'module_label': 'Setup',
+		'module_name': 'Setup',
+		'module_page': 'Setup',
+		'module_seq': 2,
+		'name': '__common__'
+	},
+
+	# Module Def, Setup
+	{
+		'doctype': u'Module Def',
+		'name': 'Setup'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'System Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM - Back Office'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM User - HO'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM User - Regional'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Viewer'
+	}
+]

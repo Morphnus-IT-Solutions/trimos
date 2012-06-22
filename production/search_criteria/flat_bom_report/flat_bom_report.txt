@@ -1,0 +1,33 @@
+# Search Criteria, flat_bom_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:38',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:38',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Flat BOM Detail\x01Item Code,Flat BOM Detail\x01Description,Flat BOM Detail\x01Qty,Flat BOM Detail\x01Stock UOM,Flat BOM Detail\x01Moving Avg Rate,Flat BOM Detail\x01Amount As Per MAR,Flat BOM Detail\x01Last Purchase Rate,Flat BOM Detail\x01Amount As Per LPR,Flat BOM Detail\x01Standard Rate,Flat BOM Detail\x01Amount As Per SR,Flat BOM Detail\x01Qty Consumed Per Unit,Flat BOM Detail\x01Flat BOM No,Flat BOM Detail\x01BOM Mat No,Flat BOM Detail\x01Parent BOM,Flat BOM Detail\x01Is PRO Applicable',
+		'criteria_name': 'Flat BOM Report',
+		'doc_type': 'Flat BOM Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Bill Of Materials\x01Saved':1,'Bill Of Materials\x01Submitted':1}",
+		'module': 'Production',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Bill Of Materials',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, flat_bom_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'flat_bom_report'
+	}
+]

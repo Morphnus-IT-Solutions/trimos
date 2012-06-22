@@ -1,0 +1,79 @@
+# Page, Import Data
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:43',
+		'docstatus': 0,
+		'modified': '2012-05-16 11:53:25',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Page
+	{
+		'doctype': 'Page',
+		'module': 'Setup',
+		'name': '__common__',
+		'page_name': 'Import Data',
+		'show_in_menu': 0,
+		'standard': 'Yes'
+	},
+
+	# These values are common for all Page Role
+	{
+		'doctype': 'Page Role',
+		'name': '__common__',
+		'parent': 'Import Data',
+		'parentfield': 'roles',
+		'parenttype': 'Page'
+	},
+
+	# Page, Import Data
+	{
+		'doctype': 'Page',
+		'name': 'Import Data'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Administrator'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'System Manager'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Sales Master Manager'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Purchase Master Manager'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Material Master Manager'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'Accounts Team'
+	},
+
+	# Page Role
+	{
+		'doctype': 'Page Role',
+		'role': 'CRM User - HO'
+	}
+]

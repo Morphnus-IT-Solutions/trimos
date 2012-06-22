@@ -1,0 +1,76 @@
+# DocType, Deduction Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:33:20',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:33:21',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'HR',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 14
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Deduction Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Deduction Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Deduction Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'd_type',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'Type',
+		'oldfieldname': 'd_type',
+		'oldfieldtype': 'Select',
+		'reqd': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'd_modified_amt',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Amount',
+		'oldfieldname': 'd_modified_amt',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'depend_on_lwp',
+		'fieldtype': 'Check',
+		'idx': 4,
+		'label': 'Depend on LWP',
+		'oldfieldname': 'depend_on_lwp',
+		'oldfieldtype': 'Check'
+	}
+]

@@ -1,0 +1,717 @@
+# DocType Mapper, Sales Order-Receivable Voucher
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-14 13:31:21',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:59:55',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'name': '__common__',
+		'parent': 'Sales Order-Receivable Voucher',
+		'parentfield': 'table_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'name': '__common__',
+		'parent': 'Sales Order-Receivable Voucher',
+		'parentfield': 'field_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all DocType Mapper
+	{
+		'doctype': 'DocType Mapper',
+		'from_doctype': 'Sales Order',
+		'module': 'Accounts',
+		'name': '__common__',
+		'ref_doc_submitted': 1,
+		'to_doctype': 'Receivable Voucher'
+	},
+
+	# DocType Mapper, Sales Order-Receivable Voucher
+	{
+		'doctype': 'DocType Mapper',
+		'name': 'Sales Order-Receivable Voucher'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_name',
+		'match_id': 0,
+		'to_field': 'customer'
+	},
+
+	# Field Mapper Detail
+	{
+		'checking_operator': '=',
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_address',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_address'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_person',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'address_display',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'address_display'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_display',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_display'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_mobile',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_mobile'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'contact_email',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'contact_email'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_group',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'customer_group'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'company',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'company'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'fiscal_year',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'fiscal_year'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'charge',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'charge'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'conversion_rate',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'conversion_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'price_list_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'price_list_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'currency',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'currency'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_code',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'export_rate',
+		'match_id': 1,
+		'to_field': 'export_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_name',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'export_amount',
+		'match_id': 1,
+		'to_field': 'export_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'brand',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'brand'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'eval: flt(obj.qty) - flt(obj.billed_qty)',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'qty'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'base_ref_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'base_ref_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'ref_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'ref_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'basic_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'basic_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_group',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_group'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'parent',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'sales_order'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'stock_uom',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'stock_uom'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'name',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'so_detail'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'export_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'export_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'eval: (flt(obj.qty) - flt(obj.billed_qty)) * flt(obj.basic_rate)',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'eval: (flt(obj.qty) - flt(obj.billed_qty)) * flt(obj.export_rate)',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'export_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'adj_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'adj_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_tax_rate',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_tax_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'charge_type',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'charge_type'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'row_id',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'row_id'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'description',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'description'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'account_head',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'account_head'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'total_amount',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'total_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'territory',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'territory'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'total_tax_amount',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'total_tax_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_wise_tax_detail',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'item_wise_tax_detail'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'cost_center_other_charges',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'cost_center_other_charges'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rate',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'tax_amount',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'tax_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'total',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'source',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'source'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'campaign',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'campaign'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'tc_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'tc_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'select_print_heading',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'select_print_heading'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'terms',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'terms'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'net_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'net_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'grand_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'grand_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'other_charges_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'other_charges_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rounded_total',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'rounded_total'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'in_words',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'in_words'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'grand_total_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'grand_total_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'rounded_total_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'rounded_total_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'in_words_export',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'in_words_export'
+	},
+
+	# Field Mapper Detail
+	{
+		'checking_operator': '=',
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'project_name',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'project_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_partner',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'sales_partner'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_designation',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'sales_designation'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'commission_rate',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'commission_rate'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'total_commission',
+		'map': 'Yes',
+		'match_id': 0,
+		'to_field': 'total_commission'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_percentage',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'allocated_percentage'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'sales_person',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'sales_person'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'allocated_amount',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'allocated_amount'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'incentives',
+		'map': 'Yes',
+		'match_id': 3,
+		'to_field': 'incentives'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'reserved_warehouse',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'warehouse'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_table': 'Sales Order',
+		'match_id': 0,
+		'to_table': 'Receivable Voucher',
+		'validation_logic': 'docstatus=1'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'sales_order_detail',
+		'from_table': 'Sales Order Detail',
+		'match_id': 1,
+		'to_field': 'entries',
+		'to_table': 'RV Detail',
+		'validation_logic': '(qty > ifnull(billed_qty, 0) or amount > ifnull(billed_amt, 0)) and docstatus = 1'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'other_charges',
+		'from_table': 'RV Tax Detail',
+		'match_id': 2,
+		'to_field': 'other_charges',
+		'to_table': 'RV Tax Detail',
+		'validation_logic': 'name is not null'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'sales_team',
+		'from_table': 'Sales Team',
+		'match_id': 3,
+		'to_field': 'sales_team',
+		'to_table': 'Sales Team',
+		'validation_logic': 'name is not null'
+	}
+]

@@ -1,0 +1,33 @@
+# Search Criteria, monthly_attendance_details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:49',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:49',
+		'modified_by': 'Administrator',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Attendance\x01Employee',
+		'criteria_name': 'Monthly Attendance Details',
+		'doc_type': 'Attendance',
+		'doctype': 'Search Criteria',
+		'filters': "{'Attendance\x01Status':'','Attendance\x01Fiscal Year':''}",
+		'module': 'HR',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabAttendance`.`employee`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, monthly_attendance_details
+	{
+		'doctype': 'Search Criteria',
+		'name': 'monthly_attendance_details'
+	}
+]

@@ -1,0 +1,284 @@
+# DocType, Visit Report Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-12 17:21:28',
+		'docstatus': 0,
+		'modified': '2011-10-07 01:12:26',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'VRD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Support',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 19
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Visit Report Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Visit Report Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Visit Report Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'idx': 1,
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_visit_start_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Visit Date',
+		'oldfieldname': 'actual_visit_start_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'from_time',
+		'fieldtype': 'Time',
+		'idx': 3,
+		'label': 'From Time',
+		'oldfieldname': 'from_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'to_time',
+		'fieldtype': 'Time',
+		'idx': 4,
+		'label': 'To Time',
+		'oldfieldname': 'to_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'idx': 6,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Link',
+		'options': 'Contact',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_name',
+		'fieldtype': 'Data',
+		'idx': 8,
+		'label': 'Contact Name',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'idx': 10,
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose',
+		'fieldtype': 'Select',
+		'idx': 11,
+		'label': 'Purpose',
+		'oldfieldname': 'purpose',
+		'oldfieldtype': 'Select',
+		'options': '\nEnquiry generation\nDemo\nCommercial negotiation\nCourtesy visit\nDocument collection\nDocument submission\nFollow up on inquiry\nFollow up on quotation\nService\nCalibration\nServicing & calibration\nTraining\nBreakdown\nComplaint\nOrder finalization\nTechnical discussion\nInstallation\nInstallation & training\nMaterial collection\nMaterial delivery\nTender submission\nTender opening\nOthers\nTrail Software Installation\nExhibition',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'achievement',
+		'fieldtype': 'Small Text',
+		'idx': 12,
+		'label': 'Achievement',
+		'oldfieldname': 'achievement',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document',
+		'fieldtype': 'Select',
+		'idx': 13,
+		'label': 'Against Document',
+		'oldfieldname': 'against_document',
+		'oldfieldtype': 'Select',
+		'options': '\nLead\nService\nInstallation\nOthers',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_document_no',
+		'fieldtype': 'Link',
+		'idx': 14,
+		'label': 'Against Document No',
+		'oldfieldname': 'against_document_no',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 15,
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'idx': 16,
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'idx': 17,
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'follow_up',
+		'fieldtype': 'Small Text',
+		'idx': 18,
+		'label': 'Follow Up / Action Plan',
+		'oldfieldname': 'follow_up',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_date',
+		'fieldtype': 'Date',
+		'idx': 19,
+		'label': 'Follow Up Date',
+		'oldfieldname': 'follow_up_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	}
+]

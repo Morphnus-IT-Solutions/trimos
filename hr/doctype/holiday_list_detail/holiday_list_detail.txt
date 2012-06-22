@@ -1,0 +1,60 @@
+# DocType, Holiday List Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:39:04',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:39:04',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'HR',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Holiday List Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Holiday List Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Holiday List Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Small Text',
+		'idx': 1,
+		'label': 'Description',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'holiday_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Date',
+		'oldfieldname': 'holiday_date',
+		'oldfieldtype': 'Date'
+	}
+]

@@ -1,0 +1,242 @@
+# DocType, Follow up
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:04',
+		'docstatus': 0,
+		'modified': '2012-05-15 14:38:51',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1325917084',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 15
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Follow up',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Follow up
+	{
+		'doctype': 'DocType',
+		'name': 'Follow up'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_status',
+		'fieldtype': 'Select',
+		'label': 'Activities To Be Scheduled',
+		'oldfieldname': 'follow_up_status',
+		'oldfieldtype': 'Select',
+		'options': '\nBank guarantee submission(PVG/SD/EMD)\nCommercial Negotiation\nComponent Check\nCourtesy Visit\nDemo\nDelivery Note Submission\nFollow Up\nOthers\nPO Collection\nQuotation\nRevised Quotation\nSubmit OC\nTechnical Discussion\nTrial S/W Installation',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'discount',
+		'fieldtype': 'Select',
+		'label': 'Discount to be Given',
+		'options': '\nNil\n5%\n10%\n15%\n20%'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'other',
+		'fieldtype': 'Data',
+		'label': 'Other Discount'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Date',
+		'oldfieldname': 'date',
+		'oldfieldtype': 'Date',
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'notes',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Notes',
+		'oldfieldname': 'notes',
+		'oldfieldtype': 'Small Text',
+		'print_hide': 1,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_type',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Follow up type',
+		'oldfieldname': 'follow_up_type',
+		'oldfieldtype': 'Select',
+		'options': '\nPhone\nEmail\nSMS\nVisit\nOther'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_by',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Follow up by',
+		'oldfieldname': 'follow_up_by',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_schedule_date',
+		'fieldtype': 'Date',
+		'label': 'Schedule Date',
+		'oldfieldname': 'follow_up_schedule_date',
+		'oldfieldtype': 'Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Link',
+		'options': 'Contact',
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'by_whom',
+		'fieldtype': 'Link',
+		'label': 'By Whom',
+		'oldfieldname': 'by_whom',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'follow_up_actual_date',
+		'fieldtype': 'Date',
+		'label': 'Actual Date',
+		'oldfieldname': 'follow_up_actual_date',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Link',
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Link',
+		'options': 'Visit Report'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'default': 'No',
+		'doctype': 'DocField',
+		'fieldname': 'event_created',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Event Created',
+		'no_copy': 1,
+		'oldfieldname': 'event_created',
+		'oldfieldtype': 'Select',
+		'options': 'Yes\nNo',
+		'print_hide': 1,
+		'report_hide': 1
+	}
+]

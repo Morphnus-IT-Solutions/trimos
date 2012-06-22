@@ -1,0 +1,429 @@
+# DocType, ToDo Item
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 13:56:12',
+		'docstatus': 0,
+		'modified': '2011-08-14 13:56:13',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'TDI.########',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'show_in_menu': 0
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'ToDo Item',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'ToDo Item',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, ToDo Item
+	{
+		'doctype': 'DocType',
+		'name': 'ToDo Item'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 1,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 1,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Date',
+		'oldfieldname': 'date',
+		'oldfieldtype': 'Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Date',
+		'oldfieldname': 'date',
+		'oldfieldtype': 'Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'priority',
+		'fieldtype': 'Data',
+		'idx': 3,
+		'label': 'Priority',
+		'oldfieldname': 'priority',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'priority',
+		'fieldtype': 'Data',
+		'idx': 3,
+		'label': 'Priority',
+		'oldfieldname': 'priority',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reference_type',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'Reference Type',
+		'oldfieldname': 'reference_type',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reference_type',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'Reference Type',
+		'oldfieldname': 'reference_type',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reference_name',
+		'fieldtype': 'Data',
+		'idx': 5,
+		'label': 'Reference Name',
+		'oldfieldname': 'reference_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reference_name',
+		'fieldtype': 'Data',
+		'idx': 5,
+		'label': 'Reference Name',
+		'oldfieldname': 'reference_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'checked',
+		'fieldtype': 'Check',
+		'idx': 6,
+		'label': 'Checked',
+		'oldfieldname': 'checked',
+		'oldfieldtype': 'Check'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'checked',
+		'fieldtype': 'Check',
+		'idx': 6,
+		'label': 'Checked',
+		'oldfieldname': 'checked',
+		'oldfieldtype': 'Check'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'role',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Role',
+		'oldfieldname': 'role',
+		'oldfieldtype': 'Link',
+		'options': 'Role'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'role',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Role',
+		'oldfieldname': 'role',
+		'oldfieldtype': 'Link',
+		'options': 'Role'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'role': 'All'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 1,
+		'role': 'Sales Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'permlevel': 1,
+		'role': 'CRM User'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 5,
+		'permlevel': 0,
+		'role': 'CRM User',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 6,
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 7,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 8,
+		'permlevel': 1,
+		'role': 'CRM - Back Office'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 9,
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 10,
+		'permlevel': 1,
+		'role': 'Accounts Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 11,
+		'permlevel': 0,
+		'role': 'Accounts Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 12,
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 13,
+		'permlevel': 0,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 14,
+		'permlevel': 1,
+		'role': 'System Manager',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 15,
+		'permlevel': 0,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 16,
+		'permlevel': 1,
+		'role': 'System Manager',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 17,
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 18,
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 19,
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 20,
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'write': 0
+	}
+]

@@ -1,0 +1,575 @@
+# DocType, Local Travel Expense Statement
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-01 10:38:45',
+		'docstatus': 0,
+		'modified': '2012-05-08 16:47:34',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Local Travel Expense Statement',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1333201691',
+		'client_script': "cur_frm.cscript.expense_limit = function(doc, cdt, cdn){\n  var d = locals[cdt][cdn];\n  if(d.expense_limit){\n    get_server_fields('get_limit_amount',d.expense_limit,'local_travel_expense_details', doc, cdt, cdn, 1);\n  }\n}\n\ncur_frm.cscript.refresh = function(doc, cdt, cdn){\n  if(!doc.status)\n    doc.status = 'Open';\n  \n  if(!doc.__islocal) unhide_field('Send for Approval');\n  else hide_field('Send for Approval');\n  \n  if(inList(user_roles, 'Accounts Team') && !doc.__islocal) {\n    unhide_field(['bills_received_on','allowed_status']);\n    unhide_field(['Send Feedback']);\n  }\n  else {\n    hide_field(['bills_received_on','allowed_status']);\n    hide_field(['Send Feedback']);\n  }\n\n  if(doc.docstatus == 1)\n    unhide_field(['Update Expense']);\n  else\n    hide_field(['Update Expense'])\n}\n\ncur_frm.cscript.employee_name = function(doc, cdt, cdn) {\n  get_server_fields('get_employee_details','','',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.allowed_expense = function(doc, cdt, cdn){\n  var d = locals[cdt][cdn];\n  if(d.allowed_expense){\n    set_multiple('Local Travel Expense Details', d.name, { 'disallowed_expense': flt(d.expense) - flt(d.allowed_expense)}, 'local_travel_expense_details');\n    refresh_field('disallowed_expense', d.name, 'local_travel_expense_details');\n  }\n}\n\ncur_frm.cscript.expense = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  if(d.expense && d.allowed_expense) {\n    set_multiple('Local Travel Expense Details', d.name, { 'disallowed_expense': flt(d.expense) - flt(d.allowed_expense)}, 'local_travel_expense_details');\n    refresh_field('disallowed_expense', d.name, 'local_travel_expense_details');\n  }\n}",
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'HR',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'status,employee_name,territory,start_date,end_date,visit_report_id,prepared_by',
+		'section_style': 'Simple',
+		'server_code': 'class DocType:\n  def __init__(self, doc, doclist=[]):\n    self.doc = doc\n    self.doclist = doclist\n\n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.naming_series+\'/.####\')\n\n  def get_limit_amount(self,expense_limit):\n    limit = sql("select limit_amount from `tabExpense Limit` where name = %s",expense_limit,as_dict=1)\n    ret = {\n      \'limit_amount\'  :  limit and flt(limit[0][\'limit_amount\']) or 0\n    }\n    return str(ret)\n    \n  def get_employee_details(self):\n    det = sql("select department, designation, territory from `tabSales Person` where name = %s",self.doc.employee_name,as_dict = 1)\n    ret = {\n      \'department\'  :  det and det[0][\'department\'] or \'\',\n      \'designation\'  :  det and det[0][\'designation\'] or \'\',\n      \'territory\'  :  det and det[0][\'territory\'] or \'\'\n    }\n    return str(ret)\n\n  def send_for_approval(self):\n    msg = \'\'\'\nApprove Local Travel Expense Statement: %s of\nEmployee: %s,\nPrepared By: %s\n\'\'\' % (self.doc.name,self.doc.employee_name, self.doc.prepared_by)\n    get_obj(\'Sales Common\').send_for_approval(self.doc.territory,msg,\'Approval of Local Travel Expense Statement\',self.doc.doctype,self.doc.name)\n    \n\n  def send_feedback(self):\n    msg = \'\'\'\nYour Local Travel Expense Statement : %s of\nEmployee: %s\nhas been Submitted\nby %s\n\'\'\' % (self.doc.name, self.doc.employee_name, self.doc.approved_by)\n    get_obj(\'Sales Common\').send_feedback(self.doc.employee_name,msg,\'Local Travel Expense Statement status\')\n  \n  def calculate_total_expense(self):\n    total_expense = 0\n    total_allowed_expense = 0\n    for d in getlist(self.doclist,\'local_travel_expense_details\'):\n      total_expense += flt(d.expense)\n      total_allowed_expense += flt(d.allowed_expense)\n    self.doc.total_expense = flt(total_expense)\n    self.doc.total_allowed_expense = flt(total_allowed_expense)\n    self.doc.total_disallowed_expense = flt(total_expense - total_allowed_expense)\n    \n  def validate(self):\n    self.calculate_total_expense()\n    self.check_late_submission()\n  \n  def check_late_submission(self):\n    current_month = nowdate().split(\'-\')[1]\n    current_day = nowdate().split(\'-\')[2]\n    to_date_month = self.doc.end_date.split(\'-\')[1]\n    if flt(current_day) > 5 and flt(current_month) != flt(to_date_month):\n      self.doc.status = \'Late\'\n      msgprint("Late Submission")\n      if not self.doc.reason_for_late_submission:\n        msgprint("Please Enter the reason for LATE Submission")\n        raise Exception\n    else:\n      self.doc.status = \'On Time\'\n\n  def on_submit(self):\n    #check whether user has permission to submit the document\n    approved_by = cstr(get_obj(\'Manage Account\',with_children = 1).get_permissions(self.doc.doctype,self.doc.total_expense,session[\'user\']))\n    set(self.doc,\'approved_by\',approved_by)\n    \n  def update_expense(self):\n    self.calculate_total_expense()\n    for d in getlist(self.doclist,\'local_travel_expense_details\'):\n      d.save()\n    self.doc.save()',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 61
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Local Travel Expense Statement Format',
+		'name': '__common__',
+		'parent': 'Local Travel Expense Statement',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Local Travel Expense Statement',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Local Travel Expense Statement
+	{
+		'doctype': 'DocType',
+		'name': 'Local Travel Expense Statement'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'default': 'LE/12/APR',
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Naming Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\nLE/12/MAY\nLE/12/JUN\nLE/12/MAR\nLE/12/FEB\nLE/12/JAN\nLE/11/DEC\nLE/11/NOV\nLE/12/APR',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Status',
+		'no_copy': 1,
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nOn Time\nLate',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'employee_name',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Employee Name',
+		'oldfieldname': 'employee_name',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Link',
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Link',
+		'options': 'Visit Report',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Select',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'start_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Start Date',
+		'oldfieldname': 'start_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'end_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'End Date',
+		'oldfieldname': 'end_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reason_for_late_submission',
+		'fieldtype': 'Small Text',
+		'hidden': 0,
+		'label': 'Reason for Late Submission',
+		'no_copy': 1,
+		'oldfieldname': 'reason_for_late_submission',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'label': 'Amended From',
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'label': 'Amendment Date',
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Local Travel Expense Details',
+		'oldfieldtype': 'Section Break',
+		'options': 'Local Travel Expense Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'local_travel_expense_details',
+		'fieldtype': 'Table',
+		'label': 'Local Travel Expense Details',
+		'oldfieldname': 'local_travel_expense_details',
+		'oldfieldtype': 'Table',
+		'options': 'Local Travel Expense Details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'total_expense',
+		'fieldtype': 'Currency',
+		'label': 'Tot. Exp.',
+		'oldfieldname': 'total_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'total_allowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Tot. Allowed Exp.',
+		'oldfieldname': 'total_allowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'total_disallowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Tot. Disallowed Exp.',
+		'oldfieldname': 'total_disallowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'prepared_by',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Prepared By',
+		'oldfieldname': 'prepared_by',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approved_by',
+		'fieldtype': 'Data',
+		'label': 'Approved By',
+		'no_copy': 1,
+		'oldfieldname': 'approved_by',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'authorized_by',
+		'fieldtype': 'Link',
+		'label': 'Authorized By',
+		'oldfieldname': 'authorized_by',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 0,
+		'label': 'Approval Status',
+		'no_copy': 1,
+		'oldfieldname': 'approval_status',
+		'oldfieldtype': 'Select',
+		'options': 'Pending\nApproved\nRejected',
+		'permlevel': 0,
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'bills_received_on',
+		'fieldtype': 'Date',
+		'label': 'Bills Received On ',
+		'oldfieldname': 'bills_received_on',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'allowed_status',
+		'fieldtype': 'Select',
+		'label': 'Status',
+		'oldfieldname': 'allowed_status',
+		'oldfieldtype': 'Select',
+		'options': 'Allowed\nDisallowed',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'Sales Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Accounts Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Accounts Team'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'Accounts Team',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - Regional'
+	}
+]

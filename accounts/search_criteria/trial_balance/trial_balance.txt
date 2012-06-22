@@ -1,0 +1,35 @@
+# Search Criteria, trial_balance
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:36',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:36',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Account\x01ID',
+		'criteria_name': 'Trial Balance',
+		'description': 'Trial Balance',
+		'dis_filters': 'transaction_date',
+		'doc_type': 'Account',
+		'doctype': 'Search Criteria',
+		'filters': "{'Account\x01Is PL Account':'','Account\x01Account Type':''}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabAccount`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, trial_balance
+	{
+		'doctype': 'Search Criteria',
+		'name': 'trial_balance'
+	}
+]

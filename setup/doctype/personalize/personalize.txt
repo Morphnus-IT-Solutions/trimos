@@ -1,0 +1,104 @@
+# DocType, Personalize
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:30',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:31',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'allow_attach': 1,
+		'allow_copy': 1,
+		'allow_email': 1,
+		'allow_print': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Other',
+		'in_create': 1,
+		'issingle': 1,
+		'max_attachments': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'version': 4
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Personalize',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'name': '__common__',
+		'parent': 'Personalize',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocType, Personalize
+	{
+		'doctype': 'DocType',
+		'name': 'Personalize'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'idx': 1,
+		'label': 'Help HTML',
+		'options': '<div class="help_box">You can edit HTML for your banner or add an attachment and click on "Set from Attachment"</div>'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'header_html',
+		'fieldtype': 'Code',
+		'idx': 2,
+		'label': 'Banner HTML'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'set_from_attachment',
+		'fieldtype': 'Check',
+		'idx': 3,
+		'label': 'Set from attachment'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'file_list',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'idx': 4,
+		'label': 'File List'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	}
+]

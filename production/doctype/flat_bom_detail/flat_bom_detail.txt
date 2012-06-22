@@ -1,0 +1,217 @@
+# DocType, Flat BOM Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:38:58',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:38:59',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'FBD/.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'read_only': 0,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 15
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Flat BOM Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Flat BOM Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Flat BOM Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'label': 'Item Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 2,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'moving_avg_rate',
+		'fieldtype': 'Currency',
+		'idx': 5,
+		'label': 'Valuation Rate',
+		'oldfieldname': 'moving_avg_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_mar',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Amount As Per Valuation Rate',
+		'oldfieldname': 'amount_as_per_mar',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'last_purchase_rate',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Last Purchase Rate',
+		'oldfieldname': 'last_purchase_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_lpr',
+		'fieldtype': 'Currency',
+		'idx': 8,
+		'label': 'Amount As Per LPR',
+		'oldfieldname': 'amount_as_per_lpr',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty',
+		'fieldtype': 'Currency',
+		'idx': 9,
+		'label': 'Qty',
+		'oldfieldname': 'qty',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'standard_rate',
+		'fieldtype': 'Currency',
+		'idx': 9,
+		'label': 'Standard Rate',
+		'oldfieldname': 'standard_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_as_per_sr',
+		'fieldtype': 'Currency',
+		'idx': 10,
+		'label': 'Amount As Per SR',
+		'oldfieldname': 'amount_as_per_sr',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty_consumed_per_unit',
+		'fieldtype': 'Currency',
+		'idx': 11,
+		'label': 'Qty Consumed Per Unit',
+		'oldfieldname': 'qty_consumed_per_unit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_uom',
+		'fieldtype': 'Link',
+		'idx': 12,
+		'label': 'Stock UOM',
+		'oldfieldname': 'stock_uom',
+		'oldfieldtype': 'Link',
+		'options': 'UOM',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'flat_bom_no',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 12,
+		'label': 'Flat BOM No',
+		'oldfieldname': 'flat_bom_no',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'bom_mat_no',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'idx': 13,
+		'label': 'BOM Mat No',
+		'oldfieldname': 'bom_mat_no',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'parent_bom',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'idx': 14,
+		'label': 'Parent BOM',
+		'oldfieldname': 'parent_bom',
+		'oldfieldtype': 'Link'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_pro_applicable',
+		'fieldtype': 'Select',
+		'idx': 15,
+		'label': 'Is PRO Applicable',
+		'oldfieldname': 'is_pro_applicable',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'reqd': 0
+	}
+]

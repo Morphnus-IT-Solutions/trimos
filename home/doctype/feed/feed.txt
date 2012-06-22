@@ -1,0 +1,92 @@
+# DocType, Feed
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 21:14:35',
+		'docstatus': 0,
+		'modified': '2012-04-06 09:36:34',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313694248',
+		'autoname': '_FEED.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Home',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 3
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Data',
+		'name': '__common__',
+		'parent': 'Feed',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Feed',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocType, Feed
+	{
+		'doctype': 'DocType',
+		'name': 'Feed'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'doc_type',
+		'label': 'Doc Type',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'doc_name',
+		'label': 'Doc Name',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'subject',
+		'label': 'Subject'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'color',
+		'label': 'Color'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	}
+]

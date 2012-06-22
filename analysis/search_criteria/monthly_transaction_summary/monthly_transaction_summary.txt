@@ -1,0 +1,32 @@
+# Search Criteria, monthly_transaction_summary
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:52',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:52',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Profile\x01ID',
+		'criteria_name': 'Monthly Transaction Summary',
+		'doc_type': 'Profile',
+		'doctype': 'Search Criteria',
+		'filters': "{'DocType\x01Period':'Monthly'}",
+		'module': 'Analysis',
+		'name': '__common__',
+		'sort_by': '`tabProfile`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, monthly_transaction_summary
+	{
+		'doctype': 'Search Criteria',
+		'name': 'monthly_transaction_summary'
+	}
+]

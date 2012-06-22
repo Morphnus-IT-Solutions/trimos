@@ -1,0 +1,111 @@
+# DocType, Service Schedule
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-13 12:02:23',
+		'docstatus': 0,
+		'modified': '2011-11-28 12:19:16',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 3
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Service Schedule',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Service Schedule
+	{
+		'doctype': 'DocType',
+		'name': 'Service Schedule'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'schedule_date',
+		'fieldtype': 'Date',
+		'label': 'Schedule Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Link',
+		'label': 'Customer Name',
+		'options': 'Customer',
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'options': 'Territory'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_type',
+		'fieldtype': 'Select',
+		'label': 'Service Type',
+		'options': '\nOTS (One Time Service)\nOTC (One Time Calibration)\nOTSC (One Time Service & Calibration)\nAMC\nTraining\nSoftware upgradation\nInspection services\nOthers'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_docname',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Against Docname',
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_date',
+		'fieldtype': 'Date',
+		'label': 'Actual Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Data',
+		'label': 'Visit Report Id'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks'
+	}
+]

@@ -1,0 +1,106 @@
+# DocType, Answer
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:32:14',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:32:14',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'allow_attach': 0,
+		'autoname': '_ANS.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'module': 'Knowledge Base',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 3
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Answer',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'name': '__common__',
+		'parent': 'Answer',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocType, Answer
+	{
+		'doctype': 'DocType',
+		'name': 'Answer'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'question',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'label': 'Question',
+		'options': 'Question'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'answer',
+		'fieldtype': 'Text',
+		'idx': 2,
+		'label': 'Answer',
+		'oldfieldname': 'question',
+		'oldfieldtype': 'Text'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'points',
+		'fieldtype': 'Int',
+		'idx': 3,
+		'label': 'Points'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': '_users_voted',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'idx': 4,
+		'label': 'Users Voted',
+		'print_hide': 1
+	}
+]

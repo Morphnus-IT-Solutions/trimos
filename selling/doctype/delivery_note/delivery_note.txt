@@ -1,0 +1,1773 @@
+# DocType, Delivery Note
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:02',
+		'docstatus': 0,
+		'modified': '2012-01-01 22:16:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Delivery Note',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1325436268',
+		'allow_attach': 1,
+		'autoname': 'field:tally_invoice_no',
+		'client_script': '//-----------------------------------Make Installation Report ----------------------------------------------\n\ncur_frm.cscript[\'Make Installation Report\'] = function(doc, cdt, cdn){\n  var ir = LocalDB.create(\'Installation Report\');\n  ir = locals[\'Installation Report\'][ir];\n  ir.delivery_note_no = doc.name;\n  ir.scheduled_date = doc.installation_date;\n  ir.customer_name = doc.customer_name;\n  ir.address = doc.delivery_address;\n  ir.territory = doc.territory;\n  ir.contact_person = doc.contact_person;\n  ir.contact_no = doc.contact_no;\n  loaddoc("Installation Report",ir.name);\n}\n\ncur_frm.cscript.custom_refresh = function(doc, cdt, cdn) {\n  if(doc.docstatus == 1 && doc.status != \'Closed\')\n    unhide_field([[\'Make Installation Report\'],[\'Update Payment Details\']]);\n  else\n    hide_field([[\'Make Installation Report\'],[\'Update Payment Details\']]);\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Transaction',
+		'in_create': 0,
+		'is_transaction_doc': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'read_only_onload': 0,
+		'search_fields': 'status,transaction_date,customer,customer_name, territory, sub_category',
+		'section_style': 'Tabbed',
+		'server_code': '  \n  def get_factor_figure(self):\n    return cstr(get_obj(\'Sales Common\').get_factor_figure(self))\n\n  def get_sales_person_details(self,sales_person):\n    return get_obj(\'Sales Common\').get_sales_person_details(sales_person, self)\n\n  def pull_sales_order_details(self):\n    self.validate_prev_docname()\n    self.doc.clear_table(self.doclist,\'other_charges\')\n    self.doclist = get_obj(\'DocType Mapper\', \'Sales Order-Delivery Note\').dt_map(\'Sales Order\', \'Delivery Note\', self.doc.sales_order_no, self.doc, self.doclist, "[[\'Sales Order\', \'Delivery Note\'],[\'Sales Order Detail\', \'Delivery Note Detail\'],[\'RV Tax Detail\',\'RV Tax Detail\'],[\'Sales Team\',\'Sales Team\'],[\'TC Detail\',\'TC Detail\']]")\n\n#------------------------------------- Get Terms and Conditions -----------------------------------------------#\n\n  def get_tc_details(self):\n    self.doc.clear_table(self.doclist,\'tc_details\')\n    tc_detail = sql("select terms,description from `tabTC Detail` where parent = \'%s\'" %(self.doc.tc_name), as_dict = 1)\n    for tc in tc_detail:\n      d =  addchild(self.doc, \'tc_details\', \'TC Detail\', 1, self.doclist)\n      d.terms = tc[\'terms\']\n      d.description = tc[\'description\']\n\n  def get_supplier_name(self, arg = \'\'):\n    details = sql("select address from `tabSupplier` where name = \'%s\'" %(arg), as_dict = 1)\n    ret = {\n      \'supplier_address\'  :  details and details[0][\'address\'] or \'\'\n    }\n    return cstr(ret)\n\n  def validate_qty_in_stock(self):\n    pass\n\n  def validate_for_items(self):\n    # this function is been overwritten coz it was showing error : Please check warehouse None of Item is not present in None None .\n    # this might be coz there is no warehouse funda in TRIMOS and all warehouse field is null\n    check_list = []\n    for d in getlist(self.doclist,\'delivery_note_details\'):\n      # check for double entry\n      # ----------------------\n      e = [d.item_code, d.prevdoc_docname or \'\']\n      if e in check_list:\n        msgprint("Item %s has been entered twice." % d.item_code)\n        raise Exception\n      else:\n        check_list.append(e)\n        \n  \n  # Update Sales Order (Over-written coz it does not have accounts n it was setting status of sales order as part complete)\n  # ------------------\n  def update_prevdoc_status(self,update_stock=1):\n    sales_order_list = []\n    for d in getlist(self.doclist, \'delivery_note_details\'):\n      # set indent list\n      if d.prevdoc_docname:\n        if not d.prevdoc_docname in sales_order_list:\n          sales_order_list.append(d.prevdoc_docname)\n        \n        # update pending\n        sql("update `tabSales Order Detail` set pending_qty = pending_qty - %s where name=%s", (update_stock * flt(d.qty), d.prevdoc_detail_docname))\n        self.log.append("Pending Qty for %s in Sales Order %s reduced by %s" % (d.item_code, d.prevdoc_docname, update_stock * flt(d.qty)))\n    \n    # update status\n    for i in sales_order_list:\n      open_items = sql("select count(*) from `tabSales Order Detail` where pending_qty > 0 and parent=%s", i)[0][0]\n      if open_items:\n        sql("update `tabSales Order` set status=\'Part Complete\' where name=%s", i)\n        self.log.append("Status for Sales Order %s set to \'Part Complete\'" % i)\n      \n      else:\n        sql("update `tabSales Order` set status=\'Closed\' where name=%s", i)\n        self.log.append("Status for Sales Order %s set to \'Closed\'" % i)\n  \n  def update_payment_details(self):\n    self.doc.save()\n\n  def custom_validate(self):\n    get_obj("Sales Common").check_active_customer(self.doc.customer_name)\n    self.expiry_date()\n    get_obj(\'Sales Common\').check_active_item(self)\n    get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.contact_person)\n  \n  def expiry_date(self):\n    for d in getlist(self.doclist,\'delivery_note_details\'):\n      if not d.warranty_expiry_date:\n        d.warranty_expiry_date = add_days(self.doc.transaction_date,365)\n\n  # create Serial No\n  # --------------\n  \n  def create_serial_record(self):\n    import datetime\n    for d in getlist(self.doclist, \'delivery_note_details\'):\n      if d.serial_no:\n        serial_nos = cstr(d.serial_no).split(\',\')\n        if not flt(len(serial_nos)) == flt(d.qty):\n          msgprint("Please enter serial nos for all "+ cstr(d.qty) + " quantity")\n          raise Exception\n\n        for a in serial_nos:\n          if a:\n            exists = sql("select name from `tabSerial No` where name = \'%s\' and item_code = \'%s\' and status = \'In Store\'" % (a, d.item_code))\n            if not exists:\n              msgprint("Item "+ d.item_code +" of Serial No: "+ a + " does not exists in the system")\n              raise Exception\n            else:\n              serial = Document(\'Serial No\', a)\n              serial.delivery_date = self.doc.transaction_date\n              serial.warranty_expiry_date = d.warranty_expiry_date\n              serial.status = \'Delivered\'\n              serial.delivery_note_no = self.doc.name\n              serial.customer_name = self.doc.customer_name\n              serial.customer_address = self.doc.customer_address\n              serial.territory = self.doc.territory\n              serial.save()\n              \n  # cancel all serial no details (on cancel)\n  #-----------------------------------------\n  \n  def cancel_serial_record(self):\n    import datetime\n    for d in getlist(self.doclist, \'delivery_note_details\'):\n      if d.serial_no:\n        serial_nos = cstr(d.serial_no).split(\',\')\n        \n        for a in serial_nos:\n          if a:\n            exists = sql("select name from `tabSerial No` where name = \'%s\' and item_code = \'%s\' and status = \'In Store\'" % (a, d.item_code))\n            serial = Document(\'Serial No\', a)\n            serial.delivery_date = \'\'\n            serial.warranty_expiry_date = \'\'\n            serial.status = \'In Store\'\n            serial.delivery_note_no = \'\'\n            serial.save()\n            \n  def check_nextdoc_docstatus(self):  \n    submit_in = sql("select t1.name from `tabInstallation Note` t1 where t1.delivery_note_no = \'%s\' and t1.docstatus = 1" % (self.doc.name))\n    if submit_in:\n      msgprint("Installation Note : " + cstr(submit_in[0][0]) + " has been created against " + cstr(self.doc.doctype) + ". So " + cstr(self.doc.doctype) + " cannot be Cancelled.")\n      raise Exception, "Validation Error."\n\n  def custom_on_submit(self):\n    sales_order_list = []\n    for d in getlist(self.doclist, \'delivery_note_details\'):\n      # set indent list\n      if d.prevdoc_docname:\n        if not d.prevdoc_docname in sales_order_list:\n          sales_order_list.append(d.prevdoc_docname)\n\n    # update lead status\n    for i in sales_order_list:\n      open_items = sql("select count(*) from `tabSales Order Detail` where pending_qty > 0 and ifnull(billed_qty,0) < qty and parent=%s", i)[0][0]\n      if not open_items:\n        sql("update `tabLead` set `tabLead`.lead_status=\'Closed - won\' where name IN (Select `tabSales Order`.inquiry_no from `tabSales Order` where name = %s)", i)\n    \n    # add to calendar\n    sales_com_obj = get_obj(\'Sales Common\')\n    for d in getlist(self.doclist,\'delivery_note_details\'):\n      self.add_calendar_event(d.item_code,d.warranty_expiry_date,sales_com_obj)\n      \n    # add to calendar tentative installation date\n    self.add_installation_date(sales_com_obj)\n  \n  def custom_on_cancel(self):\n    # remove all serial no details\n    self.cancel_serial_record()\n    \n    # remove calendar event\n    self.remove_calendar_event()\n\n\n  def validate_doc(self):\n    for d in getlist(self.doclist,\'delivery_note_details\'):\n      prevdoc = d.prevdoc_doctype\n      prevdoc_docname = d.prevdoc_docname\n      \n      if prevdoc_docname and prevdoc:\n        get_name = sql("select name from `tab%s` where name = \'%s\'" % (prevdoc, prevdoc_docname))\n        name = get_name and get_name[0][0] or \'\'\n        if name:  #check for incorrect docname\n          if prevdoc == \'Sales Order\':\n            dt = sql("select company, docstatus, customer_name, currency, sales_partner from `tab%s` where name = \'%s\'" % (prevdoc, name))\n            cust_name = dt and dt[0][2] or \'\'\n            if cust_name != self.doc.customer_name:\n              msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " customer name :" + cstr(cust_name) + " does not match with customer name : " + cstr(self.doc.customer_name) + " of current document.")\n              raise Exception, "Validation Error. "\n            sal_partner = dt and dt[0][4] or \'\'\n            if sal_partner != self.doc.sales_partner:\n              msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " sales partner name :" + cstr(sal_partner) + " does not match with sales partner name : " + cstr(self.doc.sales_partner_name) + " of current document.")\n              raise Exception, "Validation Error. "\n          else:\n            dt = sql("select company, docstatus, supplier, currency from `tab%s` where name = \'%s\'" % (prevdoc, name))\n            supp_name = dt and dt[0][2] or \'\'\n          company_name = dt and dt[0][0] or \'\'\n          docstatus = dt and dt[0][1] or 0\n          currency = dt and dt[0][3] or \'\'\n          if (currency != self.doc.currency):\n            msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " currency : "+ cstr(currency) + "does not match with Currency: " + cstr(self.doc.currency) + "of current document")\n            raise Exception, "Validation Error."\n          if (company_name != self.doc.company):\n            msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " does not belong to the Company: " + cstr(self.doc.company_name))\n            raise Exception, "Validation Error."\n          if (docstatus != 1):\n            msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " is not Submitted Document.")\n            raise Exception, "Validation Error."\n        else:\n          msgprint(cstr(prevdoc) + ": " + cstr(prevdoc_docname) + " is not a valid " + cstr(prevdoc))\n          raise Exception, "Validation Error."\n          \n  # Add Warranty Expiry Date of Items to Calendar\n  # -----------------------------------------------------\n  def add_calendar_event(self,item_code,expiry_date,sales_com_obj):\n    send = sql("select email_id from `tabSales Person` where territory = %s",self.doc.territory)\n    message = \'\'\'\n                 %s warranty expires for %s\n              \'\'\' % (item_code,self.doc.customer)\n    # Add to Calendar\n    sales_com_obj.add_to_calendar(send,message,expiry_date,self.doc.doctype,self.doc.name)\n\n  \n  # Add Installation Date to Calendar and also sent mail \n  # --------------------------------------------------------  \n  def add_installation_date(self,sales_com_obj):\n    if self.doc.installation_date:\n      send_to = []\n      send = sql("select email_id from `tabSales Person` where territory = %s",self.doc.territory)\n      for d in send:\n        send_to.append(d[0])\n      message = \'\'\'\n               Installation of items for %s\n            \'\'\' %(self.doc.customer_name)\n      login = \'\'\'\n               If you are not logged in please click on the link below:\n               http://trimosmetrology.net/crm\n              \'\'\'\n      msg = message+" "+login\n      if send_to:\n        sendmail(send_to, sender = \'automail@webnotestech.com\', subject=\'Installation of Items\', parts=[[\'text/plain\', msg]])\n\n      # Add to Calendar\n      sales_com_obj.add_to_calendar(send,message,self.doc.installation_date,self.doc.doctype,self.doc.name)\n    \n  def remove_calendar_event(self):\n    sql("update tabEvent set event_type = \'Cancel\' where ref_type = \'Delivery Note\' and ref_name = \'%s\'" % self.doc.name)',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'subject': 'To %(customer_name)s on %(transaction_date)s',
+		'version': 464
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'name': '__common__',
+		'parent': 'Delivery Note',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Delivery Note',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Delivery Note
+	{
+		'doctype': 'DocType',
+		'name': 'Delivery Note'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Delivery Note Format'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Delivery Note Format w/o Letter Head'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Basic Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'trigger': 'Client',
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'To manage multiple series please go to Setup > Manage Series',
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': 'DN',
+		'permlevel': 0,
+		'print_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tally_invoice_no',
+		'fieldtype': 'Data',
+		'label': 'Tally Invoice No.',
+		'no_copy': 0,
+		'oldfieldname': 'tally_invoice_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Customer',
+		'oldfieldname': 'customer',
+		'oldfieldtype': 'Link',
+		'options': 'Customer',
+		'permlevel': 0,
+		'print_hide': 1,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client',
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_address',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Address Name',
+		'options': 'Address',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Contact Person',
+		'options': 'Contact',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivery_note_type',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'D. N. Type',
+		'oldfieldname': 'delivery_note_type',
+		'oldfieldtype': 'Link',
+		'options': 'Item Type',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Data',
+		'label': 'Customer Name',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_display',
+		'fieldtype': 'Small Text',
+		'label': 'Address',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_display',
+		'fieldtype': 'Small Text',
+		'label': 'Contact',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_mobile',
+		'fieldtype': 'Text',
+		'label': 'Mobile No',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_email',
+		'fieldtype': 'Text',
+		'label': 'Contact Email',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_department',
+		'fieldtype': 'Data',
+		'label': 'Contact Department',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_designation',
+		'fieldtype': 'Data',
+		'label': 'Contact Designation',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivery_address',
+		'fieldtype': 'Text',
+		'label': 'Delivery Address',
+		'oldfieldname': 'delivery_address',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'Today',
+		'description': 'The date at which current entry is made in system.',
+		'doctype': 'DocField',
+		'fieldname': 'transaction_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Voucher Date',
+		'no_copy': 1,
+		'oldfieldname': 'transaction_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'default': 'Draft',
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Status',
+		'no_copy': 1,
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nPartially Completed\nClosed\nSubmitted\nCancelled\nAmended',
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'description': '% of materials billed against this Delivery Note',
+		'doctype': 'DocField',
+		'fieldname': 'per_billed',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': '% Amount Billed',
+		'no_copy': 1,
+		'oldfieldname': 'per_billed',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'installation_date',
+		'fieldtype': 'Date',
+		'label': 'Tentative Installation Date',
+		'no_copy': 1,
+		'oldfieldname': 'installation_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'description': '% of materials delivered against this Delivery Note',
+		'doctype': 'DocField',
+		'fieldname': 'per_installed',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': '% Installed',
+		'no_copy': 1,
+		'oldfieldname': 'per_installed',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Amended From',
+		'no_copy': 1,
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'description': 'The date at which current entry is corrected in the system.',
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'label': 'Amendment Date',
+		'no_copy': 1,
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person_responsible_for_installation',
+		'fieldtype': 'Link',
+		'label': 'Person Responsible for Installation',
+		'oldfieldname': 'person_responsible_for_installation',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'zone',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Zone',
+		'no_copy': 0,
+		'oldfieldname': 'zone',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_group',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Customer Group',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mode_of_supply',
+		'fieldtype': 'Select',
+		'label': 'Mode of Supply',
+		'oldfieldname': 'mode_of_supply',
+		'oldfieldtype': 'Select',
+		'options': '\nDelivered\nInstalled',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sub_category',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Sub Category',
+		'oldfieldname': 'sub_category',
+		'oldfieldtype': 'Select',
+		'options': '\nINR\nDI',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Transporter Info',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'transporter_name',
+		'fieldtype': 'Data',
+		'label': 'Transporter Name',
+		'no_copy': 0,
+		'oldfieldname': 'transporter_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client',
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Transporter lorry number',
+		'doctype': 'DocField',
+		'fieldname': 'lr_no',
+		'fieldtype': 'Data',
+		'label': 'LR No',
+		'no_copy': 0,
+		'oldfieldname': 'lr_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'Today',
+		'description': 'Date on which lorry started from your warehouse',
+		'doctype': 'DocField',
+		'fieldname': 'lr_date',
+		'fieldtype': 'Date',
+		'label': 'LR Date',
+		'no_copy': 0,
+		'oldfieldname': 'lr_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'challan_no',
+		'fieldtype': 'Data',
+		'label': 'Challan No',
+		'oldfieldname': 'challan_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'challan_date',
+		'fieldtype': 'Date',
+		'label': 'Challan Date',
+		'oldfieldname': 'challan_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Items',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'You can make a delivery note from multiple sales orders. Select sales orders one by one and click on the button below.',
+		'doctype': 'DocField',
+		'fieldname': 'sales_order_no',
+		'fieldtype': 'Link',
+		'hidden': 0,
+		'label': 'Sales Order No',
+		'no_copy': 0,
+		'oldfieldname': 'sales_order_no',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Order',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'hidden': 0,
+		'label': 'Get Items',
+		'oldfieldtype': 'Button',
+		'options': 'pull_sales_order_details',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the price list as entered in "Price List" master. This will pull the reference rates of items against this price list as specified in "Item" master.',
+		'doctype': 'DocField',
+		'fieldname': 'price_list_name',
+		'fieldtype': 'Select',
+		'label': 'Price List',
+		'oldfieldname': 'price_list_name',
+		'oldfieldtype': 'Select',
+		'options': 'link:Price List',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': "Customer's Currency",
+		'doctype': 'DocField',
+		'fieldname': 'currency',
+		'fieldtype': 'Select',
+		'label': 'Currency',
+		'oldfieldname': 'currency',
+		'oldfieldtype': 'Select',
+		'options': 'link:Currency',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': '1.00',
+		'description': "Rate at which customer's currency is converted to your currency",
+		'doctype': 'DocField',
+		'fieldname': 'conversion_rate',
+		'fieldtype': 'Currency',
+		'label': 'Conversion Rate',
+		'no_copy': 0,
+		'oldfieldname': 'conversion_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'factor_figure',
+		'fieldtype': 'Link',
+		'label': 'Factor Figure',
+		'oldfieldname': 'factor_figure',
+		'oldfieldtype': 'Link',
+		'options': 'Factor Figure',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivery_note_details',
+		'fieldtype': 'Table',
+		'label': 'Delivery Note Details',
+		'no_copy': 0,
+		'oldfieldname': 'delivery_note_details',
+		'oldfieldtype': 'Table',
+		'options': 'Delivery Note Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Re-Calculate Values',
+		'oldfieldtype': 'Button',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'net_total',
+		'fieldtype': 'Currency',
+		'label': 'Net Total*',
+		'no_copy': 0,
+		'oldfieldname': 'net_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Note',
+		'oldfieldtype': 'HTML',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Taxes',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'If you have created a standard template in Other Charges master, select one and click on the button below.',
+		'doctype': 'DocField',
+		'fieldname': 'charge',
+		'fieldtype': 'Link',
+		'label': 'Charge',
+		'oldfieldname': 'charge',
+		'oldfieldtype': 'Link',
+		'options': 'Other Charges',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Charges',
+		'oldfieldtype': 'Button',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges',
+		'fieldtype': 'Table',
+		'label': 'Other Charges',
+		'no_copy': 0,
+		'oldfieldname': 'other_charges',
+		'oldfieldtype': 'Table',
+		'options': 'RV Tax Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_charges_total',
+		'fieldtype': 'Currency',
+		'label': 'Charges Total',
+		'oldfieldname': 'other_charges_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Calculate Charges',
+		'oldfieldtype': 'Button',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Other Charges Calculation',
+		'oldfieldtype': 'HTML',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Totals',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'grand_total',
+		'fieldtype': 'Currency',
+		'label': 'Grand Total',
+		'no_copy': 0,
+		'oldfieldname': 'grand_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rounded_total',
+		'fieldtype': 'Currency',
+		'label': 'Rounded Total',
+		'no_copy': 0,
+		'oldfieldname': 'rounded_total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'In Words will be visible once you save the Delivery Note.',
+		'doctype': 'DocField',
+		'fieldname': 'in_words',
+		'fieldtype': 'Data',
+		'label': 'In Words',
+		'no_copy': 0,
+		'oldfieldname': 'in_words',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'grand_total_export',
+		'fieldtype': 'Currency',
+		'label': 'Grand Total (Export)',
+		'no_copy': 0,
+		'oldfieldname': 'grand_total_export',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'reqd': 0,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rounded_total_export',
+		'fieldtype': 'Currency',
+		'label': 'Rounded Total (Export)',
+		'no_copy': 0,
+		'oldfieldname': 'rounded_total_export',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'In Words (Export) will be visible once you save the Delivery Note.',
+		'doctype': 'DocField',
+		'fieldname': 'in_words_export',
+		'fieldtype': 'Data',
+		'label': 'In Words (Export)',
+		'no_copy': 0,
+		'oldfieldname': 'in_words_export',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'gross_profit_percent',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'Gross Profit (%)',
+		'oldfieldname': 'gross_profit_percent',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'gp_percent_inr',
+		'fieldtype': 'Currency',
+		'label': 'G.P. % (INR)',
+		'oldfieldname': 'gp_percent_inr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'gp_amount_inr',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'G.P. Amount (INR)',
+		'oldfieldname': 'gp_amount_inr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'gp_percent_fcnr',
+		'fieldtype': 'Currency',
+		'label': 'G.P. % (FCNR)',
+		'oldfieldname': 'gp_percent_fcnr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'gp_amount_fcnr',
+		'fieldtype': 'Currency',
+		'in_filter': 1,
+		'label': 'G.P. Amount (FCNR)',
+		'oldfieldname': 'gp_amount_fcnr',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Terms',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tc_name',
+		'fieldtype': 'Link',
+		'label': 'Select Terms',
+		'oldfieldname': 'tc_name',
+		'oldfieldtype': 'Link',
+		'options': 'Terms And Conditions',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Get Terms',
+		'oldfieldtype': 'Button',
+		'options': 'get_tc_details',
+		'permlevel': 0,
+		'trigger': 'Server'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Terms HTML',
+		'oldfieldtype': 'HTML',
+		'options': 'You can add Terms and Notes that will be printed in the Transaction',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'terms',
+		'fieldtype': 'Text Editor',
+		'hidden': 1,
+		'label': 'Term Details',
+		'oldfieldname': 'terms',
+		'oldfieldtype': 'Text Editor',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tc_details',
+		'fieldtype': 'Table',
+		'label': 'Terms and Conditions',
+		'options': 'TC Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Filling in Additional Information about the Delivery Note will help you analyze your data better.',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'More Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the relevant company name if you have multiple companies',
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'default': 'Today',
+		'description': 'The date at which current entry will get or has actually executed.',
+		'doctype': 'DocField',
+		'fieldname': 'posting_date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Posting Date',
+		'no_copy': 1,
+		'oldfieldname': 'posting_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Time at which items were delivered from warehouse',
+		'doctype': 'DocField',
+		'fieldname': 'posting_time',
+		'fieldtype': 'Time',
+		'in_filter': 0,
+		'label': 'Posting Time',
+		'oldfieldname': 'posting_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'reqd': 0,
+		'search_index': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'inquiry_no',
+		'fieldtype': 'Link',
+		'label': 'Lead No',
+		'oldfieldname': 'inquiry_no',
+		'oldfieldtype': 'Link',
+		'options': 'Lead',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'inquiry_date',
+		'fieldtype': 'Date',
+		'label': 'Lead Date',
+		'oldfieldname': 'inquiry_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivery_date',
+		'fieldtype': 'Date',
+		'label': 'Delivery Date',
+		'oldfieldname': 'delivery_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivered_time',
+		'fieldtype': 'Time',
+		'label': 'Delivered Time',
+		'oldfieldname': 'delivered_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'vat_no',
+		'fieldtype': 'Data',
+		'label': 'Our Vat No.',
+		'oldfieldname': 'vat_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cst_no',
+		'fieldtype': 'Data',
+		'label': 'Our Cst No.',
+		'oldfieldname': 'cst_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tin_cst_no',
+		'fieldtype': 'Data',
+		'label': 'Buyers Tin/Cst No.',
+		'oldfieldname': 'tin_cst_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Track this Delivery Note against any Project',
+		'doctype': 'DocField',
+		'fieldname': 'project_name',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Project Name',
+		'oldfieldname': 'project_name',
+		'oldfieldtype': 'Link',
+		'options': 'Project',
+		'permlevel': 0,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Required only for sample item.',
+		'doctype': 'DocField',
+		'fieldname': 'to_warehouse',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'To Warehouse',
+		'no_copy': 1,
+		'oldfieldname': 'to_warehouse',
+		'oldfieldtype': 'Link',
+		'options': 'Warehouse',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'billing_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Billing Status',
+		'no_copy': 1,
+		'options': '\nNot Billed\nPartly Billed\nFully Billed',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'payment_as_po',
+		'fieldtype': 'Data',
+		'label': 'Payment as per PO',
+		'oldfieldname': 'payment_as_po',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'installation_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Installation Status',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'letter_head',
+		'fieldtype': 'Select',
+		'label': 'Letter Head',
+		'oldfieldname': 'letter_head',
+		'oldfieldtype': 'Link',
+		'options': 'link:Letter Head',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'source',
+		'fieldtype': 'Select',
+		'label': 'Source',
+		'oldfieldname': 'source',
+		'oldfieldtype': 'Select',
+		'options': "\nExisting Customer\nReference\nAdvertisement\nCold Calling\nExhibition\nSupplier Reference\nMass Mailing\nCustomer's Vendor\nCampaign",
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'person_responsible',
+		'fieldtype': 'Link',
+		'label': 'Person responsible for collection',
+		'oldfieldname': 'person_responsible',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivered_to',
+		'fieldtype': 'Select',
+		'label': 'Delivered To',
+		'oldfieldname': 'delivered_to',
+		'oldfieldtype': 'Select',
+		'options': '\nCustomer Address\nBranch Office',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': "eval:doc.source == 'Campaign'",
+		'doctype': 'DocField',
+		'fieldname': 'campaign',
+		'fieldtype': 'Link',
+		'label': 'Campaign',
+		'oldfieldname': 'campaign',
+		'oldfieldtype': 'Link',
+		'options': 'Campaign',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'select_print_heading',
+		'fieldtype': 'Link',
+		'label': 'Select Print Heading',
+		'no_copy': 1,
+		'oldfieldname': 'select_print_heading',
+		'oldfieldtype': 'Link',
+		'options': 'Print Heading',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'actual_no_of_days',
+		'fieldtype': 'Int',
+		'label': 'Actual No of Days',
+		'oldfieldname': 'actual_no_of_days',
+		'oldfieldtype': 'Int',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'print_without_amount',
+		'fieldtype': 'Check',
+		'label': 'Print Without Amount',
+		'oldfieldname': 'print_without_amount',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'instructions',
+		'fieldtype': 'Text',
+		'label': 'Instructions',
+		'oldfieldname': 'instructions',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'excise_page',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Excise Page Number',
+		'oldfieldname': 'excise_page',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'internal_note',
+		'fieldtype': 'Small Text',
+		'label': 'Internal Note',
+		'no_copy': 0,
+		'oldfieldname': 'internal_note',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'default': 'Please do not hesitate to contact us for any clarification.\n\nThanking you,\nFor Trimos Metrology (I) Pvt. Ltd.\n\n\n\n(Authorised Signatory)',
+		'doctype': 'DocField',
+		'fieldname': 'concluding_note',
+		'fieldtype': 'Small Text',
+		'label': 'Concluding Note',
+		'oldfieldname': 'concluding_note',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Sales Team',
+		'oldfieldtype': 'Section Break',
+		'options': 'Sales Team',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sales_partner',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Sales Partner',
+		'no_copy': 0,
+		'oldfieldname': 'sales_partner',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Partner',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client',
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'commission_rate',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'Commission Rate (%)',
+		'no_copy': 0,
+		'oldfieldname': 'commission_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'total_commission',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'Total Commission',
+		'no_copy': 0,
+		'oldfieldname': 'total_commission',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'print_hide': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'sales_team',
+		'fieldtype': 'Table',
+		'label': 'Sales Team1',
+		'oldfieldname': 'sales_team',
+		'oldfieldtype': 'Table',
+		'options': 'Sales Team',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'hidden': 1,
+		'label': 'Supplier Details',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supplier',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Supplier',
+		'oldfieldname': 'supplier',
+		'oldfieldtype': 'Link',
+		'options': 'Supplier',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supplier_address',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'Supplier Address',
+		'oldfieldname': 'supplier_address',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 0,
+		'doctype': 'DocField',
+		'fieldname': 'purchase_receipt_no',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Purchase Receipt No',
+		'no_copy': 1,
+		'oldfieldname': 'purchase_receipt_no',
+		'oldfieldtype': 'Link',
+		'options': 'Purchase Receipt',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'purchase_order_no',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Purchase Order',
+		'no_copy': 1,
+		'oldfieldname': 'purchase_order_no',
+		'oldfieldtype': 'Link',
+		'options': 'Purchase Order',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'hidden': 1,
+		'label': 'Packing List',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'packing_details',
+		'fieldtype': 'Table',
+		'hidden': 1,
+		'label': 'Packing Details',
+		'oldfieldname': 'packing_details',
+		'oldfieldtype': 'Table',
+		'options': 'Delivery Note Packing Detail',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'file_list',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'File List',
+		'oldfieldname': 'file_list',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'hidden': 1,
+		'label': 'Repair Delivery Note',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - HO'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM - Back Office'
+	},
+
+	# DocPerm
+	{
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Accountant',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Accountant'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'Administrator',
+		'submit': 0,
+		'write': 0
+	}
+]

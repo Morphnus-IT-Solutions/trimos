@@ -1,0 +1,246 @@
+# DocType, Customer Info
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 18:42:21',
+		'docstatus': 0,
+		'modified': '2011-08-14 18:42:21',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Customer Info',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Customer Info
+	{
+		'doctype': 'DocType',
+		'name': 'Customer Info'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_name',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Name',
+		'oldfieldname': 'info_name',
+		'oldfieldtype': 'Data',
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_name',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Name',
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'type',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Type',
+		'options': '\nCustomer\nCompetitor\nVendor',
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'type',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Type',
+		'oldfieldname': 'type',
+		'oldfieldtype': 'Select',
+		'options': '\nCustomer\nCompetitor\nVendor',
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_address',
+		'fieldtype': 'Small Text',
+		'idx': 3,
+		'label': 'Address',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_address',
+		'fieldtype': 'Small Text',
+		'idx': 3,
+		'label': 'Address',
+		'oldfieldname': 'info_address',
+		'oldfieldtype': 'Small Text',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_city',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'City',
+		'oldfieldname': 'info_city',
+		'oldfieldtype': 'Data',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_city',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'City',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_state',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'label': 'State',
+		'oldfieldname': 'info_state',
+		'oldfieldtype': 'Link',
+		'options': 'State',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'info_state',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'label': 'State',
+		'options': 'State',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Data',
+		'idx': 6,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Data',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Data',
+		'idx': 6,
+		'label': 'Contact Person',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'idx': 7,
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'idx': 7,
+		'label': 'Department',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'idx': 8,
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'idx': 8,
+		'label': 'Designation',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'label': 'Contact no',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Data',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'label': 'Contact No',
+		'width': '100px'
+	}
+]

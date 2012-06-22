@@ -1,0 +1,78 @@
+# DocType, Budget Distribution Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:08:54',
+		'docstatus': 0,
+		'modified': '2010-09-20 14:06:57',
+		'modified_by': 'umair@iwebnotes.com',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'BDD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 6
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Budget Distribution Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Budget Distribution Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Budget Distribution Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'month',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Month',
+		'oldfieldname': 'month',
+		'oldfieldtype': 'Data',
+		'permlevel': 2,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'percentage_allocation',
+		'fieldtype': 'Currency',
+		'idx': 2,
+		'label': 'Percentage Allocation',
+		'oldfieldname': 'percentage_allocation',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'aggregate_percentage',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Aggregate Percentage',
+		'oldfieldname': 'aggregate_percentage',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2
+	}
+]

@@ -1,0 +1,122 @@
+# DocType, Rename Tool
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:21:20',
+		'docstatus': 0,
+		'modified': '2012-06-01 11:55:42',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1337581071',
+		'allow_email': 1,
+		'allow_print': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'hide_heading': 0,
+		'hide_toolbar': 0,
+		'issingle': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 12
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Rename Tool',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Rename Tool',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'write': 1
+	},
+
+	# DocType, Rename Tool
+	{
+		'doctype': 'DocType',
+		'name': 'Rename Tool'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'select_doctype',
+		'fieldtype': 'Select',
+		'label': 'Select DocType',
+		'options': '\nAccount\nBrand\nPrice List\nCompany\nCustomer\nCustomer Name\nContact\nCustomer Group\nEmployee\nItem\nItem Group\nItem Type\nSerial No\nSupplier\nTerritory\nWarehouse\nZone'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'document_to_rename',
+		'fieldtype': 'Link',
+		'label': 'Document to rename'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'new_name',
+		'fieldtype': 'Data',
+		'label': 'New Name'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Rename',
+		'options': 'rename'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'System Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'Administrator'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'CRM User - HO'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'role': 'CRM User - Regional'
+	}
+]

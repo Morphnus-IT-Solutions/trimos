@@ -1,0 +1,262 @@
+# DocType, Contact Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 13:45:05',
+		'docstatus': 0,
+		'modified': '2011-08-14 13:45:05',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'CD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'show_in_menu': 0,
+		'version': 5
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Contact Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Contact Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Contact Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'idx': 2,
+		'label': 'Contact No',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'idx': 2,
+		'label': 'Contact No',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Data',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'idx': 3,
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'idx': 3,
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_owner',
+		'fieldtype': 'Link',
+		'idx': 4,
+		'label': 'Contact Owner',
+		'oldfieldname': 'contact_owner',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'idx': 5,
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Small Text',
+		'idx': 5,
+		'label': 'Email Id',
+		'oldfieldname': 'email_id',
+		'oldfieldtype': 'Small Text'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Small Text',
+		'idx': 6,
+		'label': 'Email Id',
+		'oldfieldname': 'email_id',
+		'oldfieldtype': 'Small Text',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'landline_no',
+		'fieldtype': 'Data',
+		'idx': 7,
+		'label': 'Landline No.',
+		'oldfieldname': 'landline_no',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fax',
+		'fieldtype': 'Data',
+		'idx': 8,
+		'label': 'Fax',
+		'oldfieldname': 'fax',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'plant',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'label': 'Plant / Location / Division',
+		'oldfieldname': 'plant',
+		'oldfieldtype': 'Data',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'location',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 10,
+		'label': 'Location',
+		'oldfieldname': 'location',
+		'oldfieldtype': 'Data',
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'division',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 11,
+		'label': 'Division',
+		'oldfieldname': 'division',
+		'oldfieldtype': 'Data',
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_territory',
+		'fieldtype': 'Select',
+		'idx': 12,
+		'label': 'Territory',
+		'oldfieldname': 'contact_territory',
+		'oldfieldtype': 'Select',
+		'options': 'link:Territory',
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'idx': 13,
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text',
+		'reqd': 0
+	}
+]

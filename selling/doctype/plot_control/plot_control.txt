@@ -1,0 +1,30 @@
+# DocType, Plot Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:31',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:31',
+		'modified_by': 'Administrator',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 215
+	},
+
+	# DocType, Plot Control
+	{
+		'doctype': 'DocType',
+		'name': 'Plot Control'
+	}
+]

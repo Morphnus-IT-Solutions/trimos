@@ -1,0 +1,129 @@
+# DocType, Ledger Balance Export
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-05-24 14:41:08',
+		'docstatus': 0,
+		'modified': '2011-05-24 15:22:43',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1306229235',
+		'allow_copy': 1,
+		'allow_email': 1,
+		'allow_print': 1,
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Other',
+		'hide_heading': 0,
+		'issingle': 1,
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 9
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Ledger Balance Export',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Ledger Balance Export',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'write': 1
+	},
+
+	# DocType, Ledger Balance Export
+	{
+		'doctype': 'DocType',
+		'name': 'Ledger Balance Export'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'role': 'Accounts Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'role': 'Accounts User'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 1,
+		'label': 'Select Date Range'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'from_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'From Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'to_date',
+		'fieldtype': 'Date',
+		'idx': 3,
+		'label': 'To Date',
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 4,
+		'label': 'Select ledgers'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'ledger_details',
+		'fieldtype': 'Table',
+		'idx': 5,
+		'label': 'Ledger Details',
+		'options': 'Ledger Detail'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 6,
+		'label': 'Export Report',
+		'trigger': 'Client'
+	}
+]

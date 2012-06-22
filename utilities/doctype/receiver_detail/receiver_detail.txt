@@ -1,0 +1,102 @@
+# DocType, Receiver Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 13:51:57',
+		'docstatus': 0,
+		'modified': '2011-08-14 13:51:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Data',
+		'name': '__common__',
+		'oldfieldtype': 'Data',
+		'parent': 'Receiver Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Receiver Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Receiver Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'idx': 1,
+		'label': 'Customer Name',
+		'oldfieldname': 'customer_name'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'idx': 1,
+		'label': 'Customer Name',
+		'oldfieldname': 'customer_name'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'receiver_name',
+		'idx': 2,
+		'label': 'Receiver Name',
+		'oldfieldname': 'receiver_name',
+		'width': '350px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'receiver_name',
+		'idx': 2,
+		'label': 'Receiver Name',
+		'oldfieldname': 'receiver_name',
+		'width': '350px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mobile_no',
+		'idx': 3,
+		'label': 'Mobile No',
+		'oldfieldname': 'mobile_no',
+		'reqd': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mobile_no',
+		'idx': 3,
+		'label': 'Mobile No',
+		'oldfieldname': 'mobile_no',
+		'reqd': 1,
+		'width': '200px'
+	}
+]

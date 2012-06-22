@@ -1,0 +1,170 @@
+# Module Def, Projects
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-08 13:18:57',
+		'docstatus': 0,
+		'modified': '2011-08-20 01:56:27',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Projects',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def Item
+	{
+		'doctype': 'Module Def Item',
+		'name': '__common__',
+		'parent': 'Projects',
+		'parentfield': 'items',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'No',
+		'doctype': u'Module Def',
+		'is_hidden': 'No',
+		'module_desc': 'Manage your projects',
+		'module_label': 'Projects',
+		'module_name': 'Projects',
+		'module_seq': 5,
+		'name': '__common__'
+	},
+
+	# Module Def, Projects
+	{
+		'doctype': u'Module Def',
+		'name': 'Projects'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Gantt Chart',
+		'doc_name': 'Projects',
+		'doc_type': 'Pages',
+		'doctype': 'Module Def Item',
+		'idx': 1
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Project',
+		'doc_name': 'Project',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'idx': 2
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Timesheet',
+		'doc_name': 'Timesheet',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'idx': 3
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Ticket',
+		'doc_name': 'Ticket',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'idx': 4
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Timesheet Detail',
+		'doc_name': 'Timesheet Detail',
+		'doc_type': 'Forms',
+		'doctype': 'Module Def Item',
+		'idx': 5
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Projectwise Sales Orders',
+		'doc_name': 'Sales Order',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 6
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Projectwise Sales Details',
+		'doc_name': 'Sales Order',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 7
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Projectwise Purchase Details',
+		'doc_name': 'Purchase Order',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 8
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Dispatch Report',
+		'doc_name': 'Delivery Note Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 9
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Timesheet Report',
+		'doc_name': 'Timesheet Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 10
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Projectwise Pending Qty and Costs',
+		'doc_name': 'Sales Order Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 11
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Projectwise Delivered Qty and Costs',
+		'doc_name': 'Delivery Note Detail',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item',
+		'idx': 12
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'idx': 1,
+		'role': 'Projects User'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'idx': 2,
+		'role': 'System Manager'
+	}
+]

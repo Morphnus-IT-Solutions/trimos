@@ -1,0 +1,122 @@
+# DocType, Period
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:29',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:29',
+		'modified_by': 'Administrator',
+		'owner': 'nabin@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'field:period_name',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_create': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 5
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Period',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Period',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'System Manager',
+		'write': 0
+	},
+
+	# DocType, Period
+	{
+		'doctype': 'DocType',
+		'name': 'Period'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'period_name',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Period Name',
+		'oldfieldname': 'period_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'start_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Start Date',
+		'oldfieldname': 'start_date',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'end_date',
+		'fieldtype': 'Date',
+		'idx': 3,
+		'label': 'End Date',
+		'oldfieldname': 'end_date',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'period_type',
+		'fieldtype': 'Data',
+		'idx': 4,
+		'label': 'Period Type',
+		'oldfieldname': 'period_type',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Data',
+		'idx': 5,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2
+	}
+]

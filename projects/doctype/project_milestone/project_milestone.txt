@@ -1,0 +1,75 @@
+# DocType, Project Milestone
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:44',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:44',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Projects',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Project Milestone',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Project Milestone
+	{
+		'doctype': 'DocType',
+		'name': 'Project Milestone'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'milestone_date',
+		'fieldtype': 'Date',
+		'idx': 1,
+		'label': 'Milestone Date',
+		'oldfieldname': 'milestone_date',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'milestone',
+		'fieldtype': 'Text',
+		'idx': 2,
+		'label': 'Milestone',
+		'oldfieldname': 'milestone',
+		'oldfieldtype': 'Text',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'idx': 3,
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': 'Pending\nCompleted'
+	}
+]

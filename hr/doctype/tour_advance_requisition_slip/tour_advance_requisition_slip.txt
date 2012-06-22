@@ -1,0 +1,650 @@
+# DocType, Tour Advance Requisition Slip
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-27 13:00:34',
+		'docstatus': 0,
+		'modified': '2012-04-25 11:42:52',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1329072472',
+		'client_script': "cur_frm.cscript.employee_name = function(doc, cdt, cdn) {\n  if(doc.employee_name){\n    get_server_fields('get_employee_details','','',doc, cdt, cdn, 1);\n  }\n}\n\ncur_frm.cscript.refresh = function(doc, cdt, cdn){\n\n  if(!doc.__islocal) unhide_field('Send for Approval');\n  else hide_field('Send for Approval');\n  \n  if(inList(user_roles, 'Accounts Team')  && !doc.__islocal) {\n    set_field_permlevel('allowed_amount',0);\n    unhide_field(['Send Feedback']);\n  }\n  else {\n    set_field_permlevel('allowed_amount',1);\n    hide_field(['Send Feedback']);\n  }\n}\n\ncur_frm.cscript.fare = function(doc){\n  cur_frm.cscript.calc_total(doc);\n}\n\ncur_frm.cscript.hotel_expense = function(doc){\n  cur_frm.cscript.calc_total(doc);\n}\n\ncur_frm.cscript.food_expense = function(doc){\n  cur_frm.cscript.calc_total(doc);\n}\n\ncur_frm.cscript.conveyance = function(doc){\n  cur_frm.cscript.calc_total(doc);\n}\n\ncur_frm.cscript.miscellaneous = function(doc){\n  cur_frm.cscript.calc_total(doc);\n}\n\ncur_frm.cscript.calc_total = function(doc){\n  doc.total = flt(doc.fare) + flt(doc.hotel_expense) + flt(doc.food_expense) + flt(doc.conveyance) + flt(doc.miscellaneous)\n  refresh_field('total');\n}\n\ncur_frm.cscript.total = function(doc){\n  if(doc.allowed_amount){\n    doc.disallowed_amount = flt(doc.total) - flt(doc.allowed_amount);\n    refresh_field('disallowed_amount');\n  }  \n}\n\ncur_frm.cscript.allowed_amount = function(doc){\n  if(doc.total){\n    doc.disallowed_amount = flt(doc.total) - flt(doc.allowed_amount);\n    refresh_field('disallowed_amount');\n  }\n}",
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'HR',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'status,employee_name,territory,date_of_departure,date_of_arrival',
+		'section_style': 'Tray',
+		'server_code': 'class DocType:\n  def __init__(self, doc, doclist=[]):\n    self.doc = doc\n    self.doclist = doclist\n\n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.naming_series+\'/.####\')\n\n  def get_employee_details(self):\n    det = sql("select department, designation, territory from `tabSales Person` where name = %s",self.doc.employee_name,as_dict = 1)\n    ret = {\n      \'department\'  :  det and det[0][\'department\'] or \'\',\n      \'designation\' :  det and det[0][\'designation\'] or \'\',\n      \'territory\' :  det and det[0][\'territory\'] or \'\'\n    }\n    return str(ret)\n\n  def send_for_approval(self):\n    msg = \'\'\'\nApproval of Tour Advance Requisition Slip of\nEmployee: %s\n\'\'\' % (self.doc.employee_name)\n    get_obj(\'Sales Common\').send_for_approval(self.doc.territory,msg,\'Approval of Tour Advance Requisition Slip\',self.doc.doctype,self.doc.name)\n    \n\n  def send_feedback(self):\n    msg = \'\'\'\nYour Tour Advance Requisition Slip for\nEmployee: %s\nhas been %s\nby %s\n\'\'\' % (self.doc.employee_name, self.doc.status, self.doc.approved_by)\n    get_obj(\'Sales Common\').send_feedback(self.doc.employee_name,msg,\'Tour Advance Requisition Slip status\')\n  \n  def validate(self):\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Open\',self.doc.doctype,self.doc.name)\n  \n  def on_submit(self):\n    #check whether user has permission to submit the document\n    approved_by = cstr(get_obj(\'Manage Account\',with_children = 1).get_permissions(self.doc.doctype,self.doc.total,session[\'user\']))\n    set(self.doc,\'approved_by\',approved_by)\n    \n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Submitted\',self.doc.doctype,self.doc.name)\n    \n  def on_cancel(self):\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Cancelled\',self.doc.doctype,self.doc.name)\n    \n  def update_amount(self):\n    self.doc.save()',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 39
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Tour Advance Requisition Slip',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Tour Advance Requisition Slip',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Tour Advance Requisition Slip
+	{
+		'doctype': 'DocType',
+		'name': 'Tour Advance Requisition Slip'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Tour Advance',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Naming Series',
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\nTA/12/FEB\nTA/12/MAR\nTA/12/APR\nTA/12/MAY\nTA/12/JUN\nTA/12/JUL\nTA/12/AUG\nTA/12/SEP\nTA/12/OCT\nTA/12/NOV\nTA/12/DEC',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nSubmitted\nCancelled\nAmended\nClosed',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'employee_name',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Employee Name',
+		'oldfieldname': 'employee_name',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_of_departure',
+		'fieldtype': 'Date',
+		'label': 'Date Of Departure',
+		'oldfieldname': 'date_of_departure',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_of_arrival',
+		'fieldtype': 'Date',
+		'label': 'Date Of Arrival',
+		'oldfieldname': 'date_of_arrival',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'no_of_days',
+		'fieldtype': 'Data',
+		'label': 'Tour for no. of Days',
+		'oldfieldname': 'no_of_days',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Select',
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Select',
+		'options': 'link:Company',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person_to_accompany',
+		'fieldtype': 'Small Text',
+		'label': 'Details of Person Accompanying',
+		'oldfieldname': 'person_to_accompany',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_to_carry',
+		'fieldtype': 'Small Text',
+		'label': 'Details of Stock carried along',
+		'oldfieldname': 'stock_to_carry',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'local_transport',
+		'fieldtype': 'Data',
+		'label': 'Details of local transport to be hired',
+		'oldfieldname': 'local_transport',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'hidden': 1,
+		'label': 'Amendment Date',
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Amended From',
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tour_details',
+		'fieldtype': 'Table',
+		'label': 'Tour Details',
+		'oldfieldname': 'tour_details',
+		'oldfieldtype': 'Table',
+		'options': 'Tour Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Details',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Purpose Of Visit',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'purpose_of_visit',
+		'fieldtype': 'Table',
+		'label': 'Purpose of Visit',
+		'oldfieldname': 'purpose_of_visit',
+		'oldfieldtype': 'Table',
+		'options': 'Purpose Of Visit',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Expected Expenses',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fare',
+		'fieldtype': 'Currency',
+		'label': 'Fare',
+		'oldfieldname': 'fare',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'food_expense',
+		'fieldtype': 'Currency',
+		'label': 'Food Expense',
+		'oldfieldname': 'food_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'hotel_expense',
+		'fieldtype': 'Currency',
+		'label': 'Hotel Expense',
+		'oldfieldname': 'hotel_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'conveyance',
+		'fieldtype': 'Currency',
+		'label': 'Conveyance',
+		'oldfieldname': 'conveyance',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'miscellaneous',
+		'fieldtype': 'Currency',
+		'label': 'Miscellaneous',
+		'oldfieldname': 'miscellaneous',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'miscellaneous_details',
+		'fieldtype': 'Small Text',
+		'label': 'Miscellaneous Details',
+		'oldfieldname': 'miscellaneous_details',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'total',
+		'fieldtype': 'Currency',
+		'label': 'Total',
+		'oldfieldname': 'total',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'allowed_amount',
+		'fieldtype': 'Currency',
+		'label': 'Allowed Amount',
+		'oldfieldname': 'allowed_amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'disallowed_amount',
+		'fieldtype': 'Currency',
+		'label': 'Disallowed Amount',
+		'oldfieldname': 'disallowed_amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_advance_required',
+		'fieldtype': 'Date',
+		'label': 'Date Advance required',
+		'oldfieldname': 'date_advance_required',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approved_by',
+		'fieldtype': 'Data',
+		'label': 'Approved By',
+		'oldfieldname': 'approved_by',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approval_status',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'label': 'Approval Status',
+		'oldfieldname': 'approval_status',
+		'oldfieldtype': 'Select',
+		'options': 'Pending\nApproved\nRejected',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Send for Approval',
+		'oldfieldtype': 'Button',
+		'options': 'send_for_approval',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'hidden': 1,
+		'label': 'Send Feedback',
+		'oldfieldtype': 'Button',
+		'options': 'send_feedback',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Sales Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Accounts Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'territory',
+		'permlevel': 0,
+		'role': 'Accounts Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'Accounts Team',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 2,
+		'role': 'CRM Manager',
+		'write': 1
+	}
+]

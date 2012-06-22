@@ -1,0 +1,31 @@
+# Search Criteria, pending_expense_vouchers
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:54',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:54',
+		'modified_by': 'Administrator',
+		'owner': 'ashwini@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'Pending Expense Vouchers',
+		'doc_type': 'Expense Voucher',
+		'doctype': 'Search Criteria',
+		'filters': "{'Expense Voucher\x01Approval Status':'','Expense Voucher\x01Fiscal Year':''}",
+		'module': 'HR',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, pending_expense_vouchers
+	{
+		'doctype': 'Search Criteria',
+		'name': 'pending_expense_vouchers'
+	}
+]

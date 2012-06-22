@@ -1,0 +1,179 @@
+# DocType, Naming Series
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-04-02 09:25:41',
+		'docstatus': 0,
+		'modified': '2011-11-21 15:06:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1321770613',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'hide_heading': 1,
+		'hide_toolbar': 1,
+		'issingle': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'print_outline': 'No',
+		'read_only': 1,
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 61
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Naming Series',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Naming Series',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Naming Series
+	{
+		'doctype': 'DocType',
+		'name': 'Naming Series'
+	},
+
+	# DocField
+	{
+		'description': 'Set prefix for numbering series on your transactions',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Setup Series'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Head HTML'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'select_doc_for_series',
+		'fieldtype': 'Select',
+		'label': 'Select Transaction',
+		'options': 'DocType'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Help HTML',
+		'options': '<div style="padding: 8px; background-color: #FFD; margin: 8px 0px;">\nWrite the list of series options in the list below. Each on a new line<br>\nAllowed special characters are "/" and "-"<br>\nExamples:<br>\nINV-<br>\nINV-10-<br>\nINVK-<br>\n</div>'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'set_options',
+		'fieldtype': 'Text',
+		'label': 'Set Series'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Check this if you want to force the user to select a series before saving. There will be no default if you check this.',
+		'doctype': 'DocField',
+		'fieldname': 'user_must_always_select',
+		'fieldtype': 'Check',
+		'label': 'User must always select'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Update',
+		'options': 'update_series'
+	},
+
+	# DocField
+	{
+		'description': 'Set starting number for series of your transactions',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Update Series',
+		'options': 'remove_series'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'prefix',
+		'fieldtype': 'Data',
+		'label': 'Prefix'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'starts_from',
+		'fieldtype': 'Int',
+		'label': 'Starts From'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Update Series Start',
+		'options': 'update_series_start'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'System Manager'
+	}
+]

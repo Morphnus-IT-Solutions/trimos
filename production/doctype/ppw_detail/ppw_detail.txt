@@ -1,0 +1,52 @@
+# DocType, PPW Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:35',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:35',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'PPWD/.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 1
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warehouse',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'label': 'Warehouse',
+		'name': '__common__',
+		'oldfieldname': 'warehouse',
+		'oldfieldtype': 'Link',
+		'options': 'Warehouse',
+		'parent': 'PPW Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, PPW Detail
+	{
+		'doctype': 'DocType',
+		'name': 'PPW Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField'
+	}
+]

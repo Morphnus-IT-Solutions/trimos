@@ -1,0 +1,669 @@
+# DocType, Installation Report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-25 12:05:49',
+		'docstatus': 0,
+		'modified': '2012-03-05 12:07:18',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Installation Report',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1327666826',
+		'autoname': 'IRT/.#####',
+		'client_script': 'cur_frm.fields_dict[\'delivery_note_no\'].get_query = function(doc, cdt, cdn) {\n  if(doc.customer_name){\n    return \'SELECT DISTINCT `tabDelivery Note`.name,`tabDelivery Note`.customer_name FROM `tabDelivery Note` WHERE `tabDelivery Note`.docstatus = 1 AND `tabDelivery Note`.status != "Closed" AND `tabDelivery Note`.customer_name = "\'+doc.customer_name+\'" AND `tabDelivery Note`.`name` LIKE "%s" ORDER BY `tabDelivery Note`.`name` LIMIT 50\'\n  }\n  else{\n    return \'SELECT DISTINCT `tabDelivery Note`.name,`tabDelivery Note`.customer_name FROM `tabDelivery Note` WHERE `tabDelivery Note`.docstatus = 1 AND `tabDelivery Note`.status != "Closed" AND `tabDelivery Note`.`name` LIKE "%s" ORDER BY `tabDelivery Note`.`name` LIMIT 50\'\n  }\n}\n\ncur_frm.cscript.service_person_name = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  get_server_fields(\'get_service_person_details\',d.service_person_name,\'service_team\',doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.delivery_note_no = function(doc, cdt, cdn) {\n  get_server_fields(\'get_delivery_details\',\'\',\'\', doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.customer_name = function(doc, cdt, cdn) {\n  get_server_fields(\'get_customer_details\',\'\',\'\', doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.contact_person = function(doc, cdt, cdn) {\n  get_server_fields(\'get_contact_details\',\'\',\'\', doc, cdt, cdn, 1);\n}\n\ncur_frm.cscript.serial_no = function(doc, cdt, cdn) {\n  get_server_fields(\'get_brand_orc\',\'\',\'\',doc, cdt, cdn, 1);\n}\n\ncur_frm.fields_dict[\'contact_person\'].get_query = function(doc, cdt, cdn) {\n  return \'SELECT `tabContact`.contact_name FROM `tabContact` WHERE `tabContact`.is_customer = 1 AND `tabContact`.customer_name = "\'+ doc.customer_name+\'" AND `tabContact`.contact_name LIKE "%s" ORDER BY `tabContact`.name ASC LIMIT 50\';\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 0,
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'customer,serial_no,territory,service_book_no,report_no,transaction_date',
+		'section_style': 'Tray',
+		'server_code': 'class DocType:\n  def __init__(self, doc, doclist=[]):\n    self.doc = doc\n    self.doclist = doclist\n\n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.naming_series+\'/.###\')\n  \n  def get_contact_details(self):\n    return cstr(get_obj(\'Sales Common\').get_contact_details(self))\n\n  def get_customer_details(self):\n    det = sql("select address, territory from tabCustomer where name = %s",self.doc.customer_name,as_dict = 1)\n    ret = {\n      \'address\'    :    det and det[0][\'address\'] or \'\',\n      \'territory\'    :    det and det[0][\'territory\'] or \'\',\n    }\n    return str(ret)\n\n  def get_brand_orc(self):\n    bo = sql("select brand, product_code,software_version, item_code,warranty_expiry_date from `tabSerial No` where name = \'%s\'" %(self.doc.serial_no)) \n    brand = bo and bo[0][0] or \'\'\n    orc = bo and bo[0][1] or \'\'\n    sv = bo and bo[0][2] or \'\'\n    cc = bo and bo[0][3] or \'\'\n    we = bo and bo[0][4] or \'\'\n    ret = {\n      \'brand\' : brand,\n      \'other_reference_code\' : orc,\n      \'version\':sv,\n      \'catalogue_code\':cc,\n      \'warranty_expiry_date\':we\n      }\n    return cstr(ret)\n    \n  def get_delivery_details(self):\n    details = sql("select installation_date, customer_name, delivery_address, territory, contact_person, contact_no from `tabDelivery Note` where name = %s",(self.doc.delivery_note_no),as_dict = 1)\n    msgprint(details)\n    ret = {\n      \'scheduled_date\'      :    details and details[0][\'installation_date\'].strftime(\'%Y-%m-%d\') or \'\',\n      \'customer_name\'       :    details and details[0][\'customer_name\'] or \'\',\n      \'address\'             :    details and details[0][\'delivery_address\'] or \'\',\n      \'territory\'           :    details and details[0][\'territory\'] or \'\',\n      \'contact_person\'      :    details and details[0][\'contact_person\'] or \'\',\n      \'contact_no\'          :    details and details[0][\'contact_no\'] or \'\'\n    }\n    return str(ret)\n    \n  \n  def get_service_person_details(self,name):\n    det = sql("select mobile_no, designation, department, territory from `tabSales Person` where name = %s",(name),as_dict = 1)\n    ret = {\n      \'contact_no\'    :    det and det[0][\'mobile_no\'] or \'\',\n      \'designation\'   :    det and det[0][\'designation\'] or \'\',\n      \'department\'    :    det and det[0][\'department\'] or \'\',\n      \'territory\'     :    det and det[0][\'territory\'] or \'\'\n    }\n    return str(ret)    \n\n  def check_serial_no(self): # this checks whether the serial no belongs to that particular delivery note or not\n    # consider the worst scenario where there is delivery note of 2 + 1 items having serial no (6666666,7777777) and (5555555)\n    serial_nos = sql("select DISTINCT t2.serial_no from `tabDelivery Note` t1, `tabDelivery Note Detail` t2 where t2.parent = %s",(self.doc.delivery_note_no))\n    # serial_nos = ((\'6666666,7777777\',), (\'5555555\',))\n    flag = 0\n    for serial in serial_nos:  # serial[0] = 6666666,7777777\n      serial_no = cstr(serial[0]).split(\',\')  # serial_no = [\'6666666\', \'7777777\']\n      for s in serial_no:    # s = 6666666\n        if cstr(s) == cstr(self.doc.serial_no) and flag == 0: # if the serial_no in document exists in delivery note mentioned it will set flag = 1 \n          flag = 1\n        elif not flag == 1:\n          flag = 0\n    if flag == 0:\n      msgprint("Delivery Note \'%s\' does not contain Serial No : \'%s\'" %(self.doc.delivery_note_no,self.doc.serial_no))\n      raise Exception\n    else:  # check whether installation report is already made for this particular serial no or not\n      check_serial = sql("select name from `tabInstallation Report` where serial_no = %s and docstatus = 1",(self.doc.serial_no))\n      if check_serial and check_serial[0][0]:\n        msgprint("You have already made Installation Report : %s for Serial No: %s" %(check_serial,self.doc.serial_no))\n        raise Exception\n    \n  def check_prev_docstatus(self):\n    if self.doc.delivery_note_no:\n      closed_dn = sql("select name from `tabDelivery Note` where docstatus = 1 and status = \'Closed\' and name = \'%s\'" % self.doc.delivery_note_no)\n      if closed_dn:\n        msgprint("Delivery Note : "+cstr(closed_dn[0][0])+" is already closed")\n        raise Exception , "Validation Error."\n        \n  def validate(self):\n    # there should be atleast name of one person in installation team details table\n    if not getlist(self.doclist,\'service_team\'):\n      msgprint("Please enter name of atleast one person installing \'%s\'"%(self.doc.serial_no))\n      raise Exception\n    get_obj("Sales Common").check_active_customer(self.doc.customer_name)\n    get_obj("Sales Common").check_active_contact(self.doc.customer_name, self.doc.contact_person)\n      \n  def on_submit(self):\n    self.check_prev_docstatus()\n    self.check_serial_no() # this checks whether the serial no belongs to that particular delivery note or not and whether installation report is made for that serial no or not  \n    \n    # update serial no status\n    sql("update `tabSerial No` set status = \'Installed\', installation_report_id = %s, installation_date = %s where name = %s",(self.doc.name,self.doc.transaction_date,self.doc.serial_no))\n    \n  def on_cancel(self):\n    # update serial no status\n    sql("update `tabSerial No` set status = \'Delivered\', installation_report_id = \'\', installation_date = \'\' where name = %s",(self.doc.serial_no))',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 66
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Installation Report Format',
+		'name': '__common__',
+		'parent': 'Installation Report',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Installation Report',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Installation Report
+	{
+		'doctype': 'DocType',
+		'name': 'Installation Report'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Installation Report',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Naming Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\nIRT/12/JAN\nIRT/12/FEB\nIRT/12/MAR\nIRT/12/APR\nIRT/12/MAY\nIRT/12/JUN\nIRT/12/JUL\nIRT/12/AUG\nIRT/12/SEP\nIRT/12/OCT\nIRT/12/NOV\nIRT/12/DEC',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'transaction_date',
+		'fieldtype': 'Date',
+		'label': 'Installation Date',
+		'oldfieldname': 'transaction_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'installation_time',
+		'fieldtype': 'Time',
+		'label': 'Installation Time',
+		'oldfieldname': 'installation_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_book_no',
+		'fieldtype': 'Data',
+		'label': 'Service Book No',
+		'oldfieldname': 'service_book_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'report_no',
+		'fieldtype': 'Data',
+		'label': 'Report No',
+		'oldfieldname': 'report_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'delivery_note_no',
+		'fieldtype': 'Link',
+		'label': 'Delivery Note No.',
+		'oldfieldname': 'delivery_note_no',
+		'oldfieldtype': 'Link',
+		'options': 'Delivery Note',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'scheduled_date',
+		'fieldtype': 'Date',
+		'label': 'Scheduled Date',
+		'oldfieldname': 'scheduled_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_name',
+		'fieldtype': 'Link',
+		'label': 'Customer Name',
+		'oldfieldname': 'customer_name',
+		'oldfieldtype': 'Link',
+		'permlevel': 1,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer_address',
+		'fieldtype': 'Link',
+		'label': 'Address',
+		'options': 'Address',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address',
+		'fieldtype': 'Small Text',
+		'label': 'Installed At',
+		'oldfieldname': 'address',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'contact_person',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Contact Person',
+		'oldfieldname': 'contact_person',
+		'oldfieldtype': 'Link',
+		'options': 'Contact',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_name',
+		'fieldtype': 'Data',
+		'label': 'Contact Name',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'department',
+		'fieldtype': 'Data',
+		'label': 'Department',
+		'oldfieldname': 'department',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'designation',
+		'fieldtype': 'Data',
+		'label': 'Designation',
+		'oldfieldname': 'designation',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'contact_no',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Contact No.',
+		'oldfieldname': 'contact_no',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'engineer_name',
+		'fieldtype': 'Link',
+		'label': 'Engineer Name',
+		'oldfieldname': 'engineer_name',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'serial_no',
+		'fieldtype': 'Link',
+		'label': 'Serial No',
+		'oldfieldname': 'serial_no',
+		'oldfieldtype': 'Link',
+		'options': 'Serial No',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'catalogue_code',
+		'fieldtype': 'Link',
+		'label': 'Catalogue Code',
+		'oldfieldname': 'catalogue_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'other_reference_code',
+		'fieldtype': 'Data',
+		'label': 'Order Reference Code',
+		'oldfieldname': 'other_reference_code',
+		'oldfieldtype': 'Read Only',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'warranty_expiry_date',
+		'fieldtype': 'Date',
+		'label': 'Warranty Expiry Date',
+		'oldfieldname': 'warranty_expiry_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'version',
+		'fieldtype': 'Data',
+		'label': 'S/W Version',
+		'oldfieldname': 'version',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'training_done',
+		'fieldtype': 'Select',
+		'label': 'Training Done',
+		'oldfieldname': 'training_done',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amended_from',
+		'fieldtype': 'Data',
+		'label': 'Amended From',
+		'oldfieldname': 'amended_from',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amendment_date',
+		'fieldtype': 'Date',
+		'label': 'Amendment Date',
+		'oldfieldname': 'amendment_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Installation Team',
+		'oldfieldtype': 'Section Break',
+		'options': 'Service Team',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_team',
+		'fieldtype': 'Table',
+		'label': 'Installation Team',
+		'oldfieldname': 'service_team',
+		'oldfieldtype': 'Table',
+		'options': 'Service Team',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'FeedBack',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'nature_of_work_done',
+		'fieldtype': 'Text',
+		'label': 'Nature of Work Done',
+		'oldfieldname': 'nature_of_work_done',
+		'oldfieldtype': 'Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remark_by_service_person',
+		'fieldtype': 'Small Text',
+		'label': 'Remark by Service Person',
+		'oldfieldname': 'remark_by_service_person',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remark_by_customer',
+		'fieldtype': 'Small Text',
+		'label': 'Remark by Customer',
+		'oldfieldname': 'remark_by_customer',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'furthur_action_to_be_taken',
+		'fieldtype': 'Small Text',
+		'label': 'Furthur Action to be taken',
+		'oldfieldname': 'furthur_action_to_be_taken',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'target_date',
+		'fieldtype': 'Date',
+		'label': 'Target Date',
+		'oldfieldname': 'target_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'by_whom',
+		'fieldtype': 'Data',
+		'label': 'By Whom',
+		'oldfieldname': 'by_whom',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'Service Team',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 1,
+		'role': 'Service Team'
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'Administrator',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'execute': 0,
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - HO'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - HO'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 0,
+		'role': 'CRM User - Regional'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'match': 'owner',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Viewer'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Viewer'
+	}
+]

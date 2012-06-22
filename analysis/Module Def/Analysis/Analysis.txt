@@ -1,0 +1,139 @@
+# Module Def, Analysis
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:59:13',
+		'docstatus': 0,
+		'modified': '2012-01-21 15:41:25',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Analysis',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def Item
+	{
+		'doctype': 'Module Def Item',
+		'name': '__common__',
+		'parent': 'Analysis',
+		'parentfield': 'items',
+		'parenttype': 'Module Def'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'No',
+		'doctype': u'Module Def',
+		'is_hidden': 'No',
+		'module_label': 'Analysis',
+		'module_name': 'Analysis',
+		'module_seq': 11,
+		'name': '__common__'
+	},
+
+	# Module Def, Analysis
+	{
+		'doctype': u'Module Def',
+		'name': 'Analysis'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Delete Record',
+		'doc_name': 'Delete Record',
+		'doc_type': 'Single DocType',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'description': 'A quick glance at your work in progress and pipeline',
+		'display_name': 'Work in Progress Monitor',
+		'doc_name': 'WIP Monitor',
+		'doc_type': 'Pages',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'MIS',
+		'doc_name': 'MIS',
+		'doc_type': 'Pages',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Monthly Transaction Summary',
+		'doc_name': 'Profile',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'display_name': 'Yearly Transaction Summary',
+		'doc_name': 'Profile',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Item
+	{
+		'description': 'Analyze trend of sales, purchase and stock over any period',
+		'display_name': 'Trend Analyzer',
+		'doc_name': 'Profile',
+		'doc_type': 'Reports',
+		'doctype': 'Module Def Item'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Sales Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM - Back Office'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Purchase Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Material Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'Accounts Manager'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'role': 'CRM Viewer'
+	}
+]

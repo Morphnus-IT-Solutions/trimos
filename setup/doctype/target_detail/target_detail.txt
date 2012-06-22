@@ -1,0 +1,96 @@
+# DocType, Target Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:09:26',
+		'docstatus': 0,
+		'modified': '2010-09-20 14:06:57',
+		'modified_by': 'abhishek@webnotestech.com',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 15
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Target Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Target Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Target Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_group',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'in_filter': 1,
+		'label': 'Item Group',
+		'oldfieldname': 'item_group',
+		'oldfieldtype': 'Link',
+		'options': 'Item Group',
+		'reqd': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'target_qty',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Target Qty',
+		'oldfieldname': 'target_qty',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'target_amount',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'in_filter': 1,
+		'label': 'Target  Amount',
+		'oldfieldname': 'target_amount',
+		'oldfieldtype': 'Currency',
+		'reqd': 0,
+		'search_index': 1
+	}
+]

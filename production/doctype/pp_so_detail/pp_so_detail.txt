@@ -1,0 +1,131 @@
+# DocType, PP SO Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:35',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:35',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'PP/.SO/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'PP SO Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'PP SO Detail',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1,
+		'role': 'System Manager'
+	},
+
+	# DocType, PP SO Detail
+	{
+		'doctype': 'DocType',
+		'name': 'PP SO Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'prevdoc',
+		'fieldtype': 'Data',
+		'idx': 1,
+		'label': 'Against Document',
+		'oldfieldname': 'prevdoc',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'prevdoc_docname',
+		'fieldtype': 'Data',
+		'idx': 2,
+		'label': 'Document No',
+		'oldfieldname': 'prevdoc_docname',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '150px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'document_date',
+		'fieldtype': 'Date',
+		'idx': 3,
+		'label': 'Document Date',
+		'oldfieldname': 'document_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'confirmation_date',
+		'fieldtype': 'Date',
+		'idx': 5,
+		'label': 'Confirmation Date',
+		'oldfieldname': 'confirmation_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'include_in_plan',
+		'fieldtype': 'Check',
+		'idx': 6,
+		'label': 'Include In Plan',
+		'oldfieldname': 'include_in_plan',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1
+	}
+]

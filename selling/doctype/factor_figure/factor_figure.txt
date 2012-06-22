@@ -1,0 +1,128 @@
+# DocType, Factor Figure
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-16 16:58:30',
+		'docstatus': 0,
+		'modified': '2012-01-02 22:58:32',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1313694626',
+		'allow_trash': 1,
+		'autoname': 'field:factor_figure_name',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Selling',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'in_filter': 1,
+		'name': '__common__',
+		'parent': 'Factor Figure',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# These values are common for all DocPerm
+	{
+		'amend': 0,
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Factor Figure',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1,
+		'submit': 0
+	},
+
+	# DocType, Factor Figure
+	{
+		'doctype': 'DocType',
+		'name': 'Factor Figure'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'factor_figure_name',
+		'fieldtype': 'Data',
+		'label': 'Name',
+		'oldfieldname': 'factor_figure_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'factor_figure_rate',
+		'fieldtype': 'Currency',
+		'label': 'Factor Figure Rate',
+		'oldfieldname': 'factor_figure_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocPerm
+	{
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator',
+		'write': 0
+	}
+]

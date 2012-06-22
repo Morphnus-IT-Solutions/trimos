@@ -1,0 +1,77 @@
+# DocType, TC Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:10',
+		'docstatus': 0,
+		'modified': '2011-11-17 18:26:30',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'TCD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 4
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'TC Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, TC Detail
+	{
+		'doctype': 'DocType',
+		'name': 'TC Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'terms',
+		'fieldtype': 'Data',
+		'label': 'Terms & Conditions',
+		'oldfieldname': 'terms',
+		'oldfieldtype': 'Data',
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'page_break',
+		'fieldtype': 'Check',
+		'hidden': 0,
+		'label': 'Page Break',
+		'oldfieldname': 'page_break',
+		'oldfieldtype': 'Check',
+		'print_hide': 0,
+		'report_hide': 0
+	}
+]

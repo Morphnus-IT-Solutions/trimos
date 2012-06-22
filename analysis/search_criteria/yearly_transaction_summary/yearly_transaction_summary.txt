@@ -1,0 +1,32 @@
+# Search Criteria, yearly_transaction_summary
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:38',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:38',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'columns': 'Profile\x01ID',
+		'criteria_name': 'Yearly Transaction Summary',
+		'doc_type': 'Profile',
+		'doctype': 'Search Criteria',
+		'filters': "{'DocType\x01Fiscal Year':'2009-2010','DocType\x01Company':'Alpha Company','DocType\x01Period':'Monthly'}",
+		'module': 'Analysis',
+		'name': '__common__',
+		'sort_by': '`tabProfile`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, yearly_transaction_summary
+	{
+		'doctype': 'Search Criteria',
+		'name': 'yearly_transaction_summary'
+	}
+]

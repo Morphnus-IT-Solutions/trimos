@@ -1,0 +1,406 @@
+# DocType, Territory
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:10',
+		'docstatus': 0,
+		'modified': '2012-05-05 13:54:19',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1324446200',
+		'allow_trash': 1,
+		'autoname': 'field:territory_name',
+		'client_script': "cur_frm.cscript.forecast = function(doc, cdt, cdn) {\n  var d = locals[cdt][cdn];\n  if(d.forecast){\n    set_multiple('Territory Target Detail', d.name, {'achieved_forecast_percent' : flt(d.actual) * 100 / flt(d.forecast),'difference_forecast' : flt(d.forecast)-flt(d.actual) }, 'territory_target_details');\n    refresh_field('achieved_forecast_percent', d.name, 'territory_target_details');\n    refresh_field('difference_forecast', d.name, 'territory_target_details');\n  }\n}",
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_create': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'name_case': 'Title Case',
+		'print_outline': 'No',
+		'search_fields': 'name,parent_territory,territory_manager',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 90
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Territory',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Territory',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Territory
+	{
+		'doctype': 'DocType',
+		'name': 'Territory'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'oldfieldname': 'trash_reason',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory_name',
+		'fieldtype': 'Data',
+		'label': 'Territory Name',
+		'no_copy': 1,
+		'oldfieldname': 'territory_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory_manager',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Territory Manager',
+		'oldfieldname': 'territory_manager',
+		'oldfieldtype': 'Link',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'regional_back_office_email',
+		'fieldtype': 'Link',
+		'label': 'Regional Back Office Email',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'parent_territory',
+		'fieldtype': 'Link',
+		'label': 'Parent Territory',
+		'oldfieldname': 'parent_territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'state',
+		'fieldtype': 'Data',
+		'label': 'State',
+		'oldfieldname': 'state',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'zone',
+		'fieldtype': 'Select',
+		'label': 'Zone',
+		'oldfieldname': 'zone',
+		'oldfieldtype': 'Select',
+		'options': 'link:Zone',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'TerritoryHelp',
+		'oldfieldtype': 'HTML',
+		'options': '<a href="javascript:cur_frm.cscript.TerritoryHelp();">To manage Territory, click here</a>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Only leaf nodes are allowed in transaction',
+		'doctype': 'DocField',
+		'fieldname': 'is_group',
+		'fieldtype': 'Select',
+		'label': 'Has Child Node',
+		'oldfieldname': 'is_group',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'lft',
+		'fieldtype': 'Int',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'lft',
+		'no_copy': 1,
+		'oldfieldname': 'lft',
+		'oldfieldtype': 'Int',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rgt',
+		'fieldtype': 'Int',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'rgt',
+		'no_copy': 1,
+		'oldfieldname': 'rgt',
+		'oldfieldtype': 'Int',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cell_no',
+		'fieldtype': 'Data',
+		'label': 'Cell No',
+		'oldfieldname': 'cell_no',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'phone',
+		'fieldtype': 'Data',
+		'label': 'Phone',
+		'oldfieldname': 'phone',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email_id',
+		'fieldtype': 'Data',
+		'label': 'Email Id',
+		'oldfieldname': 'email_id',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'old_parent',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'old_parent',
+		'no_copy': 1,
+		'oldfieldname': 'old_parent',
+		'oldfieldtype': 'Data',
+		'options': 'Territory',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'distribution_id',
+		'fieldtype': 'Link',
+		'label': 'Distribution Id',
+		'oldfieldname': 'distribution_id',
+		'oldfieldtype': 'Link',
+		'options': 'Budget Distribution',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'hidden': 1,
+		'label': 'Target Details',
+		'oldfieldtype': 'Section Break',
+		'options': 'Territory Target Detail',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'target_details',
+		'fieldtype': 'Table',
+		'label': 'Target Details1',
+		'oldfieldname': 'target_details',
+		'oldfieldtype': 'Table',
+		'options': 'Target Detail',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM - Back Office'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM - Back Office',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - HO',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM User - Regional',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM User - Regional',
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 1,
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator'
+	}
+]

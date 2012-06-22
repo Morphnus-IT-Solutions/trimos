@@ -1,0 +1,104 @@
+# DocType, Tour Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-27 14:31:23',
+		'docstatus': 0,
+		'modified': '2011-12-26 15:52:16',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'TD /.####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'CRM',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 6
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Tour Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Tour Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Tour Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'place_of_visit',
+		'fieldtype': 'Data',
+		'label': 'Place of Visit',
+		'oldfieldname': 'place_of_visit',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_of_departure',
+		'fieldtype': 'Date',
+		'label': 'Date of Departure',
+		'oldfieldname': 'date_of_departure',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'time_of_departure',
+		'fieldtype': 'Time',
+		'label': 'Time of Departure',
+		'oldfieldname': 'time_of_departure',
+		'oldfieldtype': 'Time',
+		'width': '275px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date_of_arrival',
+		'fieldtype': 'Date',
+		'label': 'Date of Arrival',
+		'oldfieldname': 'date_of_arrival',
+		'oldfieldtype': 'Date'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'time_of_arrival',
+		'fieldtype': 'Time',
+		'label': 'Time of Arrival',
+		'oldfieldname': 'time_of_arrival',
+		'oldfieldtype': 'Time',
+		'width': '275px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mode_of_travel',
+		'fieldtype': 'Data',
+		'label': 'Mode of Travel',
+		'oldfieldname': 'mode_of_travel',
+		'oldfieldtype': 'Data'
+	}
+]

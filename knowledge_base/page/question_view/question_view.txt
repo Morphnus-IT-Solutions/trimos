@@ -1,0 +1,27 @@
+# Page, Question View
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 02:08:01',
+		'docstatus': 0,
+		'modified': '2011-07-17 02:08:01',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Page
+	{
+		'doctype': 'Page',
+		'module': 'Knowledge Base',
+		'name': '__common__',
+		'page_name': 'Question View',
+		'standard': 'Yes'
+	},
+
+	# Page, Question View
+	{
+		'doctype': 'Page',
+		'name': 'Question View'
+	}
+]

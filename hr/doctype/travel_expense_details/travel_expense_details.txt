@@ -1,0 +1,311 @@
+# DocType, Travel Expense Details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-01 10:13:47',
+		'docstatus': 0,
+		'modified': '2012-04-05 11:22:39',
+		'modified_by': 'sangeeta_a@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1324988073',
+		'autoname': 'OTE/.######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'HR',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 12
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Travel Expense Details',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Travel Expense Details
+	{
+		'doctype': 'DocType',
+		'name': 'Travel Expense Details'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'date',
+		'fieldtype': 'Date',
+		'in_filter': 1,
+		'label': 'Date',
+		'oldfieldname': 'date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'departure_place',
+		'fieldtype': 'Data',
+		'label': 'Departure Place',
+		'oldfieldname': 'departure_place',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'departure_time',
+		'fieldtype': 'Time',
+		'label': 'Departure Time',
+		'oldfieldname': 'departure_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'arrival_place',
+		'fieldtype': 'Data',
+		'label': 'Arrival Place',
+		'oldfieldname': 'arrival_place',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'arrival_time',
+		'fieldtype': 'Time',
+		'label': 'Arrival Time',
+		'oldfieldname': 'arrival_time',
+		'oldfieldtype': 'Time',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mode_of_travel',
+		'fieldtype': 'Data',
+		'label': 'Mode of Travel',
+		'oldfieldname': 'mode_of_travel',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person_1',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Person 1',
+		'no_copy': 1,
+		'oldfieldname': 'person_1',
+		'oldfieldtype': 'Link',
+		'options': 'Profile',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person_2',
+		'fieldtype': 'Link',
+		'label': 'Person 2',
+		'oldfieldname': 'person_2',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person_3',
+		'fieldtype': 'Link',
+		'label': 'Person 3',
+		'oldfieldname': 'person_3',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'expense_type',
+		'fieldtype': 'Select',
+		'label': 'Expense Type',
+		'oldfieldname': 'expense_type',
+		'oldfieldtype': 'Select',
+		'options': '\nAir Fare\nTrain Fare\nBus Fare\nHotel\nStaff Welfare\nConveyance\nCar Hire\nMiscellaneous\nPetrol / Maintenance',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'nature_of_expenses',
+		'fieldtype': 'Data',
+		'label': 'Nature Of Expenses',
+		'oldfieldname': 'nature_of_expenses',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'expense',
+		'fieldtype': 'Currency',
+		'label': 'Expense (Rs.)',
+		'oldfieldname': 'expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 0,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'supporting',
+		'fieldtype': 'Select',
+		'label': 'Supporting',
+		'oldfieldname': 'supporting',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo',
+		'permlevel': 0,
+		'reqd': 0,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Small Text',
+		'label': 'Remarks',
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'expense_limit',
+		'fieldtype': 'Link',
+		'label': 'Expense Limit',
+		'oldfieldname': 'expense_limit',
+		'oldfieldtype': 'Link',
+		'options': 'Expense Limit',
+		'permlevel': 2,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'limit_amount',
+		'fieldtype': 'Currency',
+		'label': 'Limit Amount',
+		'oldfieldname': 'limit_amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'allowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Allowed Expense',
+		'oldfieldname': 'allowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'trigger': 'Client',
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'disallowed_expense',
+		'fieldtype': 'Currency',
+		'label': 'Disallowed Expense',
+		'oldfieldname': 'disallowed_expense',
+		'oldfieldtype': 'Currency',
+		'permlevel': 2,
+		'width': '250px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'visit_report_id',
+		'fieldtype': 'Link',
+		'label': 'Visit Report Id',
+		'oldfieldname': 'visit_report_id',
+		'oldfieldtype': 'Link',
+		'options': 'Visit Report',
+		'permlevel': 0,
+		'width': '300px'
+	}
+]

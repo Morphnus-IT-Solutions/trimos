@@ -1,0 +1,292 @@
+# DocType, GL Entry
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-08-14 13:47:36',
+		'docstatus': 0,
+		'modified': '2011-08-14 13:47:37',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1309508838',
+		'autoname': 'GL.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Accounts',
+		'name': '__common__',
+		'search_fields': 'voucher_no,account,posting_date,against_voucher',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 101
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'GL Entry',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'GL Entry',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, GL Entry
+	{
+		'doctype': 'DocType',
+		'name': 'GL Entry'
+	},
+
+	# DocField
+	{
+		'description': 'The date at which current entry will get or has actually executed.',
+		'doctype': 'DocField',
+		'fieldname': 'posting_date',
+		'fieldtype': 'Date',
+		'idx': 1,
+		'in_filter': 1,
+		'label': 'Posting Date',
+		'oldfieldname': 'posting_date',
+		'oldfieldtype': 'Date',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'description': 'The date at which current entry is made in system.',
+		'doctype': 'DocField',
+		'fieldname': 'transaction_date',
+		'fieldtype': 'Date',
+		'idx': 2,
+		'label': 'Transaction Date',
+		'oldfieldname': 'transaction_date',
+		'oldfieldtype': 'Date'
+	},
+
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'aging_date',
+		'fieldtype': 'Date',
+		'idx': 3,
+		'in_filter': 1,
+		'label': 'Aging Date',
+		'oldfieldname': 'aging_date',
+		'oldfieldtype': 'Date',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'account',
+		'fieldtype': 'Link',
+		'idx': 4,
+		'in_filter': 1,
+		'label': 'Account',
+		'oldfieldname': 'account',
+		'oldfieldtype': 'Link',
+		'options': 'Account',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cost_center',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'in_filter': 1,
+		'label': 'Cost Center',
+		'oldfieldname': 'cost_center',
+		'oldfieldtype': 'Link',
+		'options': 'Cost Center',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'debit',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Debit Amt',
+		'oldfieldname': 'debit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'credit',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Credit Amt',
+		'oldfieldname': 'credit',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against',
+		'fieldtype': 'Text',
+		'idx': 8,
+		'in_filter': 1,
+		'label': 'Against',
+		'oldfieldname': 'against',
+		'oldfieldtype': 'Text',
+		'options': 'Account'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_voucher',
+		'fieldtype': 'Data',
+		'idx': 9,
+		'in_filter': 1,
+		'label': 'Against Voucher',
+		'oldfieldname': 'against_voucher',
+		'oldfieldtype': 'Data',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'against_voucher_type',
+		'fieldtype': 'Data',
+		'idx': 10,
+		'in_filter': 0,
+		'label': 'Against Voucher Type',
+		'oldfieldname': 'against_voucher_type',
+		'oldfieldtype': 'Data',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'voucher_type',
+		'fieldtype': 'Select',
+		'idx': 11,
+		'in_filter': 1,
+		'label': 'Voucher Type',
+		'oldfieldname': 'voucher_type',
+		'oldfieldtype': 'Select',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'voucher_no',
+		'fieldtype': 'Data',
+		'idx': 12,
+		'in_filter': 1,
+		'label': 'Voucher No',
+		'oldfieldname': 'voucher_no',
+		'oldfieldtype': 'Data',
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'remarks',
+		'fieldtype': 'Text',
+		'idx': 13,
+		'in_filter': 1,
+		'label': 'Remarks',
+		'no_copy': 1,
+		'oldfieldname': 'remarks',
+		'oldfieldtype': 'Text',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_cancelled',
+		'fieldtype': 'Select',
+		'idx': 14,
+		'in_filter': 1,
+		'label': 'Is Cancelled',
+		'oldfieldname': 'is_cancelled',
+		'oldfieldtype': 'Select',
+		'options': 'No\nYes',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_opening',
+		'fieldtype': 'Select',
+		'idx': 15,
+		'in_filter': 1,
+		'label': 'Is Opening',
+		'oldfieldname': 'is_opening',
+		'oldfieldtype': 'Select',
+		'options': 'No\nYes',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'is_advance',
+		'fieldtype': 'Select',
+		'idx': 16,
+		'in_filter': 0,
+		'label': 'Is Advance',
+		'oldfieldname': 'is_advance',
+		'oldfieldtype': 'Select',
+		'options': 'No\nYes',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'idx': 17,
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'company',
+		'fieldtype': 'Link',
+		'idx': 18,
+		'in_filter': 1,
+		'label': 'Company',
+		'oldfieldname': 'company',
+		'oldfieldtype': 'Link',
+		'options': 'Company',
+		'search_index': 0
+	}
+]

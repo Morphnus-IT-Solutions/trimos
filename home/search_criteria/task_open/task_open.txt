@@ -1,0 +1,34 @@
+# Search Criteria, task-open
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:20',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:20',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_cond': "`tabTicket`.status='Open'",
+		'columns': 'Ticket\x01ID,Ticket\x01Subject,Ticket\x01Priority,Ticket\x01Raised By,Ticket\x01Allocated To',
+		'criteria_name': 'Task-Open',
+		'doc_type': 'Ticket',
+		'doctype': 'Search Criteria',
+		'filters': "{'Ticket\x01Priority':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabTicket`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, task-open
+	{
+		'doctype': 'Search Criteria',
+		'name': 'task-open'
+	}
+]

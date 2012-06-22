@@ -1,0 +1,423 @@
+# DocType, Sales Partner
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-03-20 09:53:09',
+		'docstatus': 0,
+		'modified': '2011-11-30 23:48:01',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1321766280',
+		'allow_trash': 1,
+		'autoname': 'field:partner_name',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'document_type': 'Master',
+		'in_create': 0,
+		'module': 'Setup',
+		'name': '__common__',
+		'print_outline': 'No',
+		'read_only': 0,
+		'section_style': 'Tabbed',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 74
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Sales Partner',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Sales Partner',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Sales Partner
+	{
+		'doctype': 'DocType',
+		'name': 'Sales Partner'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Note: You Can Manage Multiple Address or Contacts via Addresses & Contacts',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Basic Info',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'partner_name',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Sales Partner Name',
+		'oldfieldname': 'partner_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'partner_type',
+		'fieldtype': 'Select',
+		'in_filter': 1,
+		'label': 'Partner Type',
+		'oldfieldname': 'partner_type',
+		'oldfieldtype': 'Select',
+		'options': '\nChannel Partner\nDistributor\nDealer\nAgent\nRetailer\nImplementation Partner\nReseller',
+		'permlevel': 0,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'commission_rate',
+		'fieldtype': 'Currency',
+		'label': 'Commission Rate',
+		'oldfieldname': 'commission_rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'options': 'Territory',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'area_code',
+		'fieldtype': 'Data',
+		'label': 'Area Code',
+		'oldfieldname': 'area_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'mobile',
+		'fieldtype': 'Data',
+		'label': 'Mobile',
+		'oldfieldname': 'mobile',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'person',
+		'fieldtype': 'Data',
+		'label': 'Person',
+		'oldfieldname': 'person',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'telephone',
+		'fieldtype': 'Data',
+		'label': 'Telephone',
+		'oldfieldname': 'telephone',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'email',
+		'fieldtype': 'Data',
+		'label': 'Email',
+		'oldfieldname': 'email',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'label': 'Address',
+		'oldfieldname': 'address',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_line1',
+		'fieldtype': 'Data',
+		'label': 'Address Line1',
+		'oldfieldname': 'address_line1',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Address & Contacts',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:doc.__islocal',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Address Desc',
+		'options': '<em>Addresses will appear only when you save the customer</em>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Address HTML',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:doc.__islocal',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Contact Desc',
+		'options': '<em>Contact Details will appear only when you save the customer</em>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Contact HTML',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Partner Target Details',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'distribution_id',
+		'fieldtype': 'Link',
+		'label': 'Distribution Id',
+		'oldfieldname': 'distribution_id',
+		'oldfieldtype': 'Link',
+		'options': 'Budget Distribution',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address_line2',
+		'fieldtype': 'Data',
+		'label': 'Address Line2',
+		'oldfieldname': 'address_line2',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'partner_target_details',
+		'fieldtype': 'Table',
+		'label': 'Partner Target Detail',
+		'oldfieldname': 'partner_target_details',
+		'oldfieldtype': 'Table',
+		'options': 'Partner Target Detail',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Manage HTML',
+		'oldfieldtype': 'HTML',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'depends_on': 'eval:!doc.__islocal',
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Transaction History',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'History HTML',
+		'oldfieldtype': 'HTML',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'trash_reason',
+		'fieldtype': 'Small Text',
+		'label': 'Trash Reason',
+		'oldfieldname': 'trash_reason',
+		'oldfieldtype': 'Small Text',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'city',
+		'fieldtype': 'Data',
+		'label': 'City',
+		'oldfieldname': 'city',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'state',
+		'fieldtype': 'Select',
+		'label': 'State',
+		'oldfieldname': 'state',
+		'oldfieldtype': 'Select',
+		'options': '\nMaharashtra\nGujarat\nJammu and Kashmir\nWest Bengal\nKarnataka\nTamil Nadu\nMadhya Pradesh',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'country',
+		'fieldtype': 'Data',
+		'label': 'Country',
+		'oldfieldname': 'country',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'pincode',
+		'fieldtype': 'Data',
+		'label': 'Pincode',
+		'oldfieldname': 'pincode',
+		'oldfieldtype': 'Data',
+		'permlevel': 0
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Manager'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'write': 1
+	}
+]

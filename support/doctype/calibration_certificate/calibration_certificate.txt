@@ -1,0 +1,828 @@
+# DocType, Calibration Certificate
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-18 10:18:32',
+		'docstatus': 0,
+		'modified': '2012-03-01 12:58:46',
+		'modified_by': 'manisha_s@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Calibration Certificate',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1327667250',
+		'client_script': 'cur_frm.cscript.refresh = function(doc, cdt, cdn){\n  if(!doc.__islocal) unhide_field(\'Send for Approval\');\n  else hide_field(\'Send for Approval\');\n  \n  if(inList(user_roles, \'CRM Manager\') && !doc.__islocal) unhide_field(\'Send Feedback\');\n  else hide_field(\'Send Feedback\');\n\n  cur_frm.cscript.measure_x_axis(doc, cdt, cdn);\n  cur_frm.cscript.measure_y_axis(doc, cdt, cdn);\n  cur_frm.cscript.measure_z_axis(doc, cdt, cdn);\n  cur_frm.cscript.measure_vol_axis(doc, cdt, cdn);\n}\n\n\ncur_frm.cscript.serial_no = function(doc, cdt, cdn) {\n  get_server_fields(\'get_brand_orc\',\'\',\'\', doc, cdt, cdn, 1);\n}\n\ncur_frm.fields_dict[\'customer_name\'].get_query = function(doc, cdt, cdn) {\n return \'SELECT `tabCustomer`.name,`tabCustomer`.territory FROM `tabCustomer` WHERE `tabCustomer`.is_active = "Yes" AND `tabCustomer`.name LIKE "%s" ORDER BY `tabCustomer`.name ASC LIMIT 50\';\n}\n\ncur_frm.cscript.customer_name = function(doc, cdt, cdn) {\n  if (doc.customer_name)\n    get_server_fields(\'get_customer_details\',\'\',\'\',doc,cdt,cdn,1);\n}\n\ncur_frm.cscript.slip_id = function(doc, cdt, cdn){\n  var d = locals[cdt][cdn];\n  get_server_fields(\'get_slip_details\',d.slip_id,\'reference_standards\',doc, cdt, cdn, 1);\n}\n\n\n// Triggers for hiding and unhiding Readings tables\n// --------------------------------------------------------\n\n// X Axis\n// -------- \ncur_frm.cscript.measure_x_axis = function(doc, cdt, cdn){\n  if(doc.measure_x_axis == 1) unhide_field([\'readings_x_axis\',\'Readings in X Axis\']);\n  else hide_field([\'readings_x_axis\',\'Readings in X Axis\']);\n}\n\n\n// Y Axis\n// -------- \ncur_frm.cscript.measure_y_axis = function(doc, cdt, cdn){\n  if(doc.measure_y_axis == 1) unhide_field([\'readings_y_axis\',\'Readings in Y Axis\']);\n  else hide_field([\'readings_y_axis\',\'Readings in Y Axis\']);\n}\n\n\n// Z Axis\n// -------- \ncur_frm.cscript.measure_z_axis = function(doc, cdt, cdn){\n  if(doc.measure_z_axis == 1) unhide_field([\'readings_z_axis\',\'Readings in Z Axis\']);\n  else hide_field([\'readings_z_axis\',\'Readings in Z Axis\']);\n}\n\n\n// Volumetric Axis\n// ------------------\ncur_frm.cscript.measure_vol_axis = function(doc, cdt, cdn){\n  if(doc.measure_vol_axis == 1) unhide_field([\'readings_vol_axis\',\'Readings in Volumetric Axis\']);\n  else hide_field([\'readings_vol_axis\',\'Readings in Volumetric Axis\']);\n}\n\n// Dictionary Of Readings Table and its Field Name\n// ----------------------------------------------------\nvar readings_dict = {\'Linear Calibration Reading\':\'linear_calibration_readings\',\n                     \'Measurement Reading in X Axis\':\'readings_x_axis\',\n                     \'Measurement Reading in Y Axis\':\'readings_y_axis\',\n                     \'Measurement Reading in Z Axis\':\'readings_z_axis\',\n                     \'Measurement Reading in Volumetric Axis\':\'readings_vol_axis\'}\n \n// Calculate Linear Calibration Readings\n// --------------------------------------------------\ncur_frm.cscript.slip_size = function(doc, cdt, cdn){\n  calc_average(doc, cdt, cdn);\n}\n\ncur_frm.cscript.self_error = function(doc, cdt, cdn){\n  calc_average(doc, cdt, cdn);\n}\n\ncur_frm.cscript.series_1 = function(doc, cdt, cdn){\n  calc_average(doc, cdt, cdn);\n}\n\ncur_frm.cscript.series_2 = function(doc, cdt, cdn){\n  calc_average(doc, cdt, cdn);\n}\n\ncur_frm.cscript.series_3 = function(doc, cdt, cdn){\n  calc_average(doc, cdt, cdn);\n}\n\nvar calc_average = function(doc, cdt, cdn){\n  var d = locals[cdt][cdn];\n  set_multiple(cdt, d.name, {\'average\': (flt(flt(d[\'series_1\']) + flt(d[\'series_2\']) + flt(d[\'series_3\'])) / 3).toFixed(4)}, readings_dict[cdt]);\n  var average_deviation = (flt(d.average) - (flt(d[\'slip_size\']) + (flt(d[\'self_error\']) / 1000))) * 1000;\n  set_multiple(cdt, d.name, {\'average_deviation\': flt(average_deviation).toFixed(4) }, readings_dict[cdt]);\n  refresh_field(\'average\',d.name,readings_dict[cdt]);\n  refresh_field(\'average_deviation\',d.name,readings_dict[cdt]);\n}',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'module': 'Support',
+		'name': '__common__',
+		'print_outline': 'No',
+		'search_fields': 'status,calibration_date,service_report,customer_name,territory,serial_no,brand,product_code,calibrated_by',
+		'section_style': 'Tray',
+		'server_code': 'class DocType:\n  def __init__(self,d,dl):\n    self.doc, self.doclist = d,dl\n\n  def autoname(self):\n    self.doc.name = make_autoname(self.doc.product_code+\'/\'+self.doc.serial_no+\'/\'+self.doc.naming_series+\'/.#\')\n\n  def get_customer_details(self):\n    det = sql("select address,territory from tabCustomer where name = %s",self.doc.customer_name,as_dict = 1)\n    ret = {\n      \'address\' :   det and det[0][\'address\'] or \'\',\n      \'territory\':  det and det[0][\'territory\'] or \'\' \n    }\n    return str(ret)\n\n  def get_brand_orc(self):\n    bo = sql("select brand, product_code from `tabSerial No` where name = \'%s\'" %(self.doc.serial_no)) \n    brand = bo and bo[0][0] or \'\'\n    orc = bo and bo[0][1] or \'\'\n    ret = {\n      \'brand\' : brand,\n      \'product_code\' : orc\n      }\n    return cstr(ret)\n\n  def get_slip_details(self,slip_id):\n    det = sql("select type, make, slip_size, self_error from `tabSlip Gauge` where name = %s",slip_id,as_dict = 1)\n    ret = {\n      \'type\'         :    det and det[0][\'type\'] or \'\',\n      \'slip_size\'    :    det and det[0][\'slip_size\'] or \'\',\n      \'make\'         :    det and det[0][\'make\'] or \'\',\n      \'self_error\'   :    det and det[0][\'self_error\'] or \'\'\n    }\n    return str(ret)\n\n  def send_for_approval(self):\n    send_to = []\n    send = sql("select t1.email from `tabProfile` t1,`tabUserRole` t2 where t2.role = \'CRM Manager\' and t2.parent = t1.name and ifnull(t1.enabled, 0) = 1")\n    for d in send:\n      send_to.append(d[0])\n    msg = \'\'\'\nApprove Calibration Certificate : %s\n\nCalibrated By : %s\n\n\'\'\' % (self.doc.name,self.doc.calibrated_by)\n    sendmail(send_to, sender=\'automail@webnotestech.com\', subject=\'Approval of Calibration Certificate\', parts=[[\'text/plain\', msg]])\n\n    get_obj(\'Sales Common\').add_to_calendar(send,msg,nowdate(),self.doc.doctype,self.doc.name)\n    msgprint("Calibration Certificate sent for Approval and also added to their Calendar")\n\n  def send_feedback(self):\n    send_to = []\n    send = sql("select t1.email from `tabProfile` t1 where t1.first_name = %s",self.doc.calibrated_by) \n    for d in send:\n      send_to.append(d[0])\n    msg = \'\'\'\nCalibration Certificate : %s \nCalibrated By : %s\nhas been Submitted\nby %s\n\n\'\'\' % (self.doc.name, self.doc.calibrated_by, self.doc.approved_by)\n\n    sendmail(send_to, sender=\'automail@webnotestech.com\', subject=\'Calibration Certificate Status\', parts=[[\'text/plain\', msg]])\n    msgprint("Feedback has been sent to \'%s\'"%(self.doc.calibrated_by))\n\n  def validate(self):\n    \n    # Calculate Maximum error measured\n    # ---------------------------------\n    l = []\n    for d in getlist(self.doclist,\'linear_calibration_readings\'):\n      l.append(d.average_deviation)\n    l.sort()\n    self.doc.maximum_error_measured = "%.4f" %((flt(l[len(l)-1]) - flt(l[0])))\n    \n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Open\',self.doc.doctype,self.doc.name)\n\n  def on_submit(self):\n    #check whether user has permission to submit the document\n    approved_by = cstr(get_obj(\'Manage Account\',with_children = 1).get_permissions(self.doc.doctype,\'0.00\',session[\'user\']))\n    set(self.doc,\'approved_by\',approved_by)\n    \n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Submitted\',self.doc.doctype,self.doc.name)\n    \n  def on_cancel(self):\n    self.doc.status = get_obj(\'Sales Common\').set_status(\'Cancelled\',self.doc.doctype,self.doc.name)',
+		'server_code_error': '<pre style="text-align: left;"></pre>',
+		'show_in_menu': 0,
+		'version': 94
+	},
+
+	# These values are common for all DocFormat
+	{
+		'doctype': 'DocFormat',
+		'name': '__common__',
+		'parent': 'Calibration Certificate',
+		'parentfield': 'formats',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'Calibration Certificate',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, Calibration Certificate
+	{
+		'doctype': 'DocType',
+		'name': 'Calibration Certificate'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Calibration Certificate Format'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Calibration Certificate without Squareness Error Format'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Calibration Certificate w/o Letter Head'
+	},
+
+	# DocFormat
+	{
+		'doctype': 'DocFormat',
+		'format': 'Calibration Certificate w/o Squareness Error and Letter Head'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'General',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'naming_series',
+		'fieldtype': 'Select',
+		'label': 'Naming Series',
+		'no_copy': 1,
+		'oldfieldname': 'naming_series',
+		'oldfieldtype': 'Select',
+		'options': '\n12/FEB\n12/MAR\n12/APR\n12/MAY\n12/JUN\n12/JUL\n12/AUG\n12/SEP\n12/OCT\n12/NOV\n12/DEC',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'status',
+		'fieldtype': 'Select',
+		'label': 'Status',
+		'oldfieldname': 'status',
+		'oldfieldtype': 'Select',
+		'options': '\nOpen\nSubmitted\nCancelled\nAmended\nClosed',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'service_report',
+		'fieldtype': 'Link',
+		'label': 'Service Report',
+		'oldfieldname': 'service_report',
+		'oldfieldtype': 'Link',
+		'options': 'Service Report',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fiscal_year',
+		'fieldtype': 'Select',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Fiscal Year',
+		'oldfieldname': 'fiscal_year',
+		'oldfieldtype': 'Select',
+		'options': 'link:Fiscal Year',
+		'permlevel': 0,
+		'print_hide': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'customer',
+		'fieldtype': 'Link',
+		'label': 'Customer',
+		'options': 'Customer',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'address',
+		'fieldtype': 'Text',
+		'label': 'Address',
+		'oldfieldname': 'address',
+		'oldfieldtype': 'Text',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'territory',
+		'fieldtype': 'Link',
+		'label': 'Territory',
+		'oldfieldname': 'territory',
+		'oldfieldtype': 'Link',
+		'options': 'Territory',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'object',
+		'fieldtype': 'Data',
+		'label': 'Object',
+		'oldfieldname': 'object',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'print_hide': 1,
+		'reqd': 0,
+		'search_index': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'serial_no',
+		'fieldtype': 'Link',
+		'label': 'Serial No.',
+		'oldfieldname': 'serial_no',
+		'oldfieldtype': 'Link',
+		'options': 'Serial No',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client',
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'certificate_issue_date',
+		'fieldtype': 'Date',
+		'label': 'Certificate Issue Date',
+		'oldfieldname': 'certificate_issue_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'calibration_date',
+		'fieldtype': 'Date',
+		'label': 'Calibration Date',
+		'oldfieldname': 'calibration_date',
+		'oldfieldtype': 'Date',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'confirmity_declaration',
+		'fieldtype': 'Text',
+		'label': 'Confirmity Declaration',
+		'oldfieldname': 'confirmity_declaration',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '200px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'label': 'Features Of The Calibrated Object',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measuring_axis',
+		'fieldtype': 'Data',
+		'label': 'Number of Measuring Axis',
+		'oldfieldname': 'measuring_axis',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measuring_range',
+		'fieldtype': 'Data',
+		'label': 'Measuring Range',
+		'oldfieldname': 'measuring_range',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'calibrated_range',
+		'fieldtype': 'Data',
+		'label': 'Calibrated Range',
+		'oldfieldname': 'calibrated_range',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'linear_expansion_coefficient',
+		'fieldtype': 'Data',
+		'label': 'Linear Expansion Coefficient',
+		'oldfieldname': 'linear_expansion_coefficient',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Calibration',
+		'oldfieldtype': 'HTML',
+		'options': '<br><b>Calibration <b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measuring_steps',
+		'fieldtype': 'Data',
+		'label': 'Measuring Steps',
+		'oldfieldname': 'measuring_steps',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measurement_series',
+		'fieldtype': 'Data',
+		'label': 'Number Of Measurement Series',
+		'oldfieldname': 'measurement_series',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Reference Conditions',
+		'oldfieldtype': 'HTML',
+		'options': '<br><b>Reference Conditions <b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'temperature',
+		'fieldtype': 'Data',
+		'label': 'Temperature',
+		'oldfieldname': 'temperature',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'relative_humidity',
+		'fieldtype': 'Data',
+		'label': 'Relative Humidity',
+		'oldfieldname': 'relative_humidity',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'cancel_reason',
+		'fieldtype': 'Data',
+		'label': 'Cancel Reason',
+		'no_copy': 1,
+		'oldfieldname': 'cancel_reason',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Reference Standard And Traceability',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'reference_standards',
+		'fieldtype': 'Table',
+		'label': 'Reference Standard',
+		'oldfieldname': 'reference_standards',
+		'oldfieldtype': 'Table',
+		'options': 'Reference Standard',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Readings',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0,
+		'print_hide': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'label': 'Linear Calibration Readings',
+		'oldfieldtype': 'HTML',
+		'options': '<b>Linear Calibration Readings</b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'linear_calibration_readings',
+		'fieldtype': 'Table',
+		'label': 'Linear Calibration Reading',
+		'oldfieldname': 'linear_calibration_readings',
+		'oldfieldtype': 'Table',
+		'options': 'Linear Calibration Reading',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measure_x_axis',
+		'fieldtype': 'Check',
+		'label': 'Measure Reading in X Axis',
+		'oldfieldname': 'measure_x_axis',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Readings in X Axis',
+		'oldfieldtype': 'HTML',
+		'options': '<b>Measurement Reading in X Axis</b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'readings_x_axis',
+		'fieldtype': 'Table',
+		'hidden': 1,
+		'label': 'Measurement Reading in X Axis',
+		'oldfieldname': 'readings_x_axis',
+		'oldfieldtype': 'Table',
+		'options': 'Measurement Reading in X Axis',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measure_y_axis',
+		'fieldtype': 'Check',
+		'label': 'Measure Reading in Y Axis',
+		'oldfieldname': 'measure_y_axis',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Readings in Y Axis',
+		'oldfieldtype': 'HTML',
+		'options': '<b>Measurement Reading in Y Axis</b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'readings_y_axis',
+		'fieldtype': 'Table',
+		'hidden': 1,
+		'label': 'Measurement Reading in Y Axis',
+		'oldfieldname': 'readings_y_axis',
+		'oldfieldtype': 'Table',
+		'options': 'Measurement Reading in Y Axis',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measure_z_axis',
+		'fieldtype': 'Check',
+		'label': 'Measure Reading in Z Axis',
+		'oldfieldname': 'measure_z_axis',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Readings in Z Axis',
+		'oldfieldtype': 'HTML',
+		'options': '<b>Measurement Reading in Z Axis</b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'readings_z_axis',
+		'fieldtype': 'Table',
+		'hidden': 1,
+		'label': 'Measurement Reading in Z Axis',
+		'oldfieldname': 'readings_z_axis',
+		'oldfieldtype': 'Table',
+		'options': 'Measurement Reading in Z Axis',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'measure_vol_axis',
+		'fieldtype': 'Check',
+		'label': 'Measure Reading in Volumetric Axis',
+		'oldfieldname': 'measure_vol_axis',
+		'oldfieldtype': 'Check',
+		'permlevel': 0,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'hidden': 1,
+		'label': 'Readings in Volumetric Axis',
+		'oldfieldtype': 'HTML',
+		'options': '<b>Measurement Reading in Volumetric Axis</b>',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'readings_vol_axis',
+		'fieldtype': 'Table',
+		'hidden': 1,
+		'label': 'Measurement Reading in Volumetric Axis',
+		'oldfieldname': 'readings_vol_axis',
+		'oldfieldtype': 'Table',
+		'options': 'Measurement Reading in Volumetric Axis',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'maximum_permissible_error',
+		'fieldtype': 'Float',
+		'label': 'Maximum Permissible Error (micron)',
+		'oldfieldname': 'maximum_permissible_error',
+		'oldfieldtype': 'Float',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'maximum_error_measured',
+		'fieldtype': 'Float',
+		'label': 'Maximum Error Measured (micron)',
+		'oldfieldname': 'maximum_error_measured',
+		'oldfieldtype': 'Float',
+		'permlevel': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'label': 'Calibration Results',
+		'oldfieldtype': 'Section Break',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'maximum_permissible_squareness_error',
+		'fieldtype': 'Data',
+		'label': 'Maximum Permissible Squareness Error',
+		'oldfieldname': 'maximum_permissible_squareness_error',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'maximum_squareness_error_measured',
+		'fieldtype': 'Data',
+		'label': 'Maximum Squareness Error Measured',
+		'oldfieldname': 'maximum_squareness_error_measured',
+		'oldfieldtype': 'Data',
+		'permlevel': 0,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'oldfieldtype': 'Section Break',
+		'options': 'Simple',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'calibrated_by',
+		'fieldtype': 'Link',
+		'label': 'Calibrated By',
+		'oldfieldname': 'calibrated_by',
+		'oldfieldtype': 'Link',
+		'options': 'Sales Person',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Send for Approval',
+		'oldfieldtype': 'Button',
+		'options': 'send_for_approval',
+		'permlevel': 0,
+		'trigger': 'Server'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'label': 'Send Feedback',
+		'oldfieldtype': 'Button',
+		'options': 'send_feedback',
+		'permlevel': 0,
+		'trigger': 'Server'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'oldfieldtype': 'Column Break',
+		'permlevel': 0,
+		'width': '50%'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'approved_by',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Approved By',
+		'no_copy': 1,
+		'oldfieldname': 'approved_by',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 0,
+		'reqd': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'Administrator',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'amend': 0,
+		'cancel': 0,
+		'create': 0,
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'Administrator',
+		'submit': 0,
+		'write': 0
+	},
+
+	# DocPerm
+	{
+		'amend': 1,
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'execute': 1,
+		'permlevel': 0,
+		'role': 'CRM User - HO',
+		'submit': 1,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 0,
+		'role': 'CRM Viewer'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'permlevel': 1,
+		'role': 'CRM Viewer'
+	}
+]

@@ -1,0 +1,115 @@
+# DocType, Competitor Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-05-25 17:43:26',
+		'docstatus': 0,
+		'modified': '2011-11-17 18:01:48',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'Competitor/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 7
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Competitor Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# DocType, Competitor Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Competitor Detail'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'competitor_name',
+		'fieldtype': 'Data',
+		'label': 'Company Name',
+		'oldfieldname': 'competitor_name',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Brand',
+		'oldfieldname': 'item_name',
+		'oldfieldtype': 'Data',
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Model Name',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Data'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'quoted_price',
+		'fieldtype': 'Data',
+		'hidden': 0,
+		'label': 'Comments',
+		'oldfieldname': 'quoted_price',
+		'oldfieldtype': 'Data',
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'advantages',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Advantages',
+		'oldfieldname': 'advantages',
+		'oldfieldtype': 'Small Text'
+	},
+
+	# DocField
+	{
+		'allow_on_submit': 1,
+		'doctype': 'DocField',
+		'fieldname': 'disadvantages',
+		'fieldtype': 'Small Text',
+		'hidden': 1,
+		'label': 'Dis-advantages',
+		'oldfieldname': 'disadvantages',
+		'oldfieldtype': 'Small Text'
+	}
+]

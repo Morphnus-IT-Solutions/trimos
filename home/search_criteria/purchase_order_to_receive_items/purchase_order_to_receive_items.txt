@@ -1,0 +1,34 @@
+# Search Criteria, purchase_order-to_receive_items
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:57',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:57',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_cond': "ifnull(`tabPurchase Order`.per_received,0)<100\n`tabPurchase Order`.status='Submitted'",
+		'columns': 'Purchase Order\x01ID,Purchase Order\x01Supplier,Purchase Order\x01PO Date,Purchase Order\x01Company,Purchase Order\x01% Received,Purchase Order\x01Grand Total',
+		'criteria_name': 'Purchase Order-To receive items',
+		'doc_type': 'Purchase Order',
+		'doctype': 'Search Criteria',
+		'filters': "{'Purchase Order\x01Submitted':1,'Purchase Order\x01Status':'Submitted','Purchase Order\x01Fiscal Year':''}",
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabPurchase Order`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, purchase_order-to_receive_items
+	{
+		'doctype': 'Search Criteria',
+		'name': 'purchase_order-to_receive_items'
+	}
+]

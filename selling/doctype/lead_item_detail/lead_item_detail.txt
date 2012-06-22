@@ -1,0 +1,261 @@
+# DocType, Lead Item Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-04-03 18:03:12',
+		'docstatus': 0,
+		'modified': '2012-03-20 02:01:59',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'_last_update': '1321869396',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Selling',
+		'name': '__common__',
+		'print_outline': 'No',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 25
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Lead Item Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, Lead Item Detail
+	{
+		'doctype': 'DocType',
+		'name': 'Lead Item Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Catalogue Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'reqd': 1,
+		'search_index': 0,
+		'trigger': 'Client',
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_type',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Item Type',
+		'oldfieldname': 'item_type',
+		'oldfieldtype': 'Link',
+		'options': 'Item Type',
+		'permlevel': 1,
+		'search_index': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'brand',
+		'fieldtype': 'Link',
+		'in_filter': 1,
+		'label': 'Brand',
+		'oldfieldname': 'brand',
+		'oldfieldtype': 'Link',
+		'options': 'Brand',
+		'permlevel': 1,
+		'search_index': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_group',
+		'fieldtype': 'Link',
+		'label': 'Item Group',
+		'oldfieldname': 'item_group',
+		'oldfieldtype': 'Link',
+		'options': 'Item Group',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'product_code',
+		'fieldtype': 'Data',
+		'in_filter': 1,
+		'label': 'Order Ref. Code',
+		'oldfieldname': 'product_code',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'width': '175px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty',
+		'fieldtype': 'Currency',
+		'label': 'Quantity',
+		'oldfieldname': 'qty',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'uom',
+		'fieldtype': 'Data',
+		'label': 'UOM',
+		'oldfieldname': 'uom',
+		'oldfieldtype': 'Data',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'currency',
+		'fieldtype': 'Link',
+		'hidden': 1,
+		'label': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_name',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'label': 'Item Name',
+		'oldfieldname': 'item_name',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'rate',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'Rate',
+		'oldfieldname': 'rate',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'ref_rate_inr',
+		'fieldtype': 'Currency',
+		'label': 'Ref Rate INR',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'ref_rate_fcnr',
+		'fieldtype': 'Currency',
+		'label': 'Ref Rate FCNR',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_inr',
+		'fieldtype': 'Currency',
+		'label': 'INR Amount',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount_fcnr',
+		'fieldtype': 'Currency',
+		'label': 'FCNR Amount',
+		'permlevel': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'amount',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'INR Amount',
+		'oldfieldname': 'amount',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'reqd': 0,
+		'width': '100px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'fcnr_amount',
+		'fieldtype': 'Currency',
+		'hidden': 1,
+		'label': 'FCNR Amount',
+		'permlevel': 0,
+		'print_hide': 1,
+		'report_hide': 1,
+		'width': '100px'
+	}
+]

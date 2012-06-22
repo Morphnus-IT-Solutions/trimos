@@ -1,0 +1,36 @@
+# Search Criteria, monthly_ledger_summary_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:50',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:50',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_col': "month(`tabGL Entry`.posting_date) AS 'Fiscal Month'\nsum(`tabGL Entry`.debit) AS 'Debit'\nsum(`tabGL Entry`.credit) AS 'Credit'",
+		'add_cond': '(`tabGL Entry`.debit > 0 or `tabGL Entry`.credit > 0)',
+		'criteria_name': 'Monthly Ledger Summary Report',
+		'dis_filters': 'company',
+		'doc_type': 'GL Entry',
+		'doctype': 'Search Criteria',
+		'filters': "{'GL Entry\x01Voucher Type':'','GL Entry\x01Is Cancelled':'','GL Entry\x01Is Opening':''}",
+		'group_by': 'month(`tabGL Entry`.posting_date)',
+		'module': 'Accounts',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`Fiscal Month`',
+		'sort_order': 'ASC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, monthly_ledger_summary_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'monthly_ledger_summary_report'
+	}
+]

@@ -1,0 +1,168 @@
+# DocType, Question
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:55',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:55',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'allow_attach': 0,
+		'allow_trash': 1,
+		'autoname': 'QUES.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'module': 'Knowledge Base',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 7
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'Question',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'cancel': 1,
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'name': '__common__',
+		'parent': 'Question',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocType, Question
+	{
+		'doctype': 'DocType',
+		'name': 'Question'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'question',
+		'fieldtype': 'Text',
+		'idx': 1,
+		'label': 'Question',
+		'oldfieldname': 'question',
+		'oldfieldtype': 'Text'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'points',
+		'fieldtype': 'Int',
+		'hidden': 1,
+		'idx': 2,
+		'label': 'Points'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'answer',
+		'fieldtype': 'Text Editor',
+		'idx': 3,
+		'label': 'Answer',
+		'oldfieldname': 'answer',
+		'oldfieldtype': 'Text Editor'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': '_user_tags',
+		'fieldtype': 'Data',
+		'hidden': 1,
+		'idx': 4,
+		'label': 'User Tags'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tag_1',
+		'fieldtype': 'Link',
+		'idx': 5,
+		'label': 'Tag 1',
+		'oldfieldname': 'tag_1',
+		'oldfieldtype': 'Link',
+		'options': 'Question Tag',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': '_users_voted',
+		'fieldtype': 'Text',
+		'idx': 6,
+		'label': 'Users Voted'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tag_2',
+		'fieldtype': 'Link',
+		'idx': 7,
+		'label': 'Tag 2',
+		'oldfieldname': 'tag_2',
+		'oldfieldtype': 'Link',
+		'options': 'Question Tag',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tag_3',
+		'fieldtype': 'Link',
+		'idx': 8,
+		'label': 'Tag 3',
+		'oldfieldname': 'tag_3',
+		'oldfieldtype': 'Link',
+		'options': 'Question Tag',
+		'search_index': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'file_list',
+		'fieldtype': 'Text',
+		'hidden': 1,
+		'idx': 9,
+		'label': 'File List',
+		'oldfieldname': 'file_list',
+		'oldfieldtype': 'Text'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	}
+]

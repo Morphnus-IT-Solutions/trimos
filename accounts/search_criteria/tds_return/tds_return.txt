@@ -1,0 +1,31 @@
+# Search Criteria, tds_return
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:56:29',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:56:29',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'TDS Return',
+		'dis_filters': 'fiscal_year',
+		'doc_type': 'TDS Payment Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'TDS Payment\x01Submitted':1}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'parent_doc_type': 'TDS Payment',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, tds_return
+	{
+		'doctype': 'Search Criteria',
+		'name': 'tds_return'
+	}
+]

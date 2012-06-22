@@ -1,0 +1,157 @@
+# DocType, PRO Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:37',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:37',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'PRODC/.#######',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'show_in_menu': 0,
+		'version': 4
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'PRO Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# DocType, PRO Detail
+	{
+		'doctype': 'DocType',
+		'name': 'PRO Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'item_code',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'label': 'Item Code',
+		'oldfieldname': 'item_code',
+		'oldfieldtype': 'Link',
+		'options': 'Item',
+		'permlevel': 0,
+		'reqd': 1,
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'description',
+		'fieldtype': 'Text',
+		'idx': 2,
+		'label': 'Description',
+		'oldfieldname': 'description',
+		'oldfieldtype': 'Text',
+		'permlevel': 1,
+		'width': '300px'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'source_warehouse',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'Source Warehouse',
+		'oldfieldname': 'source_warehouse',
+		'oldfieldtype': 'Link',
+		'options': 'Warehouse',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'actual_qty',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'label': 'Current Stock',
+		'oldfieldname': 'actual_qty',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty_reqd',
+		'fieldtype': 'Currency',
+		'idx': 6,
+		'label': 'Qty Reqd',
+		'oldfieldname': 'qty_reqd',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'issued_qty',
+		'fieldtype': 'Currency',
+		'idx': 7,
+		'label': 'Issued Qty',
+		'oldfieldname': 'issued_qty',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'consumed_qty',
+		'fieldtype': 'Currency',
+		'idx': 8,
+		'label': 'Consumed Qty',
+		'oldfieldname': 'consumed_qty',
+		'oldfieldtype': 'Currency',
+		'permlevel': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'qty_consumed_per_unit',
+		'fieldtype': 'Currency',
+		'idx': 9,
+		'label': 'Qty Consumed Per Unit',
+		'oldfieldname': 'qty_consumed_per_unit',
+		'oldfieldtype': 'Currency',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'stock_uom',
+		'fieldtype': 'Data',
+		'idx': 12,
+		'label': 'Stock UOM',
+		'oldfieldname': 'stock_uom',
+		'oldfieldtype': 'Data',
+		'permlevel': 1,
+		'reqd': 1
+	}
+]

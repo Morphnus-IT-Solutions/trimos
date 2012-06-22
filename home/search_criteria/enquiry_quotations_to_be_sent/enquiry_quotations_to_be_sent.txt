@@ -1,0 +1,35 @@
+# Search Criteria, enquiry-quotations_to_be_sent
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:36',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:36',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_cond': '`tabQuotation`.enq_no!=`tabEnquiry`.name\n',
+		'add_tab': 'tabQuotation',
+		'columns': 'Enquiry\x01ID,Enquiry\x01Owner',
+		'criteria_name': 'Enquiry-Quotations to be sent',
+		'doc_type': 'Enquiry',
+		'doctype': 'Search Criteria',
+		'filters': '{}',
+		'module': 'Home',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabEnquiry`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, enquiry-quotations_to_be_sent
+	{
+		'doctype': 'Search Criteria',
+		'name': 'enquiry-quotations_to_be_sent'
+	}
+]

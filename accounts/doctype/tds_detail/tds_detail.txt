@@ -1,0 +1,133 @@
+# DocType, TDS Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2010-08-08 17:09:27',
+		'docstatus': 0,
+		'modified': '2010-09-20 14:06:57',
+		'modified_by': 'Administrator',
+		'owner': 'wasim@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'istable': 1,
+		'module': 'Accounts',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 2
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'TDS Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'width': '150px'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'TDS Detail',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, TDS Detail
+	{
+		'doctype': 'DocType',
+		'name': 'TDS Detail'
+	},
+
+	# DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'role': 'All',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1,
+		'role': 'All'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'permlevel': 0,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'permlevel': 1,
+		'role': 'System Manager'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'tds_category',
+		'fieldtype': 'Select',
+		'idx': 1,
+		'label': 'TDS Category',
+		'oldfieldname': 'tds_category',
+		'oldfieldtype': 'Select',
+		'options': 'link:TDS Category'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'special_tds_rate_applicable',
+		'fieldtype': 'Select',
+		'idx': 2,
+		'label': 'Special TDS Rate Applicable',
+		'oldfieldname': 'special_tds_rate_applicable',
+		'oldfieldtype': 'Select',
+		'options': '\nYes\nNo'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'special_tds_rate',
+		'fieldtype': 'Currency',
+		'idx': 3,
+		'label': 'Special TDS Rate(Section-197)\t',
+		'oldfieldname': 'special_tds_rate',
+		'oldfieldtype': 'Currency'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'special_tds_limit',
+		'fieldtype': 'Currency',
+		'idx': 4,
+		'label': 'Special TDS Limit',
+		'oldfieldname': 'special_tds_limit',
+		'oldfieldtype': 'Currency'
+	}
+]

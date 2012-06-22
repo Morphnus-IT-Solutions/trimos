@@ -1,0 +1,398 @@
+# DocType, BOM Replace Utility
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:32:25',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:32:27',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'section_style': 'Tray',
+		'server_code_error': ' ',
+		'show_in_menu': 1,
+		'version': 56
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'BOM Replace Utility',
+		'parentfield': 'fields',
+		'parenttype': 'DocType',
+		'permlevel': 0
+	},
+
+	# These values are common for all DocPerm
+	{
+		'doctype': 'DocPerm',
+		'name': '__common__',
+		'parent': 'BOM Replace Utility',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'read': 1
+	},
+
+	# DocType, BOM Replace Utility
+	{
+		'doctype': 'DocType',
+		'name': 'BOM Replace Utility'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'permlevel': 0,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 2,
+		'permlevel': 1,
+		'role': 'System Manager'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 3,
+		'permlevel': 0,
+		'role': 'Production User',
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 4,
+		'permlevel': 1,
+		'role': 'Production User'
+	},
+
+	# DocPerm
+	{
+		'create': 1,
+		'doctype': 'DocPerm',
+		'idx': 5,
+		'permlevel': 0,
+		'role': 'Production Manager',
+		'submit': 0,
+		'write': 1
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm',
+		'idx': 6,
+		'permlevel': 1,
+		'role': 'Production Manager'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'create_new_bom',
+		'fieldtype': 'Check',
+		'idx': 1,
+		'label': 'Create New BOM'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 2,
+		'label': 'BOM Details'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the relevant BOM to be replaced which is actually a raw material used for a parent BOM.',
+		'doctype': 'DocField',
+		'fieldname': 's_bom',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'Select BOM',
+		'options': 'Bill Of Materials',
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'idx': 4,
+		'label': 'Note 1',
+		'options': 'Click on the button "Search BOM" to fetch in the table below all the parent BOMs in which the above selected BOM is used as a raw material.'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 5
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 6,
+		'label': 'Search BOM',
+		'options': 'search_parent_bom_of_bom'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 7,
+		'options': 'Simple'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the BOM by which you want the above sected BOM to be replaced.',
+		'doctype': 'DocField',
+		'fieldname': 'r_bom',
+		'fieldtype': 'Link',
+		'idx': 8,
+		'label': 'Replace Bom with',
+		'options': 'Bill Of Materials',
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'idx': 9,
+		'label': 'Note 2',
+		'options': 'Click on the button "Replace BOM" after checking under the column Replace against relevant Parent BOMs'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 10
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 11,
+		'label': 'Replace BOM',
+		'options': 'replace_bom'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 12,
+		'options': 'Simple'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'replace_bom_details',
+		'fieldtype': 'Table',
+		'idx': 13,
+		'label': 'Replace BOM Detail',
+		'options': 'BOM Replace Utility Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 14,
+		'label': 'Item Details'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the relevant item to be replaced which is actually a raw material used for a parent BOM.',
+		'doctype': 'DocField',
+		'fieldname': 's_item',
+		'fieldtype': 'Link',
+		'idx': 15,
+		'label': 'Select Item',
+		'options': 'Item',
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'idx': 16,
+		'label': 'Note 3',
+		'options': 'Click on the button "Search Item" to fetch in the table below all the parent BOMs in which the above selected item is used as a raw material.'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 17
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 18,
+		'label': 'Search Item',
+		'options': 'search_parent_bom_of_item'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 19,
+		'options': 'Simple'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the item by which you want the above sected item to be replaced.',
+		'doctype': 'DocField',
+		'fieldname': 'r_item',
+		'fieldtype': 'Link',
+		'idx': 20,
+		'label': 'Replace Item with',
+		'options': 'Item',
+		'trigger': 'Client'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'HTML',
+		'idx': 21,
+		'label': 'Note 4',
+		'options': 'Click on the button "Replace Item" after checking under the column Replace against relevant Parent BOMs'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Column Break',
+		'idx': 22
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 23,
+		'label': 'Replace Item',
+		'options': 'replace_item'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 24,
+		'options': 'Simple'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'replace_item_details',
+		'fieldtype': 'Table',
+		'idx': 25,
+		'label': 'Replace Item Detail',
+		'options': 'BOM Replace Utility Detail'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 26,
+		'label': 'Update BOM Tree'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'description': 'Select the root Bill of Materials in which raw materials are replaced and click on the button below to update costs.',
+		'doctype': 'DocField',
+		'fieldname': 'fg_bom_no',
+		'fieldtype': 'Link',
+		'idx': 27,
+		'label': 'FG BOM No',
+		'options': 'Bill Of Materials'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 28,
+		'label': 'Update',
+		'options': 'update_bom'
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldtype': 'Section Break',
+		'idx': 29,
+		'label': 'Update BOM'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'bom',
+		'fieldtype': 'Link',
+		'idx': 30,
+		'label': 'BOM',
+		'options': 'Bill Of Materials'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldtype': 'Button',
+		'idx': 31,
+		'label': 'Update Docstatus',
+		'options': 'update_docstatus'
+	}
+]

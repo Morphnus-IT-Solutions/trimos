@@ -1,0 +1,33 @@
+# Search Criteria, budget_variance_report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:25',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:25',
+		'modified_by': 'Administrator',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'Budget Variance Report',
+		'doc_type': 'Budget Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Budget Detail\x01Fiscal Year':''}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Cost Center',
+		'sort_by': '`tabCost Center`.`lft`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, budget_variance_report
+	{
+		'doctype': 'Search Criteria',
+		'name': 'budget_variance_report'
+	}
+]

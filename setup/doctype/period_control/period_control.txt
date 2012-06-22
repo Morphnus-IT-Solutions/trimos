@@ -1,0 +1,32 @@
+# DocType, Period Control
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:53:30',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:53:30',
+		'modified_by': 'Administrator',
+		'owner': 'nabin@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'in_create': 1,
+		'issingle': 1,
+		'module': 'Setup',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 36
+	},
+
+	# DocType, Period Control
+	{
+		'doctype': 'DocType',
+		'name': 'Period Control'
+	}
+]

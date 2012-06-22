@@ -1,0 +1,32 @@
+# Search Criteria, general_ledger
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:40',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:40',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'General Ledger',
+		'doc_type': 'GL Entry',
+		'doctype': 'Search Criteria',
+		'filters': "{'GL Entry\x01From Posting Date\x01lower':'','GL Entry\x01To Posting Date\x01upper':'','GL Entry\x01Voucher Type':'','GL Entry\x01Is Cancelled':'No','GL Entry\x01Is Opening':'','GL Entry\x01Fiscal Year':'','GL Entry\x01Company':''}",
+		'module': 'Accounts',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_by': '`tabGL Entry`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, general_ledger
+	{
+		'doctype': 'Search Criteria',
+		'name': 'general_ledger'
+	}
+]

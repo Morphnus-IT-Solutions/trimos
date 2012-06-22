@@ -1,0 +1,37 @@
+# Search Criteria, delivery_plan
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:33',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:33',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'add_col': "SUM(`tabSales Order Detail`.`pending_qty` * `tabSales Order Detail`.`basic_rate` ) AS 'Amount'",
+		'add_cond': "`tabSales Order Detail`.pending_qty > 0 and (`tabSales Order Detail`.confirmation_date is not null or `tabSales Order Detail`.confirmation_date!='' or `tabSales Order Detail`.confirmation_date != '00-00-0000')",
+		'columns': 'Sales Order\x01ID,Sales Order\x01Customer,Sales Order\x01Customer Name',
+		'criteria_name': 'Delivery Plan',
+		'doc_type': 'Sales Order Detail',
+		'doctype': 'Search Criteria',
+		'filters': "{'Sales Order\x01Saved':1,'Sales Order\x01Submitted':1,'Sales Order\x01Status':'','Sales Order\x01Fiscal Year':''}",
+		'group_by': '`tabSales Order Detail`.`confirmation_date`, `tabSales Order`.`name`',
+		'module': 'Production',
+		'name': '__common__',
+		'page_len': 50,
+		'parent_doc_type': 'Sales Order',
+		'sort_by': '`tabSales Order`.`name`',
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, delivery_plan
+	{
+		'doctype': 'Search Criteria',
+		'name': 'delivery_plan'
+	}
+]

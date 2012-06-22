@@ -1,0 +1,47 @@
+# Module Def, Knowledge Base
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:59:26',
+		'docstatus': 0,
+		'modified': '2011-11-29 15:32:30',
+		'modified_by': 'jigish_m@trimosmetrology.net',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Module Def Role
+	{
+		'doctype': 'Module Def Role',
+		'name': '__common__',
+		'parent': 'Knowledge Base',
+		'parentfield': 'roles',
+		'parenttype': 'Module Def',
+		'role': 'All'
+	},
+
+	# These values are common for all Module Def
+	{
+		'disabled': 'Yes',
+		'doctype': u'Module Def',
+		'is_hidden': 'No',
+		'module_desc': '<p>Maintain your knowledge base of Questions &amp; Answers</p>',
+		'module_icon': 'help.png',
+		'module_label': 'Knowledge Base',
+		'module_name': 'Knowledge Base',
+		'module_page': 'questions',
+		'module_seq': 13,
+		'name': '__common__'
+	},
+
+	# Module Def, Knowledge Base
+	{
+		'doctype': u'Module Def',
+		'name': 'Knowledge Base'
+	},
+
+	# Module Def Role
+	{
+		'doctype': 'Module Def Role'
+	}
+]

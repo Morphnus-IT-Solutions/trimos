@@ -1,0 +1,31 @@
+# Search Criteria, projectwise_sales_details
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-11-19 17:54:56',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:54:56',
+		'modified_by': 'Administrator',
+		'owner': 'harshada@webnotestech.com'
+	},
+
+	# These values are common for all Search Criteria
+	{
+		'criteria_name': 'Projectwise Sales Details',
+		'doc_type': 'Sales Order',
+		'doctype': 'Search Criteria',
+		'filters': "{'Sales Order\x01Saved':1,'Sales Order\x01Submitted':1,'Sales Order\x01Status':''}",
+		'module': 'Projects',
+		'name': '__common__',
+		'page_len': 50,
+		'sort_order': 'DESC',
+		'standard': 'Yes'
+	},
+
+	# Search Criteria, projectwise_sales_details
+	{
+		'doctype': 'Search Criteria',
+		'name': 'projectwise_sales_details'
+	}
+]

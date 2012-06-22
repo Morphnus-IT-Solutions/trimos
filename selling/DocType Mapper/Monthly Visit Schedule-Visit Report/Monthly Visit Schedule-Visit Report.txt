@@ -1,0 +1,243 @@
+# DocType Mapper, Monthly Visit Schedule-Visit Report
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2009-06-30 16:22:41',
+		'docstatus': 0,
+		'modified': '2011-11-19 17:59:44',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'name': '__common__',
+		'parent': 'Monthly Visit Schedule-Visit Report',
+		'parentfield': 'table_mapper_details',
+		'parenttype': 'DocType Mapper',
+		'to_field': 'visit_report_details',
+		'to_table': 'Visit Report Detail',
+		'validation_logic': 'ifnull(`select`,0) = 1'
+	},
+
+	# These values are common for all Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'name': '__common__',
+		'parent': 'Monthly Visit Schedule-Visit Report',
+		'parentfield': 'field_mapper_details',
+		'parenttype': 'DocType Mapper'
+	},
+
+	# These values are common for all DocType Mapper
+	{
+		'doctype': 'DocType Mapper',
+		'from_doctype': 'Monthly Visit Schedule',
+		'module': 'Selling',
+		'name': '__common__',
+		'ref_doc_submitted': 1,
+		'to_doctype': 'Visit Report'
+	},
+
+	# DocType Mapper, Monthly Visit Schedule-Visit Report
+	{
+		'doctype': 'DocType Mapper',
+		'name': 'Monthly Visit Schedule-Visit Report'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_name',
+		'match_id': 1,
+		'to_field': 'customer_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'customer'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'territory',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'territory'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'purpose',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'purpose'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'against_document',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'against_document'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'against_document_no',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'against_document_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_code',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'item_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'brand',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'brand'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'product_code',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'product_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'scheduled_date',
+		'map': 'Yes',
+		'match_id': 1,
+		'to_field': 'scheduled_date'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer_name',
+		'match_id': 2,
+		'to_field': 'customer_name'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'customer',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'customer'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'territory',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'territory'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'purpose',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'purpose'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'against_document',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'against_document'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'against_document_no',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'against_document_no'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'item_code',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'item_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'brand',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'brand'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'product_code',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'product_code'
+	},
+
+	# Field Mapper Detail
+	{
+		'doctype': 'Field Mapper Detail',
+		'from_field': 'scheduled_date',
+		'map': 'Yes',
+		'match_id': 2,
+		'to_field': 'scheduled_date'
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'scheduled_visit_details',
+		'from_table': 'Scheduled Visit Details',
+		'match_id': 1
+	},
+
+	# Table Mapper Detail
+	{
+		'doctype': 'Table Mapper Detail',
+		'from_field': 'unscheduled_visit_details',
+		'from_table': 'Unscheduled Visit Details',
+		'match_id': 2
+	}
+]

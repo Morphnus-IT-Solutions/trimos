@@ -1,0 +1,30 @@
+# DocType, Patch Util
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 01:40:21',
+		'docstatus': 0,
+		'modified': '2011-07-17 01:40:21',
+		'modified_by': 'Administrator',
+		'owner': 'Administrator'
+	},
+
+	# These values are common for all DocType
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'issingle': 1,
+		'module': 'Utilities',
+		'name': '__common__',
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'version': 5
+	},
+
+	# DocType, Patch Util
+	{
+		'doctype': 'DocType',
+		'name': 'Patch Util'
+	}
+]

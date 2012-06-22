@@ -1,0 +1,105 @@
+# DocType, BOM Replace Utility Detail
+[
+
+	# These values are common in all dictionaries
+	{
+		'creation': '2011-07-17 00:32:27',
+		'docstatus': 0,
+		'modified': '2011-07-17 00:32:27',
+		'modified_by': 'Administrator',
+		'owner': 'jai@webnotestech.com'
+	},
+
+	# These values are common for all DocType
+	{
+		'autoname': 'BRUD/.#####',
+		'colour': 'White:FFF',
+		'doctype': 'DocType',
+		'hide_toolbar': 1,
+		'in_create': 1,
+		'istable': 1,
+		'module': 'Production',
+		'name': '__common__',
+		'read_only': 1,
+		'section_style': 'Simple',
+		'server_code_error': ' ',
+		'show_in_menu': 0,
+		'version': 8
+	},
+
+	# These values are common for all DocField
+	{
+		'doctype': 'DocField',
+		'name': '__common__',
+		'parent': 'BOM Replace Utility Detail',
+		'parentfield': 'fields',
+		'parenttype': 'DocType'
+	},
+
+	# These values are common for all DocPerm
+	{
+		'create': 0,
+		'doctype': 'DocPerm',
+		'idx': 1,
+		'name': '__common__',
+		'parent': 'BOM Replace Utility Detail',
+		'parentfield': 'permissions',
+		'parenttype': 'DocType',
+		'permlevel': 0,
+		'read': 1,
+		'role': 'System Manager',
+		'write': 1
+	},
+
+	# DocType, BOM Replace Utility Detail
+	{
+		'doctype': 'DocType',
+		'name': 'BOM Replace Utility Detail'
+	},
+
+	# DocPerm
+	{
+		'doctype': 'DocPerm'
+	},
+
+	# DocField
+	{
+		'colour': 'White:FFF',
+		'doctype': 'DocField',
+		'fieldname': 'parent_bom',
+		'fieldtype': 'Link',
+		'idx': 1,
+		'label': 'Parent BOM',
+		'oldfieldname': 'parent_bom',
+		'oldfieldtype': 'Link',
+		'options': 'Bill Of Materials',
+		'permlevel': 1,
+		'reqd': 1
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'replace',
+		'fieldtype': 'Check',
+		'idx': 2,
+		'label': 'Replace',
+		'oldfieldname': 'replace',
+		'oldfieldtype': 'Check',
+		'permlevel': 0
+	},
+
+	# DocField
+	{
+		'doctype': 'DocField',
+		'fieldname': 'bom_created',
+		'fieldtype': 'Link',
+		'idx': 3,
+		'label': 'BOM Created',
+		'oldfieldname': 'bom_created',
+		'oldfieldtype': 'Link',
+		'options': 'Bill Of Materials',
+		'permlevel': 1,
+		'search_index': 0
+	}
+]
